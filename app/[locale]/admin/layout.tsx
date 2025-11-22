@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { useParams, usePathname } from 'next/navigation'
-import { DashboardShell } from 'noorui-rtl'
+import { DashboardShell, DirectionProvider } from 'noorui-rtl'
 import { FileText, Plus, LayoutDashboard, Settings } from 'lucide-react'
 import { LanguageSwitcher } from '@/components/blog/language-switcher'
 import { ThemeSwitcher } from '@/components/blog/theme-switcher'
@@ -114,27 +114,29 @@ export default function AdminLayout({
   const navItems = getNavItems(locale)
 
   return (
-    <div dir={config.dir} className="min-h-screen bg-background">
-      <DashboardShell
-        navItems={navItems}
-        user={{
-          name: 'Admin User',
-          email: 'admin@kitab.blog',
-          initials: 'AU',
-        }}
-        notifications={mockNotifications}
-        logo={<span className="text-lg font-bold">Kitab</span>}
-        logoHref={`/${locale}`}
-        sidebarWidth="240px"
-        headerActions={
-          <>
-            <ThemeSwitcher />
-            <LanguageSwitcher currentLocale={locale} />
-          </>
-        }
-      >
-        {children}
-      </DashboardShell>
-    </div>
+    <DirectionProvider>
+      <div dir={config.dir} className="min-h-screen bg-background">
+        <DashboardShell
+          navItems={navItems}
+          user={{
+            name: 'Admin User',
+            email: 'admin@kitab.blog',
+            initials: 'AU',
+          }}
+          notifications={mockNotifications}
+          logo={<span className="text-lg font-bold">Kitab</span>}
+          logoHref={`/${locale}`}
+          sidebarWidth="240px"
+          headerActions={
+            <>
+              <ThemeSwitcher />
+              <LanguageSwitcher currentLocale={locale} />
+            </>
+          }
+        >
+          {children}
+        </DashboardShell>
+      </div>
+    </DirectionProvider>
   )
 }

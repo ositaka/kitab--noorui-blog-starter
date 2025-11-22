@@ -168,6 +168,7 @@ export function ContentEditor({
             placeholder={placeholder || (isRTL ? 'ابدأ الكتابة...' : 'Start writing...')}
             className="border-0 rounded-none"
             minHeight={minHeight}
+            dir={dir}
           />
         )}
 
