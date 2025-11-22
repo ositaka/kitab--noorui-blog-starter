@@ -63,7 +63,7 @@ export function SiteHeader({ locale }: SiteHeaderProps) {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side={direction === 'rtl' ? 'right' : 'left'}>
+            <SheetContent side={direction === 'rtl' ? 'end' : 'start'}>
               <SheetHeader>
                 <SheetTitle className="flex items-center gap-2">
                   <BookOpen className="h-5 w-5" />

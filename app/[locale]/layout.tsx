@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import type { Locale } from '@/lib/supabase/types'
-import { Header, Footer } from '@/components/layout'
 
 const locales: Locale[] = ['en', 'fr', 'ar', 'ur']
 
@@ -38,6 +37,10 @@ export async function generateMetadata({
   }
 }
 
+/**
+ * Base locale layout - only handles dir and lang attributes.
+ * Header/Footer are handled by child route group layouts.
+ */
 export default async function LocaleLayout({
   children,
   params,
@@ -54,12 +57,8 @@ export default async function LocaleLayout({
   const config = localeConfig[locale as Locale]
 
   return (
-    <div dir={config.dir} lang={config.lang} className="flex min-h-screen flex-col">
-      <Header locale={locale as Locale} />
-      <main className="flex-1">
-        {children}
-      </main>
-      <Footer locale={locale as Locale} />
+    <div dir={config.dir} lang={config.lang}>
+      {children}
     </div>
   )
 }

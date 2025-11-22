@@ -3,7 +3,7 @@ id: "css-logical-properties"
 title: "Propriétés logiques CSS pour le support RTL/LTR"
 excerpt: "Comment utiliser les propriétés logiques CSS pour créer des mises en page qui s'adaptent automatiquement à n'importe quelle direction d'écriture."
 category: "rtl-ltr-concepts"
-author: "karim-benali"
+author: "nuno-marques"
 publishedAt: "2025-01-02"
 readingTime: 10
 featured: false

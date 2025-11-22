@@ -3,7 +3,7 @@ id: "css-logical-properties"
 title: "RTL/LTR سپورٹ کے لیے CSS منطقی خصوصیات"
 excerpt: "سیکھیں کہ CSS منطقی خصوصیات کیسے جدید، دو طرفہ-ریڈی لے آؤٹس بنانے میں مدد کرتی ہیں جو خود بخود RTL اور LTR زبانوں کے مطابق ڈھل جاتی ہیں۔"
 category: "rtl-ltr-concepts"
-author: "karim-benali"
+author: "nuno-marques"
 publishedAt: "2025-01-02"
 readingTime: 9
 featured: false

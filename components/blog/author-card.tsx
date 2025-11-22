@@ -14,23 +14,19 @@ import {
   Skeleton,
 } from 'noorui-rtl'
 import { Twitter, Globe, ArrowRight } from 'lucide-react'
-import type { Author, Locale, LocalizedString } from '@/lib/supabase/types'
+import type { AuthorLocalized, Locale } from '@/lib/supabase/types'
 
 interface AuthorCardProps {
-  author: Author
+  author: AuthorLocalized
   locale?: Locale
   postCount?: number
   compact?: boolean
 }
 
-function getLocalizedValue(obj: LocalizedString | null, locale: Locale): string {
-  if (!obj) return ''
-  return obj[locale] || obj['en'] || ''
-}
-
 export function AuthorCard({ author, locale = 'en', postCount, compact = false }: AuthorCardProps) {
-  const name = getLocalizedValue(author.name, locale)
-  const bio = getLocalizedValue(author.bio, locale)
+  // AuthorLocalized already has localized name/bio from the database view
+  const name = author.name || ''
+  const bio = author.bio || ''
   const initials = name?.slice(0, 2).toUpperCase() || 'AU'
 
   if (compact) {

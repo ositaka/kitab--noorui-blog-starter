@@ -38,42 +38,43 @@ export async function getPosts(options?: {
     query = query.eq('category_id', categoryId)
   }
 
-  const { data: posts, error } = await query
+  const { data, error } = await query
 
   if (error) {
     console.error('Error fetching posts:', error)
     return []
   }
 
-  if (!posts || posts.length === 0) return []
+  if (!data || data.length === 0) return []
+
+  // Cast to PostLocalized[] since Supabase types for views may not be complete
+  const posts = data as PostLocalized[]
 
   // Fetch authors and categories for enrichment
   const authorIds = [...new Set(posts.map((p) => p.author_id).filter(Boolean))]
   const categoryIds = [...new Set(posts.map((p) => p.category_id).filter(Boolean))]
 
-  const [authorsResult, categoriesResult] = await Promise.all([
+  const [authorsData, categoriesData] = await Promise.all([
     authorIds.length > 0
       ? supabase
           .from('authors_localized')
           .select('*')
           .eq('locale', locale)
           .in('id', authorIds as string[])
-      : { data: [] },
+          .then(({ data }) => (data || []) as AuthorLocalized[])
+      : Promise.resolve([] as AuthorLocalized[]),
     categoryIds.length > 0
       ? supabase
           .from('categories_localized')
           .select('*')
           .eq('locale', locale)
           .in('id', categoryIds as string[])
-      : { data: [] },
+          .then(({ data }) => (data || []) as CategoryLocalized[])
+      : Promise.resolve([] as CategoryLocalized[]),
   ])
 
-  const authorsMap = new Map(
-    (authorsResult.data || []).map((a) => [a.id, a as AuthorLocalized])
-  )
-  const categoriesMap = new Map(
-    (categoriesResult.data || []).map((c) => [c.id, c as CategoryLocalized])
-  )
+  const authorsMap = new Map(authorsData.map((a) => [a.id, a]))
+  const categoriesMap = new Map(categoriesData.map((c) => [c.id, c]))
 
   // Enrich posts with author and category
   return posts.map((post) => ({
@@ -89,7 +90,7 @@ export async function getPostBySlug(
 ): Promise<PostWithRelations | null> {
   const supabase = await createClient()
 
-  const { data: post, error } = await supabase
+  const { data, error } = await supabase
     .from('posts_localized')
     .select('*')
     .eq('slug', slug)
@@ -97,13 +98,16 @@ export async function getPostBySlug(
     .eq('is_published', true)
     .single()
 
-  if (error || !post) {
+  if (error || !data) {
     console.error('Error fetching post:', error)
     return null
   }
 
+  // Cast to PostLocalized since Supabase types for views may not be complete
+  const post = data as PostLocalized
+
   // Fetch author and category
-  const [authorResult, categoryResult] = await Promise.all([
+  const [authorData, categoryData] = await Promise.all([
     post.author_id
       ? supabase
           .from('authors_localized')
@@ -111,7 +115,8 @@ export async function getPostBySlug(
           .eq('id', post.author_id)
           .eq('locale', locale)
           .single()
-      : { data: null },
+          .then(({ data }) => data as AuthorLocalized | null)
+      : Promise.resolve(null),
     post.category_id
       ? supabase
           .from('categories_localized')
@@ -119,13 +124,14 @@ export async function getPostBySlug(
           .eq('id', post.category_id)
           .eq('locale', locale)
           .single()
-      : { data: null },
+          .then(({ data }) => data as CategoryLocalized | null)
+      : Promise.resolve(null),
   ])
 
   return {
     ...post,
-    author: authorResult.data as AuthorLocalized | null,
-    category: categoryResult.data as CategoryLocalized | null,
+    author: authorData,
+    category: categoryData,
   } as PostWithRelations
 }
 
@@ -211,17 +217,10 @@ export async function searchPosts(
 }
 
 export async function incrementPostViews(postId: string): Promise<void> {
-  const supabase = await createClient()
-
-  const { error } = await supabase
-    .from('posts')
-    .update({ view_count: supabase.rpc ? undefined : 0 }) // Increment handled by RPC
-    .eq('id', postId)
-
-  // Alternative: use raw SQL via RPC if you set up increment_view_count function
-  if (error) {
-    console.error('Error incrementing views:', error)
-  }
+  // This is a placeholder - in production, you'd use an RPC function
+  // to atomically increment the view count
+  // Example: await supabase.rpc('increment_post_views', { post_id: postId })
+  console.log('View increment requested for post:', postId)
 }
 
 // ============================================
@@ -337,13 +336,14 @@ export async function getAvailableTranslations(slug: string): Promise<Locale[]> 
   const supabase = await createClient()
 
   // First get the post ID from the slug
-  const { data: post } = await supabase
+  const { data: postData } = await supabase
     .from('posts')
     .select('id')
     .eq('slug', slug)
     .eq('is_published', true)
     .single()
 
+  const post = postData as { id: string } | null
   if (!post) return []
 
   // Then get all translations for this post
@@ -357,7 +357,7 @@ export async function getAvailableTranslations(slug: string): Promise<Locale[]> 
     return []
   }
 
-  return (data || []).map((d) => d.locale) as Locale[]
+  return ((data || []) as { locale: string }[]).map((d) => d.locale) as Locale[]
 }
 
 // ============================================
@@ -404,7 +404,10 @@ export async function getAllTags(locale: Locale = 'en'): Promise<string[]> {
     return []
   }
 
+  // Cast data since Supabase types for views may not be complete
+  const posts = (data || []) as { tags: string[] | null }[]
+
   // Flatten and dedupe tags
-  const allTags = (data || []).flatMap((d) => d.tags || [])
+  const allTags = posts.flatMap((d) => d.tags || [])
   return [...new Set(allTags)]
 }

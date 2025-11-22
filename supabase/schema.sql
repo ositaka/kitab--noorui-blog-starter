@@ -257,16 +257,16 @@ GRANT SELECT ON categories_localized TO anon, authenticated;
 -- SEED DATA: AUTHORS
 -- ============================================
 INSERT INTO authors (id, avatar_url, twitter, website) VALUES
-  ('noor-team', '/images/authors/noor-team.jpg', '@noorui', 'https://noorui.com'),
+  ('nuno-marques', '/images/authors/nuno-marques.jpg', '@ositaka', 'https://ositaka.com'),
   ('amira-hassan', '/images/authors/amira-hassan.jpg', NULL, NULL),
   ('karim-benali', '/images/authors/karim-benali.jpg', NULL, NULL),
   ('fatima-zahra', '/images/authors/fatima-zahra.jpg', NULL, NULL);
 
 INSERT INTO author_translations (author_id, locale, name, bio) VALUES
-  ('noor-team', 'en', 'Noor Team', 'The team behind Noor UI, building beautiful bidirectional interfaces.'),
-  ('noor-team', 'fr', 'Équipe Noor', 'L''équipe derrière Noor UI, créant de belles interfaces bidirectionnelles.'),
-  ('noor-team', 'ar', 'فريق نور', 'الفريق وراء نور UI، يبني واجهات ثنائية الاتجاه جميلة.'),
-  ('noor-team', 'ur', 'نور ٹیم', 'نور UI کے پیچھے ٹیم، خوبصورت دو طرفہ انٹرفیس بنا رہی ہے۔'),
+  ('nuno-marques', 'en', 'Nuno Marques', 'Creator of Noor UI, building beautiful RTL-first React components for the GCC region.'),
+  ('nuno-marques', 'fr', 'Nuno Marques', 'Créateur de Noor UI, développant de beaux composants React RTL-first pour la région du Golfe.'),
+  ('nuno-marques', 'ar', 'نونو ماركيز', 'مؤسس نور UI، يبني مكونات React جميلة من اليمين لليسار لمنطقة الخليج.'),
+  ('nuno-marques', 'ur', 'نونو مارکیز', 'نور UI کے خالق، خلیج کے علاقے کے لیے خوبصورت RTL-first React اجزاء بنا رہے ہیں۔'),
 
   ('amira-hassan', 'en', 'Amira Hassan', 'Linguist and typographer specializing in Arabic script history and evolution.'),
   ('amira-hassan', 'fr', 'Amira Hassan', 'Linguiste et typographe spécialisée dans l''histoire de l''écriture arabe.'),

@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { format } from 'date-fns'
+import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -21,13 +22,15 @@ import {
   Separator,
   Button,
 } from 'noorui-rtl'
-import { Clock, Eye, ArrowLeft, Share2, Twitter } from 'lucide-react'
+import { Clock, Eye, ArrowLeft, Share2 } from 'lucide-react'
+import { MDXContent } from '@/components/mdx'
 import type { Locale, PostWithRelations } from '@/lib/supabase/types'
 
 interface PostPageClientProps {
   locale: Locale
   post: PostWithRelations
   relatedPosts: PostWithRelations[]
+  mdxSource: MDXRemoteSerializeResult | null
 }
 
 const pageText: Record<Locale, { home: string; blog: string; related: string; back: string; min: string; share: string }> = {
@@ -37,7 +40,7 @@ const pageText: Record<Locale, { home: string; blog: string; related: string; ba
   ur: { home: 'ہوم', blog: 'بلاگ', related: 'متعلقہ مضامین', back: 'بلاگ پر واپس', min: 'منٹ پڑھنے کا وقت', share: 'شیئر کریں' },
 }
 
-export function PostPageClient({ locale, post, relatedPosts }: PostPageClientProps) {
+export function PostPageClient({ locale, post, relatedPosts, mdxSource }: PostPageClientProps) {
   const text = pageText[locale]
   const isRTL = locale === 'ar' || locale === 'ur'
 
@@ -143,7 +146,9 @@ export function PostPageClient({ locale, post, relatedPosts }: PostPageClientPro
 
           {/* Content */}
           <div className="prose prose-lg dark:prose-invert max-w-none">
-            {post.content ? (
+            {mdxSource ? (
+              <MDXContent source={mdxSource} />
+            ) : post.content ? (
               <div dangerouslySetInnerHTML={{ __html: post.content }} />
             ) : (
               <p>{post.excerpt}</p>

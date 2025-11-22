@@ -3,7 +3,7 @@ id: "css-logical-properties"
 title: "خصائص CSS المنطقية لدعم RTL/LTR"
 excerpt: "كيفية استخدام خصائص CSS المنطقية لإنشاء تخطيطات تتكيف تلقائياً مع أي اتجاه كتابة."
 category: "rtl-ltr-concepts"
-author: "karim-benali"
+author: "nuno-marques"
 publishedAt: "2025-01-02"
 readingTime: 10
 featured: false

@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getPostBySlug, getRelatedPosts } from '@/lib/supabase/api'
+import { serializeMDX } from '@/lib/mdx'
 import type { Locale } from '@/lib/supabase/types'
 import { PostPageClient } from './post-client'
 
@@ -19,11 +20,17 @@ export default async function PostPage({ params }: Props) {
 
   const relatedPosts = await getRelatedPosts(slug, post.category_id || '', locale, 3)
 
+  // Serialize MDX content on the server
+  const mdxSource = post.content
+    ? await serializeMDX(post.content)
+    : null
+
   return (
     <PostPageClient
       locale={locale}
       post={post}
       relatedPosts={relatedPosts}
+      mdxSource={mdxSource}
     />
   )
 }

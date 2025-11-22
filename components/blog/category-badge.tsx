@@ -2,18 +2,13 @@
 
 import Link from 'next/link'
 import { Badge } from 'noorui-rtl'
-import type { Category, Locale, LocalizedString } from '@/lib/supabase/types'
+import type { CategoryLocalized, Locale } from '@/lib/supabase/types'
 
 interface CategoryBadgeProps {
-  category: Category
+  category: CategoryLocalized
   locale?: Locale
   asLink?: boolean
   size?: 'default' | 'lg'
-}
-
-function getLocalizedValue(obj: LocalizedString | null, locale: Locale): string {
-  if (!obj) return ''
-  return obj[locale] || obj['en'] || ''
 }
 
 export function CategoryBadge({
@@ -22,7 +17,8 @@ export function CategoryBadge({
   asLink = true,
   size = 'default'
 }: CategoryBadgeProps) {
-  const name = getLocalizedValue(category.name, locale)
+  // CategoryLocalized already has localized name from the database view
+  const name = category.name || ''
 
   const badge = (
     <Badge
