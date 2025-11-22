@@ -8,13 +8,10 @@ export type Json =
 
 export type Locale = 'en' | 'fr' | 'ar' | 'ur'
 
-export type LocalizedString = {
-  [key in Locale]?: string
-}
-
 export interface Database {
   public: {
     Tables: {
+      // Base tables (non-translatable fields)
       authors: {
         Row: {
           id: string
@@ -23,8 +20,6 @@ export interface Database {
           avatar_url: string | null
           website: string | null
           twitter: string | null
-          name: LocalizedString
-          bio: LocalizedString
         }
         Insert: {
           id: string
@@ -33,8 +28,6 @@ export interface Database {
           avatar_url?: string | null
           website?: string | null
           twitter?: string | null
-          name?: LocalizedString
-          bio?: LocalizedString
         }
         Update: {
           id?: string
@@ -43,8 +36,29 @@ export interface Database {
           avatar_url?: string | null
           website?: string | null
           twitter?: string | null
-          name?: LocalizedString
-          bio?: LocalizedString
+        }
+      }
+      author_translations: {
+        Row: {
+          id: string
+          author_id: string
+          locale: Locale
+          name: string
+          bio: string | null
+        }
+        Insert: {
+          id?: string
+          author_id: string
+          locale: Locale
+          name: string
+          bio?: string | null
+        }
+        Update: {
+          id?: string
+          author_id?: string
+          locale?: Locale
+          name?: string
+          bio?: string | null
         }
       }
       categories: {
@@ -54,8 +68,6 @@ export interface Database {
           slug: string
           color: string
           icon: string | null
-          name: LocalizedString
-          description: LocalizedString
         }
         Insert: {
           id: string
@@ -63,8 +75,6 @@ export interface Database {
           slug: string
           color?: string
           icon?: string | null
-          name?: LocalizedString
-          description?: LocalizedString
         }
         Update: {
           id?: string
@@ -72,8 +82,29 @@ export interface Database {
           slug?: string
           color?: string
           icon?: string | null
-          name?: LocalizedString
-          description?: LocalizedString
+        }
+      }
+      category_translations: {
+        Row: {
+          id: string
+          category_id: string
+          locale: Locale
+          name: string
+          description: string | null
+        }
+        Insert: {
+          id?: string
+          category_id: string
+          locale: Locale
+          name: string
+          description?: string | null
+        }
+        Update: {
+          id?: string
+          category_id?: string
+          locale?: Locale
+          name?: string
+          description?: string | null
         }
       }
       posts: {
@@ -82,19 +113,13 @@ export interface Database {
           created_at: string
           updated_at: string
           slug: string
-          locale: Locale
           author_id: string | null
           category_id: string | null
-          title: string
-          excerpt: string | null
-          content: string | null
           featured_image: string | null
           reading_time: number
           published_at: string | null
           is_published: boolean
           is_featured: boolean
-          meta_title: string | null
-          meta_description: string | null
           tags: string[]
           view_count: number
         }
@@ -103,19 +128,13 @@ export interface Database {
           created_at?: string
           updated_at?: string
           slug: string
-          locale?: Locale
           author_id?: string | null
           category_id?: string | null
-          title: string
-          excerpt?: string | null
-          content?: string | null
           featured_image?: string | null
           reading_time?: number
           published_at?: string | null
           is_published?: boolean
           is_featured?: boolean
-          meta_title?: string | null
-          meta_description?: string | null
           tags?: string[]
           view_count?: number
         }
@@ -124,19 +143,13 @@ export interface Database {
           created_at?: string
           updated_at?: string
           slug?: string
-          locale?: Locale
           author_id?: string | null
           category_id?: string | null
-          title?: string
-          excerpt?: string | null
-          content?: string | null
           featured_image?: string | null
           reading_time?: number
           published_at?: string | null
           is_published?: boolean
           is_featured?: boolean
-          meta_title?: string | null
-          meta_description?: string | null
           tags?: string[]
           view_count?: number
         }
@@ -144,52 +157,84 @@ export interface Database {
       post_translations: {
         Row: {
           id: string
-          canonical_slug: string
           post_id: string
           locale: Locale
+          title: string
+          excerpt: string | null
+          content: string | null
+          meta_title: string | null
+          meta_description: string | null
         }
         Insert: {
           id?: string
-          canonical_slug: string
           post_id: string
           locale: Locale
+          title: string
+          excerpt?: string | null
+          content?: string | null
+          meta_title?: string | null
+          meta_description?: string | null
         }
         Update: {
           id?: string
-          canonical_slug?: string
           post_id?: string
           locale?: Locale
+          title?: string
+          excerpt?: string | null
+          content?: string | null
+          meta_title?: string | null
+          meta_description?: string | null
         }
       }
     }
     Views: {
-      posts_with_relations: {
+      // Localized views (joins base + translations)
+      posts_localized: {
         Row: {
           id: string
-          created_at: string
-          updated_at: string
           slug: string
-          locale: Locale
           author_id: string | null
           category_id: string | null
-          title: string
-          excerpt: string | null
-          content: string | null
           featured_image: string | null
           reading_time: number
           published_at: string | null
           is_published: boolean
           is_featured: boolean
-          meta_title: string | null
-          meta_description: string | null
           tags: string[]
           view_count: number
-          author_name: LocalizedString | null
-          author_avatar: string | null
-          author_bio: LocalizedString | null
-          category_name: LocalizedString | null
-          category_slug: string | null
-          category_color: string | null
+          created_at: string
+          updated_at: string
+          locale: Locale
+          title: string
+          excerpt: string | null
+          content: string | null
+          meta_title: string | null
+          meta_description: string | null
+        }
+      }
+      authors_localized: {
+        Row: {
+          id: string
+          avatar_url: string | null
+          website: string | null
+          twitter: string | null
+          created_at: string
+          updated_at: string
+          locale: Locale
+          name: string
+          bio: string | null
+        }
+      }
+      categories_localized: {
+        Row: {
+          id: string
+          slug: string
+          color: string
+          icon: string | null
+          created_at: string
+          locale: Locale
+          name: string
+          description: string | null
         }
       }
     }
@@ -202,13 +247,29 @@ export interface Database {
   }
 }
 
-// Helper types
+// Base types (without translations)
 export type Author = Database['public']['Tables']['authors']['Row']
 export type Category = Database['public']['Tables']['categories']['Row']
 export type Post = Database['public']['Tables']['posts']['Row']
-export type PostWithRelations = Database['public']['Views']['posts_with_relations']['Row']
+
+// Translation types
+export type AuthorTranslation = Database['public']['Tables']['author_translations']['Row']
+export type CategoryTranslation = Database['public']['Tables']['category_translations']['Row']
+export type PostTranslation = Database['public']['Tables']['post_translations']['Row']
+
+// Localized types (from views - what you'll use in components)
+export type PostLocalized = Database['public']['Views']['posts_localized']['Row']
+export type AuthorLocalized = Database['public']['Views']['authors_localized']['Row']
+export type CategoryLocalized = Database['public']['Views']['categories_localized']['Row']
 
 // Insert types
 export type AuthorInsert = Database['public']['Tables']['authors']['Insert']
 export type CategoryInsert = Database['public']['Tables']['categories']['Insert']
 export type PostInsert = Database['public']['Tables']['posts']['Insert']
+export type PostTranslationInsert = Database['public']['Tables']['post_translations']['Insert']
+
+// Extended post type with author and category info
+export interface PostWithRelations extends PostLocalized {
+  author?: AuthorLocalized | null
+  category?: CategoryLocalized | null
+}
