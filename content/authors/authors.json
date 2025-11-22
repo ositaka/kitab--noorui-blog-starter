@@ -1,0 +1,82 @@
+{
+  "authors": [
+    {
+      "id": "noor-team",
+      "name": {
+        "en": "Noor UI Team",
+        "fr": "Équipe Noor UI",
+        "ar": "فريق نور",
+        "ur": "نور یو آئی ٹیم"
+      },
+      "bio": {
+        "en": "The team behind Noor UI, building beautiful and accessible multilingual interfaces for the modern web.",
+        "fr": "L'équipe derrière Noor UI, qui crée des interfaces multilingues belles et accessibles pour le web moderne.",
+        "ar": "الفريق المسؤول عن نور UI، الذي يبني واجهات متعددة اللغات جميلة وسهلة الوصول للويب الحديث.",
+        "ur": "نور یو آئی کے پیچھے ٹیم، جدید ویب کے لیے خوبصورت اور قابل رسائی کثیر لسانی انٹرفیس بنا رہی ہے۔"
+      },
+      "avatar": "/images/authors/noor-team.png",
+      "social": {
+        "twitter": "naborui",
+        "github": "noorui"
+      }
+    },
+    {
+      "id": "amira-hassan",
+      "name": {
+        "en": "Dr. Amira Hassan",
+        "fr": "Dr. Amira Hassan",
+        "ar": "د. أميرة حسن",
+        "ur": "ڈاکٹر عمیرہ حسن"
+      },
+      "bio": {
+        "en": "Calligraphy historian and typography researcher with 15 years of experience studying Arabic and Persian scripts.",
+        "fr": "Historienne de la calligraphie et chercheuse en typographie avec 15 ans d'expérience dans l'étude des écritures arabe et persane.",
+        "ar": "مؤرخة خط وباحثة في الطباعة مع 15 عامًا من الخبرة في دراسة الخطوط العربية والفارسية.",
+        "ur": "خطاطی کی مؤرخ اور ٹائپوگرافی کی محقق جن کے پاس عربی اور فارسی رسم الخط کے مطالعے کا 15 سال کا تجربہ ہے۔"
+      },
+      "avatar": "/images/authors/amira-hassan.png",
+      "social": {
+        "twitter": "amirahassan"
+      }
+    },
+    {
+      "id": "karim-benali",
+      "name": {
+        "en": "Karim Benali",
+        "fr": "Karim Benali",
+        "ar": "كريم بن علي",
+        "ur": "کریم بن علی"
+      },
+      "bio": {
+        "en": "Developer advocate specializing in internationalization (i18n) and building RTL-compatible web applications.",
+        "fr": "Développeur advocate spécialisé dans l'internationalisation (i18n) et la création d'applications web compatibles RTL.",
+        "ar": "مطور ومدافع متخصص في التدويل (i18n) وبناء تطبيقات ويب متوافقة مع RTL.",
+        "ur": "ڈویلپر ایڈووکیٹ جو بین الاقوامی سازی (i18n) اور RTL کے موافق ویب ایپلیکیشنز بنانے میں مہارت رکھتے ہیں۔"
+      },
+      "avatar": "/images/authors/karim-benali.png",
+      "social": {
+        "twitter": "karimbenali",
+        "github": "karimbenali"
+      }
+    },
+    {
+      "id": "fatima-zahra",
+      "name": {
+        "en": "Fatima Zahra",
+        "fr": "Fatima Zahra",
+        "ar": "فاطمة الزهراء",
+        "ur": "فاطمہ زہرا"
+      },
+      "bio": {
+        "en": "UX researcher focused on how reading direction and cultural factors influence user experience design.",
+        "fr": "Chercheuse UX spécialisée dans l'impact de la direction de lecture et des facteurs culturels sur la conception d'expérience utilisateur.",
+        "ar": "باحثة في تجربة المستخدم تركز على كيفية تأثير اتجاه القراءة والعوامل الثقافية على تصميم تجربة المستخدم.",
+        "ur": "یو ایکس ریسرچر جو اس بات پر توجہ مرکوز کرتی ہیں کہ پڑھنے کی سمت اور ثقافتی عوامل صارف کے تجربے کے ڈیزائن کو کیسے متاثر کرتے ہیں۔"
+      },
+      "avatar": "/images/authors/fatima-zahra.png",
+      "social": {
+        "twitter": "fatimazahra_ux"
+      }
+    }
+  ]
+}

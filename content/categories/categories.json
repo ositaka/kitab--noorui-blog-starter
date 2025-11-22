@@ -1,0 +1,72 @@
+{
+  "categories": [
+    {
+      "id": "scripts-alphabets",
+      "slug": "scripts-alphabets",
+      "name": {
+        "en": "Scripts & Alphabets",
+        "fr": "Écritures & Alphabets",
+        "ar": "الخطوط والأبجديات",
+        "ur": "رسم الخط اور حروف تہجی"
+      },
+      "description": {
+        "en": "Historical and educational content about writing systems, their origins, and evolution.",
+        "fr": "Contenu historique et éducatif sur les systèmes d'écriture, leurs origines et leur évolution.",
+        "ar": "محتوى تاريخي وتعليمي حول أنظمة الكتابة وأصولها وتطورها.",
+        "ur": "تحریری نظاموں، ان کی اصل اور ارتقاء کے بارے میں تاریخی اور تعلیمی مواد۔"
+      },
+      "color": "#6366f1"
+    },
+    {
+      "id": "rtl-ltr-concepts",
+      "slug": "rtl-ltr-concepts",
+      "name": {
+        "en": "RTL/LTR Concepts",
+        "fr": "Concepts RTL/LTR",
+        "ar": "مفاهيم RTL/LTR",
+        "ur": "RTL/LTR تصورات"
+      },
+      "description": {
+        "en": "Technical explanations of bidirectional text, implementation guides, and solutions for developers.",
+        "fr": "Explications techniques du texte bidirectionnel, guides d'implémentation et solutions pour les développeurs.",
+        "ar": "شروحات تقنية للنص ثنائي الاتجاه، وأدلة التنفيذ، والحلول للمطورين.",
+        "ur": "دو طرفہ متن کی تکنیکی وضاحتیں، عمل درآمد کی رہنمائی، اور ڈویلپرز کے لیے حل۔"
+      },
+      "color": "#10b981"
+    },
+    {
+      "id": "typography",
+      "slug": "typography",
+      "name": {
+        "en": "Typography",
+        "fr": "Typographie",
+        "ar": "فن الطباعة",
+        "ur": "ٹائپوگرافی"
+      },
+      "description": {
+        "en": "Deep dives into fonts, calligraphy styles, ligatures, and the visual aspects of scripts.",
+        "fr": "Plongées approfondies dans les polices, les styles calligraphiques, les ligatures et les aspects visuels des écritures.",
+        "ar": "غوص عميق في الخطوط، وأساليب الخط، والحروف المتصلة، والجوانب البصرية للخطوط.",
+        "ur": "فونٹس، خطاطی کے انداز، لیگیچرز، اور رسم الخط کے بصری پہلوؤں میں گہرائی۔"
+      },
+      "color": "#f59e0b"
+    },
+    {
+      "id": "cultural-context",
+      "slug": "cultural-context",
+      "name": {
+        "en": "Cultural Context",
+        "fr": "Contexte Culturel",
+        "ar": "السياق الثقافي",
+        "ur": "ثقافتی سیاق"
+      },
+      "description": {
+        "en": "The human side of writing systems - calligraphy as art, cognition, and historical manuscripts.",
+        "fr": "Le côté humain des systèmes d'écriture - la calligraphie comme art, la cognition et les manuscrits historiques.",
+        "ar": "الجانب الإنساني لأنظمة الكتابة - الخط كفن، والإدراك، والمخطوطات التاريخية.",
+        "ur": "تحریری نظاموں کا انسانی پہلو - فن کے طور پر خطاطی، ادراک، اور تاریخی مخطوطات۔"
+      },
+      "color": "#ec4899"
+    }
+  ]
+}
