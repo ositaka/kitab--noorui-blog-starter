@@ -2,6 +2,7 @@
 
 import * as React from 'react'
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 import { PostEditor, type PostEditorData } from '@/components/admin/post-editor'
 import type { Locale, AuthorLocalized, CategoryLocalized } from '@/lib/supabase/types'
 import { createPostAction } from '../actions'
@@ -171,12 +172,17 @@ export function NewPostContent({
         translations: translationsToCreate,
       })
 
-      if (result.post) {
+      // Check for guest mode error or creation failure
+      if ('error' in result && result.error) {
+        toast.error(result.error)
+        return
+      }
+      if ('post' in result && result.post) {
+        toast.success(publish ? 'Post published!' : 'Draft saved!')
         router.push(`/${locale}/admin/posts`)
-      } else {
-        console.error('Failed to create post:', result.error)
       }
     } catch (error) {
+      toast.error('An error occurred while saving the post')
       console.error('Error creating post:', error)
     } finally {
       setIsSubmitting(false)

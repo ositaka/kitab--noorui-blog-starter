@@ -3,6 +3,18 @@
 @tailwind utilities;
 
 /* =============================================================================
+   Admin Dashboard Background
+   ============================================================================= */
+
+/* Light grey tint for admin main content area */
+.admin-bg main,
+.admin-bg [role="main"],
+.admin-bg > div > main {
+  background-color: hsl(var(--muted) / 0.4);
+  min-height: 100vh;
+}
+
+/* =============================================================================
    Syntax Highlighting (rehype-pretty-code with Shiki)
 
    Shiki dual-theme outputs spans with inline styles like:

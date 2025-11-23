@@ -2,6 +2,7 @@
 
 import * as React from 'react'
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 import { PostEditor, type PostEditorData } from '@/components/admin/post-editor'
 import type { Locale, Post, AuthorLocalized, CategoryLocalized } from '@/lib/supabase/types'
 import { updatePostAction, upsertTranslationAction } from '../actions'
@@ -180,8 +181,13 @@ export function EditPostContent({
         published_at: publish && !post.is_published ? new Date().toISOString() : undefined,
       })
 
-      if (!updateResult.success) {
-        console.error('Failed to update post:', updateResult.error)
+      // Check for guest mode error or update failure
+      if ('error' in updateResult && updateResult.error) {
+        toast.error(updateResult.error)
+        return
+      }
+      if ('success' in updateResult && !updateResult.success) {
+        toast.error('Failed to update post')
         return
       }
 
@@ -197,10 +203,19 @@ export function EditPostContent({
           })
         )
 
-      await Promise.all(translationPromises)
+      const translationResults = await Promise.all(translationPromises)
 
+      // Check if any translation failed (guest mode)
+      const translationError = translationResults.find((r) => r.error)
+      if (translationError?.error) {
+        toast.error(translationError.error)
+        return
+      }
+
+      toast.success(publish ? 'Post published!' : 'Changes saved!')
       router.push(`/${locale}/admin/posts`)
     } catch (error) {
+      toast.error('An error occurred while saving the post')
       console.error('Error updating post:', error)
     } finally {
       setIsSubmitting(false)

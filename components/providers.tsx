@@ -2,6 +2,7 @@
 
 import { ThemeProvider } from 'next-themes'
 import { DirectionProvider, DesignSystemProvider, TooltipProvider } from 'noorui-rtl'
+import { Toaster } from 'sonner'
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -10,6 +11,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         <DesignSystemProvider defaultTheme="minimal">
           <TooltipProvider>
             {children}
+            <Toaster richColors position="bottom-right" />
           </TooltipProvider>
         </DesignSystemProvider>
       </DirectionProvider>

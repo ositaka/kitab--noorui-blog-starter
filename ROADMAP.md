@@ -107,9 +107,12 @@ Features needed:
 ## Phase 4: Admin Panel
 
 ### 4.1 Authentication
-- [ ] Supabase Auth integration
-- [ ] Admin role check
-- [ ] Protected routes
+- [x] Supabase Auth integration (Google OAuth)
+- [x] Admin role check (via ADMIN_EMAILS env var)
+- [x] Protected routes (middleware-based)
+- [x] Guest mode (view-only access for demos)
+- [x] Login page with Google + Guest options
+- [x] Auth state management (AuthProvider context)
 
 ### 4.2 Post Management
 - [x] Posts list with filters
@@ -118,6 +121,8 @@ Features needed:
 - [x] Draft/Publish workflow
 - [ ] Image upload to Supabase Storage
 - [x] Translation management (all 4 locales)
+- [x] Server actions protected (guests cannot edit)
+- [x] Toast notifications for errors/success
 
 ### 4.3 Dashboard
 - [x] Analytics overview (views, popular posts)
@@ -130,13 +135,37 @@ Features needed:
 - [x] Proper Next.js routing (no hash-based navigation)
 - [x] Server Actions for mutations
 - [x] Sliding panel for post details preview
+- [x] Guest mode badge in header
+- [x] Settings page with profile, site info, and sign out
 
 **New noorui-rtl components:**
 - `AdminLayout` - Admin panel shell (using DashboardShell)
 - `PostEditor` - Full post editing experience
-- `ImageUpload` - Drag & drop image upload
+- `ImageUpload` - Drag & drop image upload (TODO)
 - `TranslationEditor` - Side-by-side translation editing
 - `StatsCard` - Analytics display card
+
+### 4.5 Authentication Architecture
+```
+Guest Mode:                    Admin Mode:
+┌─────────────────┐            ┌─────────────────┐
+│  Login Page     │            │  Login Page     │
+│  "Enter Guest"  │            │  Google Sign-In │
+└────────┬────────┘            └────────┬────────┘
+         │                              │
+         ▼                              ▼
+┌─────────────────┐            ┌─────────────────┐
+│  Cookie Set     │            │  Supabase Auth  │
+│  kitab_guest    │            │  + Email Check  │
+└────────┬────────┘            └────────┬────────┘
+         │                              │
+         ▼                              ▼
+┌─────────────────┐            ┌─────────────────┐
+│  View Only      │            │  Full Access    │
+│  - Can browse   │            │  - CRUD posts   │
+│  - No mutations │            │  - All actions  │
+└─────────────────┘            └─────────────────┘
+```
 
 ---
 
