@@ -1,3 +1,206 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* =============================================================================
+   Syntax Highlighting (rehype-pretty-code with Shiki)
+
+   Shiki dual-theme outputs spans with inline styles like:
+   style="color:var(--shiki-light);--shiki-dark:#xxx;--shiki-light:#yyy"
+
+   We need to tell CSS which variable to use based on theme.
+   ============================================================================= */
+
+/* Light mode: use --shiki-light colors */
+[data-rehype-pretty-code-figure] span {
+  color: var(--shiki-light) !important;
+}
+
+/* Dark mode: use --shiki-dark colors */
+.dark [data-rehype-pretty-code-figure] span {
+  color: var(--shiki-dark) !important;
+}
+
+/* Code block container */
+[data-rehype-pretty-code-figure] {
+  position: relative;
+  margin: 1.5rem 0;
+}
+
+/* Code block title (filename) */
+[data-rehype-pretty-code-title] {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: hsl(var(--muted-foreground));
+  background-color: hsl(var(--muted));
+  border: 1px solid hsl(var(--border));
+  border-bottom: none;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+[data-rehype-pretty-code-title] + pre {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* Pre element - the code block container */
+[data-rehype-pretty-code-figure] pre {
+  margin: 0;
+  padding: 1rem 0;
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  border: 1px solid hsl(var(--border));
+  background-color: #fafafa;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.dark [data-rehype-pretty-code-figure] pre {
+  background-color: #18181b;
+}
+
+/* Code element inside pre */
+[data-rehype-pretty-code-figure] pre > code {
+  display: block;
+  width: fit-content;
+  min-width: 100%;
+}
+
+/* Individual lines - each line is wrapped in a span with data-line */
+[data-rehype-pretty-code-figure] [data-line] {
+  display: block;
+  padding: 0 1rem;
+  border-left: 2px solid transparent;
+}
+
+/* Highlighted lines */
+[data-rehype-pretty-code-figure] [data-highlighted-line] {
+  background-color: hsl(var(--primary) / 0.08);
+  border-left-color: hsl(var(--primary));
+}
+
+/* Line numbers */
+[data-rehype-pretty-code-figure] code[data-line-numbers] {
+  counter-reset: line;
+}
+
+[data-rehype-pretty-code-figure] code[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1.5rem;
+  margin-right: 1.5rem;
+  text-align: right;
+  color: hsl(var(--muted-foreground) / 0.4);
+}
+
+/* Highlighted words/chars */
+[data-rehype-pretty-code-figure] mark {
+  background-color: hsl(var(--primary) / 0.2);
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.25rem;
+}
+
+/* Inline code (not in code blocks) */
+:not(pre) > code {
+  background-color: hsl(var(--muted));
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+
+/* Allow wrapping for very long inline code */
+:not(pre) > code:has([data-long]) {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* =============================================================================
+   RTL-Aware Prose Enhancements
+   ============================================================================= */
+
+/* RTL code blocks */
+[dir="rtl"] [data-rehype-pretty-code-figure] [data-line] {
+  border-left: none;
+  border-right: 2px solid transparent;
+}
+
+[dir="rtl"] [data-rehype-pretty-code-figure] [data-highlighted-line] {
+  border-right-color: hsl(var(--primary));
+}
+
+[dir="rtl"] [data-rehype-pretty-code-figure] code[data-line-numbers] > [data-line]::before {
+  margin-right: 0;
+  margin-left: 1.5rem;
+}
+
+/* RTL list markers */
+[dir="rtl"] .prose ul,
+[dir="rtl"] .prose ol {
+  list-style-position: inside;
+}
+
+/* Prose base */
+.prose {
+  color: hsl(var(--foreground));
+}
+
+/* RTL prose */
+[dir="rtl"] .prose {
+  text-align: right;
+}
+
+[dir="rtl"] .prose p,
+[dir="rtl"] .prose li {
+  text-align: right;
+}
+
+/* Code should always be LTR */
+.prose pre,
+.prose code {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Tables in RTL */
+[dir="rtl"] .prose table {
+  direction: rtl;
+}
+
+[dir="rtl"] .prose th,
+[dir="rtl"] .prose td {
+  text-align: right;
+}
+
+/* =============================================================================
+   Custom Scrollbar Styles
+   ============================================================================= */
+
+/* Scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--border));
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Firefox scrollbar */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--border)) transparent;
+}

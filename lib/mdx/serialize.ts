@@ -1,22 +1,51 @@
 import { serialize } from 'next-mdx-remote/serialize'
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
+import rehypePrettyCode from 'rehype-pretty-code'
+import type { Options as PrettyCodeOptions } from 'rehype-pretty-code'
+import remarkGfm from 'remark-gfm'
 
 export interface SerializeOptions {
   scope?: Record<string, unknown>
 }
 
+// Shiki syntax highlighting options
+const prettyCodeOptions: PrettyCodeOptions = {
+  theme: {
+    dark: 'github-dark',
+    light: 'github-light',
+  },
+  keepBackground: false,
+  defaultLang: 'plaintext',
+}
+
 /**
- * Check if content is raw HTML (from database) vs Markdown/MDX
- * HTML content should be rendered with dangerouslySetInnerHTML, not MDX
+ * Check if content is raw HTML (from rich text editor) vs Markdown/MDX
+ *
+ * We want to be CONSERVATIVE here - only bypass MDX for content that is
+ * clearly from a rich text editor (starts with <p>, <div>, etc. and has
+ * no markdown patterns).
+ *
+ * Markdown content should ALWAYS go through MDX for syntax highlighting.
  */
 export function isHTMLContent(content: string): boolean {
-  // Check if content starts with HTML tags (indicating it's raw HTML from DB)
-  const htmlStartPattern = /^\s*<(h[1-6]|p|div|section|article|ul|ol|blockquote)/i
-  // Check for multiple HTML block elements
-  const htmlBlockPattern = /<\/(p|div|h[1-6]|ul|ol|li|blockquote)>/gi
+  // If content contains markdown code blocks, it's markdown - process with MDX
+  if (/```[\s\S]*?```/.test(content)) {
+    return false
+  }
+
+  // If content contains markdown headers, it's markdown
+  if (/^#{1,6}\s/m.test(content)) {
+    return false
+  }
+
+  // If content starts with typical rich-editor HTML wrapper
+  const richEditorPattern = /^\s*<(p|div)(\s[^>]*)?>.*<\/(p|div)>/is
+
+  // Only treat as HTML if it looks like rich editor output AND has many closing tags
+  const htmlBlockPattern = /<\/(p|div|h[1-6]|ul|ol|li|blockquote|span|strong|em)>/gi
   const matches = content.match(htmlBlockPattern)
 
-  return htmlStartPattern.test(content) || (matches !== null && matches.length > 3)
+  return richEditorPattern.test(content) && matches !== null && matches.length > 5
 }
 
 /**
@@ -37,6 +66,10 @@ export async function serializeMDX(
     const serialized = await serialize(content, {
       mdxOptions: {
         development: process.env.NODE_ENV === 'development',
+        remarkPlugins: [remarkGfm],
+        rehypePlugins: [
+          [rehypePrettyCode, prettyCodeOptions],
+        ],
       },
       scope: options.scope,
     })

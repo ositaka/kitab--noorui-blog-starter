@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { format } from 'date-fns'
-import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
+import type { ReactNode } from 'react'
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -23,14 +23,14 @@ import {
   Button,
 } from 'noorui-rtl'
 import { Clock, Eye, ArrowLeft, Share2 } from 'lucide-react'
-import { MDXContent } from '@/components/mdx'
 import type { Locale, PostWithRelations } from '@/lib/supabase/types'
+import { TableOfContents } from '@/components/blog/table-of-contents'
 
 interface PostPageClientProps {
   locale: Locale
   post: PostWithRelations
   relatedPosts: PostWithRelations[]
-  mdxSource: MDXRemoteSerializeResult | null
+  mdxContent: ReactNode | null
 }
 
 const pageText: Record<Locale, { home: string; blog: string; related: string; back: string; min: string; share: string }> = {
@@ -40,7 +40,7 @@ const pageText: Record<Locale, { home: string; blog: string; related: string; ba
   ur: { home: 'ہوم', blog: 'بلاگ', related: 'متعلقہ مضامین', back: 'بلاگ پر واپس', min: 'منٹ پڑھنے کا وقت', share: 'شیئر کریں' },
 }
 
-export function PostPageClient({ locale, post, relatedPosts, mdxSource }: PostPageClientProps) {
+export function PostPageClient({ locale, post, relatedPosts, mdxContent }: PostPageClientProps) {
   const text = pageText[locale]
   const isRTL = locale === 'ar' || locale === 'ur'
 
@@ -146,8 +146,8 @@ export function PostPageClient({ locale, post, relatedPosts, mdxSource }: PostPa
 
           {/* Content */}
           <div className="prose prose-lg dark:prose-invert max-w-none">
-            {mdxSource ? (
-              <MDXContent source={mdxSource} />
+            {mdxContent ? (
+              mdxContent
             ) : post.content ? (
               <div dangerouslySetInnerHTML={{ __html: post.content }} />
             ) : (
@@ -193,30 +193,38 @@ export function PostPageClient({ locale, post, relatedPosts, mdxSource }: PostPa
           </div>
         </article>
 
-        {/* Sidebar */}
-        <aside className="space-y-6">
-          {/* Related Posts */}
-          {relatedPosts.length > 0 && (
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-base">{text.related}</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {relatedPosts.map((relatedPost) => (
-                  <Link
-                    key={relatedPost.id}
-                    href={'/' + locale + '/blog/' + relatedPost.slug}
-                    className="block hover:text-primary transition-colors"
-                  >
-                    <p className="font-medium line-clamp-2">{relatedPost.title}</p>
-                    <p className="text-sm text-muted-foreground">
-                      {relatedPost.reading_time} {text.min}
-                    </p>
-                  </Link>
-                ))}
-              </CardContent>
-            </Card>
-          )}
+        {/* Sidebar - Sticky */}
+        <aside className="hidden lg:block">
+          <div className="sticky top-24 space-y-6">
+            {/* Table of Contents */}
+            <TableOfContents
+              contentSelector=".prose"
+              title={isRTL ? 'جدول المحتويات' : 'On this page'}
+            />
+
+            {/* Related Posts */}
+            {relatedPosts.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-base">{text.related}</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {relatedPosts.map((relatedPost) => (
+                    <Link
+                      key={relatedPost.id}
+                      href={'/' + locale + '/blog/' + relatedPost.slug}
+                      className="block hover:text-primary transition-colors"
+                    >
+                      <p className="font-medium line-clamp-2">{relatedPost.title}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {relatedPost.reading_time} {text.min}
+                      </p>
+                    </Link>
+                  ))}
+                </CardContent>
+              </Card>
+            )}
+          </div>
         </aside>
       </div>
     </div>

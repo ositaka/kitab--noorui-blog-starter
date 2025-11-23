@@ -6,22 +6,22 @@ A plan for enriching the blog while also expanding noorui-rtl components.
 
 ## Phase 1: Content Rendering & Reading Experience
 
-### 1.1 Markdown/MDX Rendering
-- [ ] Install `next-mdx-remote` or `@mdx-js/react`
-- [ ] Create MDX components mapping for custom styling
-- [ ] Support for code syntax highlighting (`rehype-highlight` or `shiki`)
-- [ ] RTL-aware prose styles
+### 1.1 Markdown/MDX Rendering ✅
+- [x] Install `next-mdx-remote` or `@mdx-js/react`
+- [x] Create MDX components mapping for custom styling
+- [x] Support for code syntax highlighting (`rehype-highlight` or `shiki`)
+- [x] RTL-aware prose styles
 
-### 1.2 Sticky Sidebar
-- [ ] Make sidebar sticky on scroll
-- [ ] Add smooth scroll behavior
-- [ ] Collapse on mobile
+### 1.2 Sticky Sidebar ✅
+- [x] Make sidebar sticky on scroll
+- [x] Add smooth scroll behavior
+- [x] Collapse on mobile (hidden on mobile, visible on lg+)
 
-### 1.3 Table of Contents (ToC)
-- [ ] Auto-generate from headings
-- [ ] Highlight active section on scroll
-- [ ] Smooth scroll to section
-- [ ] RTL-aware positioning
+### 1.3 Table of Contents (ToC) ✅
+- [x] Auto-generate from headings (using rehype-slug + existing ToC component)
+- [x] Highlight active section on scroll
+- [x] Smooth scroll to section
+- [x] RTL-aware positioning (uses CSS logical properties)
 
 **New noorui-rtl components:**
 - `TableOfContents` - Auto-generated, scroll-aware ToC
@@ -364,6 +364,15 @@ Description of each variant with visual examples.
 #### Fixed in noorui-rtl v0.3.8
 - [x] **DashboardShell DialogTitle accessibility** - Added visually hidden SheetTitle to satisfy radix-ui accessibility requirements. This fixes the console warning about DialogContent requiring DialogTitle.
 - [x] **DashboardShell mobile sidebar RTL positioning** - Fixed mobile sidebar to use `side="start"` instead of direction-based logic since CSS logical properties handle RTL automatically. Now the sidebar correctly appears on the right side for RTL locales.
+
+#### Added in noorui-rtl v0.3.11
+- [x] **DashboardShell headerActions prop** - New prop to add custom actions (like theme/language switchers) to the header.
+
+#### Added in noorui-rtl v0.3.12
+- [x] **RichTextEditor dir prop** - New prop to override direction from context. Useful when editing content in a different language than the page locale (e.g., editing Arabic content on an English admin page).
+
+#### Fixed in noorui-rtl v0.3.13
+- [x] **RichTextEditor jsx attribute console error** - Fixed `jsx` attribute console error in Next.js 16 with Turbopack. Replaced styled-jsx with standard `dangerouslySetInnerHTML` for inline styles.
 
 #### From Phase 5
 - [ ] `SearchModal`

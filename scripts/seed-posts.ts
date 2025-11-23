@@ -206,7 +206,7 @@ async function seedPosts() {
       if (!parsed) continue
 
       const { frontmatter, content } = parsed
-      const htmlContent = markdownToHtml(content)
+      // Store raw Markdown - let the frontend handle rendering with MDX/Shiki
       const slug = frontmatter.id
 
       // If this is the first locale for this slug, create the base record
@@ -227,12 +227,12 @@ async function seedPosts() {
         })
       }
 
-      // Add translation
+      // Add translation with raw Markdown content
       postsBySlug.get(slug)!.translations.push({
         locale,
         title: frontmatter.title,
         excerpt: frontmatter.excerpt,
-        content: htmlContent,
+        content: content,  // Raw Markdown, not HTML
       })
     }
   }

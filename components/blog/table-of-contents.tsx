@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardContent,
   CardTitle,
-  ScrollArea,
   Button,
   useDirection,
 } from 'noorui-rtl'
@@ -88,9 +87,9 @@ export function TableOfContents({
           {title || defaultTitle}
         </CardTitle>
       </CardHeader>
-      <CardContent className="pt-0">
-        <ScrollArea className="max-h-[300px]">
-          <nav className="space-y-1">
+      <CardContent className="pt-0 pe-1">
+        <div className="max-h-[300px] overflow-y-auto scrollbar-thin">
+          <nav className="space-y-1 pe-1">
             {headings.map((heading) => (
               <Button
                 key={heading.id}
@@ -107,7 +106,7 @@ export function TableOfContents({
               </Button>
             ))}
           </nav>
-        </ScrollArea>
+        </div>
       </CardContent>
     </Card>
   )

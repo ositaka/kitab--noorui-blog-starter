@@ -1,46 +1,43 @@
-'use client'
-
 import Link from 'next/link'
 import Image from 'next/image'
 import type { MDXComponents } from 'mdx/types'
-import { Card, CardContent, Badge, Separator } from 'noorui-rtl'
-import { Copy, Check, ExternalLink } from 'lucide-react'
-import { useState } from 'react'
+import { ExternalLink } from 'lucide-react'
+import { type ReactNode } from 'react'
 
-// Custom Code Block with copy functionality
-function CodeBlock({ children, className, ...props }: React.HTMLAttributes<HTMLElement>) {
-  const [copied, setCopied] = useState(false)
-  const language = className?.replace('language-', '') || 'text'
+// Helper to extract text content from React children
+function extractTextContent(node: ReactNode): string {
+  if (typeof node === 'string') return node
+  if (typeof node === 'number') return String(node)
+  if (!node) return ''
+  if (Array.isArray(node)) return node.map(extractTextContent).join('')
+  if (typeof node === 'object' && 'props' in node) {
+    const element = node as { props: { children?: ReactNode } }
+    return extractTextContent(element.props.children)
+  }
+  return ''
+}
 
-  const handleCopy = async () => {
-    const code = typeof children === 'string' ? children : ''
-    await navigator.clipboard.writeText(code)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+// Pre block - simple wrapper (copy button handled via CSS/JS separately if needed)
+function Pre({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) {
+  return (
+    <pre {...props}>
+      {children}
+    </pre>
+  )
+}
+
+// Inline code styling (not inside pre blocks)
+function InlineCode({ children, className, ...props }: React.HTMLAttributes<HTMLElement>) {
+  // If this code is inside a pre (has data attributes from rehype-pretty-code), render as-is
+  if (className?.includes('language-') || props['data-language' as keyof typeof props]) {
+    return <code className={className} {...props}>{children}</code>
   }
 
+  // Otherwise, it's inline code - apply inline styling
   return (
-    <div className="relative group">
-      {language && language !== 'text' && (
-        <span className="absolute top-2 start-3 text-xs text-muted-foreground font-mono">
-          {language}
-        </span>
-      )}
-      <button
-        onClick={handleCopy}
-        className="absolute top-2 end-2 p-1.5 rounded-md bg-muted/50 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-muted"
-        aria-label="Copy code"
-      >
-        {copied ? (
-          <Check className="h-4 w-4 text-green-500" />
-        ) : (
-          <Copy className="h-4 w-4 text-muted-foreground" />
-        )}
-      </button>
-      <code className={className} {...props}>
-        {children}
-      </code>
-    </div>
+    <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono" {...props}>
+      {children}
+    </code>
   )
 }
 
@@ -171,18 +168,25 @@ interface CalloutProps {
 function Callout({ type = 'info', title, children }: CalloutProps) {
   // Use data attributes for theming - styles defined in CSS
   return (
-    <Card className="my-6 border callout" data-callout-type={type}>
-      <CardContent className="p-4">
-        {title && <p className="font-semibold mb-2">{title}</p>}
-        <div className="text-sm">{children}</div>
-      </CardContent>
-    </Card>
+    <div className="my-6 rounded-lg border p-4 callout" data-callout-type={type}>
+      {title && <p className="font-semibold mb-2">{title}</p>}
+      <div className="text-sm">{children}</div>
+    </div>
   )
 }
 
 // Horizontal rule
 function Hr() {
-  return <Separator className="my-8" />
+  return <hr className="my-8 border-border" />
+}
+
+// Simple Badge component for MDX
+function Badge({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  return (
+    <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold ${className}`}>
+      {children}
+    </span>
+  )
 }
 
 // Export MDX components mapping
@@ -204,9 +208,9 @@ export const mdxComponents: MDXComponents = {
   a: CustomLink,
   img: CustomImage,
 
-  // Code
-  pre: (props) => <pre className="my-6 p-4 rounded-lg bg-muted overflow-auto" {...props} />,
-  code: CodeBlock,
+  // Code (rehype-pretty-code handles syntax highlighting)
+  pre: Pre,
+  code: InlineCode,
 
   // Lists
   ul: (props) => <ul className="my-4 ps-6 list-disc" {...props} />,
