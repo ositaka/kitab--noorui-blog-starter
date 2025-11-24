@@ -217,10 +217,22 @@ export async function searchPosts(
 }
 
 export async function incrementPostViews(postId: string): Promise<void> {
-  // This is a placeholder - in production, you'd use an RPC function
-  // to atomically increment the view count
-  // Example: await supabase.rpc('increment_post_views', { post_id: postId })
-  console.log('View increment requested for post:', postId)
+  const supabase = await createClient()
+
+  // Get current view count and increment it
+  const { data: post } = await supabase
+    .from('posts')
+    .select('view_count')
+    .eq('id', postId)
+    .single()
+
+  if (post) {
+    const newCount = (post.view_count || 0) + 1
+    await supabase
+      .from('posts')
+      .update({ view_count: newCount })
+      .eq('id', postId)
+  }
 }
 
 // ============================================

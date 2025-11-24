@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { Separator } from 'noorui-rtl'
-import { BookOpen, Github, Twitter } from 'lucide-react'
+import { BookOpen, Github, Linkedin } from 'lucide-react'
 import type { Locale } from '@/lib/supabase/types'
 
 interface FooterProps {
@@ -131,17 +131,17 @@ export function Footer({ locale }: FooterProps) {
             <h3 className="font-semibold mb-4">{t.sections.resources}</h3>
             <ul className="space-y-2">
               <li>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <a href="https://github.com/ositaka/noorui-blog-starter" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   {t.links.github}
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <a href="https://noorui.com/docs" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   {t.links.docs}
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <a href="https://noorui.com/components" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   {t.links.components}
                 </a>
               </li>
@@ -151,11 +151,11 @@ export function Footer({ locale }: FooterProps) {
           <div>
             <h3 className="font-semibold mb-4">{t.sections.connect}</h3>
             <div className="flex gap-4">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://github.com/ositaka" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="GitHub">
                 <Github className="h-5 w-5" />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                <Twitter className="h-5 w-5" />
+              <a href="https://linkedin.com/in/ositaka" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn">
+                <Linkedin className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -166,7 +166,11 @@ export function Footer({ locale }: FooterProps) {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
           <p>{currentYear} Kitab. {t.copyright}</p>
           <p>
-            {t.madeWith} <span className="text-red-500">noorui-rtl</span> {t.and} Next.js
+            {t.madeWith}{' '}
+            <a href="https://noorui.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+              noorui-rtl
+            </a>
+            {' '}{t.and} Next.js
           </p>
         </div>
       </div>
