@@ -59,6 +59,8 @@ export const adminTranslations: Record<Locale, {
     tags: string
     featuredImage: string
     uploadImage: string
+    removeImage: string
+    imagePlaceholder: string
     saveDraft: string
     publish: string
     cancel: string
@@ -141,7 +143,9 @@ export const adminTranslations: Record<Locale, {
       status: 'Status',
       tags: 'Tags',
       featuredImage: 'Featured Image',
-      uploadImage: 'Upload a cover image',
+      uploadImage: 'Upload Image',
+      removeImage: 'Remove',
+      imagePlaceholder: 'Drag & drop an image or click to browse',
       saveDraft: 'Save Draft',
       publish: 'Publish',
       cancel: 'Cancel',
@@ -224,7 +228,9 @@ export const adminTranslations: Record<Locale, {
       status: 'Statut',
       tags: 'Tags',
       featuredImage: 'Image à la une',
-      uploadImage: 'Télécharger une image de couverture',
+      uploadImage: 'Télécharger',
+      removeImage: 'Supprimer',
+      imagePlaceholder: 'Glissez-déposez une image ou cliquez pour parcourir',
       saveDraft: 'Enregistrer brouillon',
       publish: 'Publier',
       cancel: 'Annuler',
@@ -307,7 +313,9 @@ export const adminTranslations: Record<Locale, {
       status: 'الحالة',
       tags: 'الوسوم',
       featuredImage: 'الصورة المميزة',
-      uploadImage: 'تحميل صورة الغلاف',
+      uploadImage: 'رفع صورة',
+      removeImage: 'حذف',
+      imagePlaceholder: 'اسحب وأفلت صورة أو انقر للتصفح',
       saveDraft: 'حفظ كمسودة',
       publish: 'نشر',
       cancel: 'إلغاء',
@@ -390,7 +398,9 @@ export const adminTranslations: Record<Locale, {
       status: 'حالت',
       tags: 'ٹیگز',
       featuredImage: 'نمایاں تصویر',
-      uploadImage: 'سرورق کی تصویر اپ لوڈ کریں',
+      uploadImage: 'تصویر اپ لوڈ کریں',
+      removeImage: 'حذف کریں',
+      imagePlaceholder: 'تصویر گھسیٹ کر چھوڑیں یا براؤز کرنے کے لیے کلک کریں',
       saveDraft: 'ڈرافٹ محفوظ کریں',
       publish: 'شائع کریں',
       cancel: 'منسوخ',
