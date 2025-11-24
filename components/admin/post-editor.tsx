@@ -17,6 +17,7 @@ import {
 } from 'noorui-rtl'
 import type { Locale, AuthorLocalized, CategoryLocalized } from '@/lib/supabase/types'
 import { TranslationEditor, type TranslationData } from './translation-editor'
+import { ImageUpload } from './image-upload'
 import type { ContentFormat } from './content-editor'
 
 export interface PostEditorData {
@@ -25,6 +26,7 @@ export interface PostEditorData {
   authorId: string
   isPublished: boolean
   isFeatured: boolean
+  featuredImage: string | null
   titles: Record<Locale, string>
   excerpts: Record<Locale, string>
   contents: Record<Locale, string>
@@ -48,10 +50,15 @@ export interface PostEditorProps {
     saveDraft: string
     publish: string
     all: string
+    featuredImage: string
+    uploadImage: string
+    removeImage: string
+    imagePlaceholder: string
     languages: Record<Locale, string>
   }
   isEditing: boolean
   onChange: (data: PostEditorData) => void
+  onUploadImage: (file: File) => Promise<string>
   onCancel: () => void
   onSaveDraft: () => void
   onPublish: () => void
@@ -76,6 +83,7 @@ export function PostEditor({
   translations: t,
   isEditing,
   onChange,
+  onUploadImage,
   onCancel,
   onSaveDraft,
   onPublish,
@@ -206,6 +214,17 @@ export function PostEditor({
               </Select>
             </div>
           </div>
+
+          {/* Featured Image */}
+          <ImageUpload
+            value={data.featuredImage}
+            onChange={(url) => updateField('featuredImage', url)}
+            onUpload={onUploadImage}
+            label={t.featuredImage}
+            placeholder={t.imagePlaceholder}
+            uploadText={t.uploadImage}
+            removeText={t.removeImage}
+          />
         </CardContent>
       </Card>
 

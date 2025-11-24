@@ -4,3 +4,4 @@ export { Callout, InfoCallout, WarningCallout, ErrorCallout, SuccessCallout } fr
 export { Figure, ImageGrid } from './figure'
 export { MediaEmbed, YouTube, Vimeo } from './media-embed'
 export { CodeBlock, CopyButton } from './code-block'
+export { WideBox } from './wide-box'

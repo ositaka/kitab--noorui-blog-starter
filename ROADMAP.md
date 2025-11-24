@@ -129,7 +129,7 @@ Features needed:
 - [x] Create/Edit post form
 - [x] Rich text editor (already have `RichTextEditor` in noorui-rtl)
 - [x] Draft/Publish workflow
-- [ ] Image upload to Supabase Storage
+- [x] Image upload to Supabase Storage
 - [x] Translation management (all 4 locales)
 - [x] Server actions protected (guests cannot edit)
 - [x] Toast notifications for errors/success
@@ -374,13 +374,18 @@ Description of each variant with visual examples.
 
 | Component | Description | Props | Status |
 |-----------|-------------|-------|--------|
-| `Blockquote` | Styled quote with optional author/source | `variant`, `author`, `source`, `cite` | TODO |
-| `PullQuote` | Large highlighted quote for emphasis | `align` (left/center/right) | TODO |
-| `Callout` | Info/warning/error/success boxes | `type`, `title`, `icon` | TODO |
-| `CodeBlock` | Enhanced code with copy, filename, line numbers | `language`, `filename`, `showLineNumbers`, `highlightLines` | TODO |
-| `MediaEmbed` | YouTube/Vimeo/Twitter embeds | `url`, `aspectRatio` | TODO |
-| `ImageGallery` | Grid of images with lightbox | `images`, `columns`, `gap` | TODO |
-| `Figure` | Image with caption | `src`, `alt`, `caption` | TODO |
+| `Blockquote` | Styled quote with optional author/source | `variant`, `author`, `source`, `cite` | ✅ Ready in Kitab |
+| `PullQuote` | Large highlighted quote for emphasis | `align` (left/center/right) | ✅ Ready in Kitab |
+| `Callout` | Info/warning/error/success boxes | `type`, `title`, `icon` | ✅ Ready in Kitab |
+| `CodeBlock` | Enhanced code with copy, filename | `filename`, `language`, `copyable` | ✅ Ready in Kitab |
+| `MediaEmbed` | YouTube/Vimeo embeds | `url`, `aspectRatio`, `caption` | ✅ Ready in Kitab |
+| `YouTube` | YouTube convenience wrapper | `id`, `url`, `caption` | ✅ Ready in Kitab |
+| `Vimeo` | Vimeo convenience wrapper | `id`, `url`, `caption` | ✅ Ready in Kitab |
+| `Figure` | Image with caption | `src`, `alt`, `caption`, `size` | ✅ Ready in Kitab |
+| `ImageGrid` | Grid of images | `columns`, `gap` | ✅ Ready in Kitab |
+| `CopyButton` | Standalone copy button | `text` | ✅ Ready in Kitab |
+
+**Location:** `components/mdx/` - Ready to migrate to noorui-rtl when needed.
 
 #### Phase 1: Reading Experience
 - [ ] `TableOfContents` - Already in Kitab, needs migration
@@ -399,7 +404,11 @@ Description of each variant with visual examples.
 - [ ] `PostEditor` - Multi-locale post editing form
 - [ ] `ContentEditor` - Dual-mode editor (Rich Text + Markdown) with preview
 - [ ] `TranslationEditor` - Side-by-side translation editor with copy functionality
-- [ ] `ImageUpload` - Drag & drop image upload (future)
+- [x] `ImageUpload` - Drag & drop image upload (implemented in Kitab)
+
+#### Missing Core Components
+- [ ] `AlertDialog` - Confirmation dialog for destructive actions (delete, discard changes). Currently using `Dialog` as a workaround in Kitab.
+- [ ] `useToast` hook - Toast hook for programmatic toast notifications. Currently using `sonner` directly in Kitab.
 
 #### Bug Fixes Needed in noorui-rtl
 - [ ] **DataTable filtering/sorting not working** - The `searchable` prop and column `sortable`/`filterable` props don't seem to trigger actual filtering/sorting. Kitab has a local workaround using Table + custom logic. This should be fixed in noorui-rtl so DataTable works out of the box.
@@ -455,3 +464,94 @@ For each migrated component:
 - [ ] Version bumped
 - [ ] Published to npm
 - [ ] Kitab updated to use package version
+
+---
+
+## Content Enrichment
+
+### MDX Components Usage
+The MDX components from Phase 2 are ready to be used in blog posts. When creating new posts or updating existing ones, consider using:
+
+**Rich Content Components:**
+- `<Blockquote author="..." source="...">` - Styled quotes with attribution
+- `<PullQuote align="center">` - Large highlighted quotes
+- `<Callout type="info|warning|error|success|note" title="...">` - Informational boxes
+- `<Figure src="..." alt="..." caption="..." size="default|wide|full" />` - Images with captions
+- `<ImageGrid columns={2|3|4}>` - Grid layout for multiple images
+- `<YouTube id="..." />` / `<Vimeo id="..." />` - Video embeds
+- `<CodeBlock filename="..." language="..." copyable>` - Enhanced code blocks
+
+**Demo page:** `/en/components-demo` (development only)
+
+**TODO:**
+- [ ] Update existing blog posts to use MDX components where appropriate
+- [ ] Use rich components in upcoming posts for better content presentation
+
+---
+
+## Phase 8: Kitab Migrations (Post noorui-rtl Update)
+
+Once Phase 7 is complete and noorui-rtl has been updated with the missing components, update Kitab to use the new package versions.
+
+### Components to Migrate/Update
+
+#### Delete Confirmation Dialog
+**Current workaround:** Using `Dialog` from noorui-rtl
+**Target:** Switch to `AlertDialog` when available
+
+**Files to update:**
+- [ ] `app/[locale]/admin/posts/posts-list-content.tsx` - Replace `Dialog` with `AlertDialog` for delete confirmation
+
+```tsx
+// Before (current workaround)
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from 'noorui-rtl'
+
+// After (when AlertDialog is available)
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from 'noorui-rtl'
+```
+
+#### Toast Notifications
+**Current workaround:** Using `toast` from `sonner` directly
+**Target:** Use `useToast` hook from noorui-rtl when available
+
+**Files to update:**
+- [ ] `app/[locale]/admin/posts/posts-list-content.tsx` - Switch from sonner to noorui-rtl toast
+- [ ] `app/[locale]/admin/admin-client.tsx` - If using toast notifications
+- [ ] `components/providers.tsx` - May need to update Toaster provider
+
+```tsx
+// Before (current workaround)
+import { toast } from 'sonner'
+toast.success('Post deleted successfully')
+
+// After (when useToast is available)
+import { useToast } from 'noorui-rtl'
+const { toast } = useToast()
+toast({ title: 'Post deleted successfully', variant: 'success' })
+```
+
+### Migration Checklist
+
+When noorui-rtl is updated:
+
+1. **Update noorui-rtl package**
+   ```bash
+   npm update noorui-rtl
+   ```
+
+2. **Verify new exports are available**
+   ```tsx
+   // Check in a test file
+   import { AlertDialog, useToast } from 'noorui-rtl'
+   ```
+
+3. **Update components one by one**
+   - [ ] Replace Dialog → AlertDialog for delete confirmations
+   - [ ] Replace sonner toast → useToast hook
+   - [ ] Test in all 4 locales (en, fr, ar, ur)
+   - [ ] Test in light/dark mode
+   - [ ] Test on mobile/desktop
+
+4. **Clean up**
+   - [ ] Remove sonner dependency if no longer needed
+   - [ ] Update providers.tsx to use noorui-rtl Toaster if applicable

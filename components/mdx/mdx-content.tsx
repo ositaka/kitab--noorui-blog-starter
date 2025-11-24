@@ -6,6 +6,7 @@ import { Callout, InfoCallout, WarningCallout, ErrorCallout, SuccessCallout } fr
 import { Figure, ImageGrid } from './figure'
 import { MediaEmbed, YouTube, Vimeo } from './media-embed'
 import { CodeBlock, CopyButton } from './code-block'
+import { WideBox } from './wide-box'
 
 // Define components inline to avoid import issues
 const mdxComponents = {
@@ -24,6 +25,7 @@ const mdxComponents = {
   Vimeo,
   CodeBlock,
   CopyButton,
+  WideBox,
 
   // Headings
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => <h1 className="text-4xl font-bold mt-12 mb-4 scroll-mt-24" {...props} />,

@@ -25,6 +25,7 @@ const translations = {
       home: 'Home',
       blog: 'Blog',
       about: 'About',
+      dashboard: 'Dashboard',
     },
     language: 'Language',
   },
@@ -33,6 +34,7 @@ const translations = {
       home: 'Accueil',
       blog: 'Blog',
       about: 'A propos',
+      dashboard: 'Tableau de bord',
     },
     language: 'Langue',
   },
@@ -41,6 +43,7 @@ const translations = {
       home: 'الرئيسية',
       blog: 'المدونة',
       about: 'حول',
+      dashboard: 'لوحة التحكم',
     },
     language: 'اللغة',
   },
@@ -49,6 +52,7 @@ const translations = {
       home: 'ہوم',
       blog: 'بلاگ',
       about: 'ہمارے بارے میں',
+      dashboard: 'ڈیش بورڈ',
     },
     language: 'زبان',
   },
@@ -83,6 +87,7 @@ export function Header({ locale }: HeaderProps) {
     { href: '/' + locale, label: t.nav.home },
     { href: '/' + locale + '/blog', label: t.nav.blog },
     { href: '/' + locale + '/about', label: t.nav.about },
+    { href: '/' + locale + '/admin', label: t.nav.dashboard },
   ]
 
   return (
