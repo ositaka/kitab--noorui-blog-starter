@@ -159,3 +159,36 @@ export function Vimeo({ id, url, title = 'Vimeo video', caption, className }: Vi
   const videoUrl = url || (id ? `https://vimeo.com/${id}` : '')
   return <MediaEmbed url={videoUrl} title={title} caption={caption} className={className} />
 }
+
+export interface UrlEmbedProps {
+  /** URL to embed */
+  url: string
+  /** Optional title */
+  title?: string
+  /** Additional CSS classes */
+  className?: string
+}
+
+/**
+ * UrlEmbed - Simple link embed for external resources
+ *
+ * Usage in MDX:
+ * <UrlEmbed url="https://example.com/article" />
+ */
+export function UrlEmbed({ url, title, className }: UrlEmbedProps) {
+  return (
+    <div className={cn('my-6 p-4 border border-border rounded-lg bg-muted/50 hover:bg-muted transition-colors', className)}>
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-primary hover:underline font-medium flex items-center gap-2"
+      >
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+        {title || url}
+      </a>
+    </div>
+  )
+}

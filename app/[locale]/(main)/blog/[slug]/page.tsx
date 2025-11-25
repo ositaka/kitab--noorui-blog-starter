@@ -7,6 +7,12 @@ import remarkGfm from 'remark-gfm'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeSlug from 'rehype-slug'
 import type { Options as PrettyCodeOptions } from 'rehype-pretty-code'
+import { Blockquote, PullQuote } from '@/components/mdx/blockquote'
+import { Callout, InfoCallout, WarningCallout, ErrorCallout, SuccessCallout } from '@/components/mdx/callout'
+import { Figure, ImageGrid } from '@/components/mdx/figure'
+import { MediaEmbed, YouTube, Vimeo, UrlEmbed } from '@/components/mdx/media-embed'
+import { CodeBlock } from '@/components/mdx/code-block'
+import { WideBox } from '@/components/mdx/wide-box'
 
 // Shiki syntax highlighting options
 const prettyCodeOptions: PrettyCodeOptions = {
@@ -20,6 +26,23 @@ const prettyCodeOptions: PrettyCodeOptions = {
 
 // MDX components for RSC rendering
 const mdxComponents = {
+  // Custom MDX components
+  Blockquote,
+  PullQuote,
+  Callout,
+  InfoCallout,
+  WarningCallout,
+  ErrorCallout,
+  SuccessCallout,
+  Figure,
+  ImageGrid,
+  MediaEmbed,
+  YouTube,
+  Vimeo,
+  UrlEmbed,
+  CodeBlock,
+  WideBox,
+  // HTML elements
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => <h1 className="text-4xl font-bold mt-12 mb-4 scroll-mt-24" {...props} />,
   h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => <h2 className="text-3xl font-bold mt-10 mb-4 scroll-mt-24" {...props} />,
   h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => <h3 className="text-2xl font-semibold mt-8 mb-3 scroll-mt-24" {...props} />,

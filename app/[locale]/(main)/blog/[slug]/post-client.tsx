@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { formatDate } from '@/lib/utils'
 import type { ReactNode } from 'react'
+import { useState, useEffect } from 'react'
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -44,6 +45,7 @@ const pageText: Record<Locale, { home: string; blog: string; related: string; ba
 export function PostPageClient({ locale, post, relatedPosts, mdxContent }: PostPageClientProps) {
   const text = pageText[locale]
   const isRTL = locale === 'ar' || locale === 'ur'
+  const [mounted, setMounted] = useState(false)
 
   const authorName = post.author?.name || 'Unknown'
   const authorBio = post.author?.bio || ''
@@ -51,6 +53,11 @@ export function PostPageClient({ locale, post, relatedPosts, mdxContent }: PostP
   const categoryColor = post.category?.color || '#6366f1'
   const authorAvatar = post.author?.avatar_url
   const authorInitials = authorName.slice(0, 2).toUpperCase()
+
+  // Prevent hydration mismatch for date formatting
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleShare = () => {
     if (navigator.share) {
@@ -111,8 +118,8 @@ export function PostPageClient({ locale, post, relatedPosts, mdxContent }: PostP
                 <Eye className="h-4 w-4" />
                 {post.view_count}
               </span>
-              <span>
-                {post.published_at && formatDate(post.published_at, locale, { format: 'medium' })}
+              <span suppressHydrationWarning>
+                {mounted && post.published_at && formatDate(post.published_at, locale, { format: 'medium' })}
               </span>
             </div>
 

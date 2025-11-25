@@ -145,10 +145,6 @@ export function ContentEditor({
               <Code className="h-3.5 w-3.5" />
               Markdown
             </TabsTrigger>
-            <TabsTrigger value="preview" className="h-7 px-3 text-xs gap-1.5">
-              <Eye className="h-3.5 w-3.5" />
-              {isRTL ? 'معاينة' : 'Preview'}
-            </TabsTrigger>
           </TabsList>
         </Tabs>
 
@@ -190,7 +186,8 @@ export function ContentEditor({
           />
         )}
 
-        {mode === 'preview' && (
+        {/* Preview mode removed - MDX custom components not supported in editor preview */}
+        {mode === 'preview' && mode !== 'preview' && (
           <div
             className={cn(
               'prose prose-sm dark:prose-invert max-w-none p-4',

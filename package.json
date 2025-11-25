@@ -14,7 +14,11 @@
     "start": "next start",
     "lint": "next lint",
     "db:types": "npx supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > lib/supabase/types.generated.ts",
-    "db:seed": "npx tsx scripts/seed-posts.ts"
+    "db:seed": "npx tsx scripts/seed-posts.ts",
+    "upload:images": "npx tsx scripts/upload-images.ts",
+    "upload:images:gallery": "npx tsx scripts/upload-gallery-images.ts",
+    "update:image-urls": "npx tsx scripts/update-image-urls.ts",
+    "create:placeholders": "npx tsx scripts/create-placeholder-images.ts"
   },
   "dependencies": {
     "@mdxeditor/editor": "^3.50.0",
