@@ -17,14 +17,15 @@ export async function getPosts(options?: {
   offset?: number
   featured?: boolean
   categoryId?: string
-}): Promise<PostWithRelations[]> {
+  withCount?: boolean
+}): Promise<PostWithRelations[] | { posts: PostWithRelations[]; total: number }> {
   const supabase = await createClient()
-  const { locale = 'en', limit = 10, offset = 0, featured, categoryId } = options || {}
+  const { locale = 'en', limit = 10, offset = 0, featured, categoryId, withCount = false } = options || {}
 
   // Fetch posts from the localized view
   let query = supabase
     .from('posts_localized')
-    .select('*')
+    .select('*', { count: withCount ? 'exact' : undefined })
     .eq('locale', locale)
     .eq('is_published', true)
     .order('published_at', { ascending: false })
@@ -38,14 +39,14 @@ export async function getPosts(options?: {
     query = query.eq('category_id', categoryId)
   }
 
-  const { data, error } = await query
+  const { data, error, count } = await query
 
   if (error) {
     console.error('Error fetching posts:', error)
-    return []
+    return withCount ? { posts: [], total: 0 } : []
   }
 
-  if (!data || data.length === 0) return []
+  if (!data || data.length === 0) return withCount ? { posts: [], total: count || 0 } : []
 
   // Cast to PostLocalized[] since Supabase types for views may not be complete
   const posts = data as PostLocalized[]
@@ -77,11 +78,13 @@ export async function getPosts(options?: {
   const categoriesMap = new Map(categoriesData.map((c) => [c.id, c]))
 
   // Enrich posts with author and category
-  return posts.map((post) => ({
+  const enrichedPosts = posts.map((post) => ({
     ...post,
     author: post.author_id ? authorsMap.get(post.author_id) || null : null,
     category: post.category_id ? categoriesMap.get(post.category_id) || null : null,
   })) as PostWithRelations[]
+
+  return withCount ? { posts: enrichedPosts, total: count || 0 } : enrichedPosts
 }
 
 export async function getPostBySlug(
@@ -146,26 +149,97 @@ export async function getRelatedPosts(
   currentSlug: string,
   categoryId: string,
   locale: Locale = 'en',
-  limit = 3
+  limit = 3,
+  currentTags?: string[]
 ): Promise<PostWithRelations[]> {
   const supabase = await createClient()
 
-  const { data: posts, error } = await supabase
+  // Fetch more posts than needed for scoring
+  const fetchLimit = Math.max(limit * 3, 12)
+
+  // Build query to get posts from same category OR with overlapping tags
+  let query = supabase
     .from('posts_localized')
     .select('*')
     .eq('locale', locale)
-    .eq('category_id', categoryId)
     .eq('is_published', true)
     .neq('slug', currentSlug)
     .order('published_at', { ascending: false })
-    .limit(limit)
+    .limit(fetchLimit)
+
+  const { data: posts, error } = await query
 
   if (error) {
     console.error('Error fetching related posts:', error)
     return []
   }
 
-  return (posts || []) as PostWithRelations[]
+  if (!posts || posts.length === 0) return []
+
+  // Cast to PostLocalized[] for proper typing
+  const typedPosts = posts as PostLocalized[]
+
+  // Score posts by relevance
+  const scoredPosts = typedPosts.map((post) => {
+    let score = 0
+
+    // Category match: +10 points
+    if (post.category_id === categoryId) {
+      score += 10
+    }
+
+    // Tag matches: +5 points per matching tag
+    if (currentTags && currentTags.length > 0 && post.tags && post.tags.length > 0) {
+      const matchingTags = currentTags.filter((tag) => post.tags?.includes(tag))
+      score += matchingTags.length * 5
+    }
+
+    return { post, score }
+  })
+
+  // Filter out posts with score 0 (no relation at all)
+  const relatedPosts = scoredPosts
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => {
+      // Sort by score descending, then by published date
+      if (b.score !== a.score) return b.score - a.score
+      return new Date(b.post.published_at || 0).getTime() - new Date(a.post.published_at || 0).getTime()
+    })
+    .slice(0, limit)
+    .map(({ post }) => post)
+
+  // Enrich with author and category data
+  const authorIds = [...new Set(relatedPosts.map((p) => p.author_id).filter(Boolean))]
+  const categoryIds = [...new Set(relatedPosts.map((p) => p.category_id).filter(Boolean))]
+
+  const [authorsData, categoriesData] = await Promise.all([
+    authorIds.length > 0
+      ? supabase
+          .from('authors_localized')
+          .select('*')
+          .eq('locale', locale)
+          .in('id', authorIds as string[])
+          .then(({ data }) => (data || []) as AuthorLocalized[])
+      : Promise.resolve([] as AuthorLocalized[]),
+    categoryIds.length > 0
+      ? supabase
+          .from('categories_localized')
+          .select('*')
+          .eq('locale', locale)
+          .in('id', categoryIds as string[])
+          .then(({ data }) => (data || []) as CategoryLocalized[])
+      : Promise.resolve([] as CategoryLocalized[]),
+  ])
+
+  const authorsMap = new Map(authorsData.map((a) => [a.id, a]))
+  const categoriesMap = new Map(categoriesData.map((c) => [c.id, c]))
+
+  // Enrich posts with author and category
+  return relatedPosts.map((post) => ({
+    ...post,
+    author: post.author_id ? authorsMap.get(post.author_id) || null : null,
+    category: post.category_id ? categoriesMap.get(post.category_id) || null : null,
+  })) as PostWithRelations[]
 }
 
 export async function getPostsByTag(

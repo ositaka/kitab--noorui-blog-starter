@@ -172,7 +172,7 @@ export default async function PostPage({ params }: Props) {
     // Silently ignore errors - view tracking is not critical
   })
 
-  const relatedPosts = await getRelatedPosts(slug, post.category_id || '', locale, 3)
+  const relatedPosts = await getRelatedPosts(slug, post.category_id || '', locale, 3, post.tags || [])
 
   // JSON-LD structured data for SEO
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'

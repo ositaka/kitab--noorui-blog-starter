@@ -254,14 +254,80 @@ Guest Mode:                    Admin Mode:
 - Uses `simple` dictionary for multilingual support
 - Supports filters: category, tags, limit
 
-### 5.2 Related Posts
-- [ ] Algorithm improvements (tags, categories)
-- [ ] Visual related posts section
+### 5.2 Related Posts ✅ COMPLETED
+- [x] Enhanced algorithm with tag matching and relevance scoring
+- [x] Category + tag-based matching (10 points per category, 5 points per tag)
+- [x] Relevance-based sorting
+- [x] Already integrated in sidebar with visual cards
+- [x] Multilingual support (all 4 locales)
+- [x] Enriched with author and category data
 
-### 5.3 Pagination
-- [ ] Numbered pagination
-- [ ] Infinite scroll option
-- [ ] Load more button
+**Related Posts Features Implemented:**
+- ✅ Smart algorithm in `getRelatedPosts()` function (lib/supabase/api.ts:145-240)
+- ✅ Scoring system: Category match (+10 points) + Tag matches (+5 points each)
+- ✅ Filters out unrelated posts (score 0)
+- ✅ Sorts by relevance score first, then by published date
+- ✅ Falls back to category-only matches if no tag matches found
+- ✅ Enriches results with author and category data for display
+- ✅ Displays in sidebar with title, reading time, and clickable links
+- ✅ RTL-aware layout (proper alignment for Arabic/Urdu)
+- ✅ Already integrated in blog post page sidebar
+
+**Technical Implementation:**
+- Enhanced Function: `getRelatedPosts(slug, categoryId, locale, limit, tags?)` in `lib/supabase/api.ts`
+- Accepts optional `currentTags` parameter for tag-based matching
+- Fetches 3x limit to ensure enough candidates for scoring
+- Scores each post based on category and tag overlap
+- Returns top N posts after sorting by relevance
+- Integration: Updated `app/[locale]/(main)/blog/[slug]/page.tsx:175` to pass post tags
+- Display: Already showing in `post-client.tsx:199-220` sidebar
+
+### 5.3 Pagination ✅ COMPLETED
+- [x] Server-side pagination with page numbers
+- [x] URL-based pagination (preserves state on refresh)
+- [x] Category filtering with pagination
+- [x] RTL-aware pagination controls
+- [x] 12 posts per page
+- [x] Pagination component from noorui-rtl
+- [x] Works across all 4 locales
+- [ ] Infinite scroll option (future)
+- [ ] Load more button (future)
+
+**Pagination Features Implemented:**
+- ✅ Server-side pagination in `getPosts()` API with `withCount` option
+- ✅ Returns both posts array and total count for calculating pages
+- ✅ URL searchParams handling for page number (`?page=2`)
+- ✅ Category filtering with pagination (`?category=id&page=1`)
+- ✅ Resets to page 1 when changing category
+- ✅ noorui-rtl Pagination component with RTL support
+- ✅ Shows pagination only when more than 1 page
+- ✅ Limit of 12 posts per page (configurable via POSTS_PER_PAGE constant)
+
+**Technical Implementation:**
+- API: Enhanced `getPosts()` in `lib/supabase/api.ts:14-88`
+  - Added `withCount` parameter to return `{ posts, total }` object
+  - Uses Supabase `count: 'exact'` for accurate pagination
+  - Backward compatible - returns array when `withCount: false`
+- Server Component: `app/[locale]/(main)/blog/page.tsx`
+  - Accepts `searchParams` for page and category
+  - Calculates offset based on page number: `(page - 1) * POSTS_PER_PAGE`
+  - Passes `currentPage`, `totalPosts`, `postsPerPage` to client
+  - Fetches exactly 12 posts per page (configurable via constant)
+- Client Component: `app/[locale]/(main)/blog/blog-client.tsx`
+  - Calculates `totalPages` from totalPosts and postsPerPage
+  - Handles page changes with `handlePageChange()`
+  - Updates URL with `router.push()` for stateful navigation
+  - Category tabs navigate with URL params (server-side filtering)
+  - Uses PaginationWrapper component at bottom of post grid
+- Pagination Component: `components/ui/pagination-wrapper.tsx`
+  - Wrapper around noorui-rtl compound pagination components
+  - Simple API: `currentPage`, `totalPages`, `onPageChange`, `dir`
+  - Built with `<Pagination>`, `<PaginationContent>`, `<PaginationItem>`, etc.
+  - Smart page rendering: shows first, last, current ± 1, with ellipsis
+  - Disabled Previous/Next at boundaries
+  - Visual separation with top border and spacing (`mt-12 pt-8 border-t`)
+  - Hides when only 1 page exists
+  - RTL-aware with `dir` prop
 
 ### 5.4 Filters & Sorting
 - [ ] Sort by date, popularity
@@ -271,8 +337,9 @@ Guest Mode:                    Admin Mode:
 **New noorui-rtl components:**
 - `SearchModal` - Cmd+K search experience
 - `SearchInput` - RTL-aware search input
-- `Pagination` - (already exists, may need enhancement)
-- `InfiniteScroll` - Auto-loading content
+- `Pagination` - ✅ Exists (compound component pattern)
+- `PaginationWrapper` - ✅ Created in Kitab as simple wrapper (could migrate to noorui-rtl)
+- `InfiniteScroll` - Auto-loading content (future)
 
 ### Phase 6: SEO & Performance Components
 
@@ -577,10 +644,11 @@ Description of each variant with visual examples.
 #### Bug Fixes Needed in Kitab
 - [ ] **Translation copy preview not parsing markdown** - When copying content between locales in the TranslationEditor, the preview panel shows raw markdown instead of rendered content. Need to parse/render markdown in the preview.
 
-#### From Phase 5
-- [ ] `SearchModal`
-- [ ] `SearchInput`
-- [ ] `InfiniteScroll`
+#### From Phase 5 (Discovery & Navigation)
+- [ ] `SearchModal` - Command palette search with Cmd+K
+- [ ] `SearchInput` - Dedicated search input with RTL support
+- [ ] `PaginationSimple` or `PaginationControlled` - Convenience wrapper for common pagination use case (currently implemented as `PaginationWrapper` in Kitab - could migrate to noorui-rtl)
+- [ ] `InfiniteScroll` - Auto-loading content on scroll
 
 ### Migration Session Prompt
 

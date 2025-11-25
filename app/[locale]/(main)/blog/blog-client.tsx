@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { useRouter, useSearchParams } from 'next/navigation'
 import {
   Tabs,
   TabsList,
@@ -21,11 +22,15 @@ import {
 } from 'noorui-rtl'
 import { FileText } from 'lucide-react'
 import type { Locale, PostWithRelations, CategoryLocalized } from '@/lib/supabase/types'
+import { PaginationWrapper } from '@/components/ui/pagination-wrapper'
 
 interface BlogPageClientProps {
   locale: Locale
   posts: PostWithRelations[]
   categories: CategoryLocalized[]
+  currentPage: number
+  totalPosts: number
+  postsPerPage: number
 }
 
 const pageText: Record<Locale, { title: string; subtitle: string; all: string; empty: string; minRead: string }> = {
@@ -59,11 +64,34 @@ const pageText: Record<Locale, { title: string; subtitle: string; all: string; e
   },
 }
 
-export function BlogPageClient({ locale, posts, categories }: BlogPageClientProps) {
+export function BlogPageClient({ locale, posts, categories, currentPage, totalPosts, postsPerPage }: BlogPageClientProps) {
   const text = pageText[locale]
   const isRTL = locale === 'ar' || locale === 'ur'
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const currentCategory = searchParams.get('category')
 
-  // Extract unique tags with counts
+  // Calculate total pages
+  const totalPages = Math.ceil(totalPosts / postsPerPage)
+
+  // Handle page change
+  const handlePageChange = (page: number) => {
+    const params = new URLSearchParams(searchParams.toString())
+    params.set('page', page.toString())
+    router.push(`/${locale}/blog?${params.toString()}`)
+  }
+
+  // Handle category change
+  const handleCategoryChange = (categoryId: string) => {
+    const params = new URLSearchParams()
+    if (categoryId !== 'all') {
+      params.set('category', categoryId)
+    }
+    params.set('page', '1') // Reset to page 1 when changing category
+    router.push(`/${locale}/blog?${params.toString()}`)
+  }
+
+  // Extract unique tags with counts (for sidebar)
   const tagCounts = new Map<string, number>()
   posts.forEach((post) => {
     post.tags?.forEach((tag) => {
@@ -86,7 +114,7 @@ export function BlogPageClient({ locale, posts, categories }: BlogPageClientProp
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         {/* Main Content */}
         <div className="lg:col-span-3">
-          <Tabs defaultValue="all" dir={isRTL ? 'rtl' : 'ltr'}>
+          <Tabs value={currentCategory || 'all'} onValueChange={handleCategoryChange} dir={isRTL ? 'rtl' : 'ltr'}>
             <TabsList className="mb-8 flex-wrap">
               <TabsTrigger value="all">{text.all}</TabsTrigger>
               {categories.map((category) => (
@@ -96,40 +124,30 @@ export function BlogPageClient({ locale, posts, categories }: BlogPageClientProp
               ))}
             </TabsList>
 
-            <TabsContent value="all">
+            <TabsContent value={currentCategory || 'all'}>
               {posts.length === 0 ? (
                 <EmptyState
                   icon={<FileText className="h-12 w-12" />}
                   title={text.empty}
                 />
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {posts.map((post) => (
-                    <PostCard key={post.id} post={post} locale={locale} text={text} />
-                  ))}
-                </div>
+                <>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    {posts.map((post) => (
+                      <PostCard key={post.id} post={post} locale={locale} text={text} />
+                    ))}
+                  </div>
+
+                  {/* Pagination */}
+                  <PaginationWrapper
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={handlePageChange}
+                    dir={isRTL ? 'rtl' : 'ltr'}
+                  />
+                </>
               )}
             </TabsContent>
-
-            {categories.map((category) => {
-              const categoryPosts = posts.filter((p) => p.category_id === category.id)
-              return (
-                <TabsContent key={category.id} value={category.id}>
-                  {categoryPosts.length === 0 ? (
-                    <EmptyState
-                      icon={<FileText className="h-12 w-12" />}
-                      title={text.empty}
-                    />
-                  ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {categoryPosts.map((post) => (
-                        <PostCard key={post.id} post={post} locale={locale} text={text} />
-                      ))}
-                    </div>
-                  )}
-                </TabsContent>
-              )
-            })}
           </Tabs>
         </div>
 
