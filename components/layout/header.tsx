@@ -10,10 +10,11 @@ import {
   DropdownMenuTrigger,
   Separator,
 } from 'noorui-rtl'
-import { Globe, Menu, X, BookOpen, Sun, Moon } from 'lucide-react'
+import { Globe, Menu, X, BookOpen, Sun, Moon, Search } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import type { Locale } from '@/lib/supabase/types'
+import { SearchModal } from '@/components/search/search-modal'
 
 interface HeaderProps {
   locale: Locale
@@ -67,6 +68,7 @@ const languages = [
 
 export function Header({ locale }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
   const { theme, setTheme } = useTheme()
@@ -112,6 +114,23 @@ export function Header({ locale }: HeaderProps) {
           </nav>
 
           <div className="flex items-center gap-2">
+            {/* Search Button */}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setSearchOpen(true)}
+              aria-label="Search"
+              className="gap-2"
+            >
+              <Search className="h-4 w-4" />
+              <span className="hidden sm:inline text-xs text-muted-foreground">
+                {locale === 'ar' ? 'بحث' : locale === 'ur' ? 'تلاش' : locale === 'fr' ? 'Rechercher' : 'Search'}
+              </span>
+              <kbd className="hidden sm:inline-flex h-5 px-1.5 items-center gap-1 rounded border bg-muted font-mono text-[10px] font-medium text-muted-foreground">
+                <span className="text-xs">⌘</span>K
+              </kbd>
+            </Button>
+
             {/* Mode Toggle */}
             <Button
               variant="ghost"
@@ -181,6 +200,9 @@ export function Header({ locale }: HeaderProps) {
           </div>
         )}
       </div>
+
+      {/* Search Modal */}
+      <SearchModal locale={locale} />
     </header>
   )
 }

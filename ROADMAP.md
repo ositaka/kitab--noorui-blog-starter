@@ -197,11 +197,39 @@ Guest Mode:                    Admin Mode:
 
 ## Phase 5: Discovery & Navigation
 
-### 5.1 Search
-- [ ] Full-text search
-- [ ] Search modal (Cmd+K)
-- [ ] Search suggestions
-- [ ] RTL search input
+### 5.1 Search ✅ COMPLETED
+- [x] Full-text search (PostgreSQL)
+- [x] Search modal (Cmd+K / Ctrl+K)
+- [x] Real-time search with debouncing
+- [x] Recent posts display
+- [x] RTL search input (Arabic, Urdu)
+- [x] Multilingual support (all 4 locales)
+- [x] Search button in header with keyboard shortcut hint
+- [x] Loading states
+- [x] Database migration for search_vector column
+
+**Search Features Implemented:**
+- ✅ PostgreSQL full-text search with `tsvector` and GIN index
+- ✅ Weighted search ranking: title (A), excerpt (B), content (C)
+- ✅ CommandDialog from noorui-rtl for beautiful search UI
+- ✅ Keyboard shortcut: Cmd+K or Ctrl+K to open search
+- ✅ Debounced search (300ms delay) for better UX
+- ✅ Recent posts shown when no query entered
+- ✅ Search results with post title, excerpt, reading time
+- ✅ Click or Enter to navigate to post
+- ✅ Loading animation with pulsing search icon
+- ✅ RTL-aware input and layout for Arabic/Urdu
+- ✅ Search button in header with visible ⌘K hint
+
+**Technical Implementation:**
+- Database: `search_vector` column with GIN index on `post_translations`
+- Server Action: `searchPosts()` in `lib/supabase/search.ts`
+- Components:
+  - `components/search/search-modal.tsx` - Search modal using CommandDialog
+  - `components/layout/header.tsx` - Search button integration
+- Migration: `supabase/migrations/20250125_add_full_text_search.sql`
+- Uses `simple` dictionary for multilingual support
+- Supports filters: category, tags, limit
 
 ### 5.2 Related Posts
 - [ ] Algorithm improvements (tags, categories)
