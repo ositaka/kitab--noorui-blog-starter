@@ -159,7 +159,7 @@ Utiliser le mauvais style d'écriture crée une dissonance cognitive :
 
 ## Pour aller plus loin
 
-- [L'histoire de l'écriture arabe](/blog/history-of-arabic-script)
-- [L'ourdou et le Nastaliq : l'élégante écriture de l'Asie du Sud](/blog/urdu-nastaliq-script)
-- [Les ligatures arabes : comprendre les lettres connectées](/blog/arabic-ligatures)
-- [La calligraphie islamique : un art sacré et son héritage moderne](/blog/islamic-calligraphy)
+- [L'histoire de l'écriture arabe](/fr/blog/history-of-arabic-script)
+- [L'ourdou et le Nastaliq : l'élégante écriture de l'Asie du Sud](/fr/blog/urdu-nastaliq-script)
+- [Les ligatures arabes : comprendre les lettres connectées](/fr/blog/arabic-ligatures)
+- [La calligraphie islamique : un art sacré et son héritage moderne](/fr/blog/islamic-calligraphy)

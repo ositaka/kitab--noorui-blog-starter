@@ -121,7 +121,7 @@ tags: ["عربي", "تاريخ", "خط", "كتابة"]
 
 ## للمزيد من القراءة
 
-- [فهم اتجاه النص من اليمين إلى اليسار](/blog/understanding-rtl)
-- [النستعليق مقابل النسخ: مقارنة بين أسلوبين رئيسيين](/blog/nastaliq-vs-naskh)
-- [فن الوصلات العربية](/blog/arabic-ligatures)
-- [الخط الإسلامي: فن مقدس وإرثه المعاصر](/blog/islamic-calligraphy)
+- [فهم اتجاه النص من اليمين إلى اليسار](/ar/blog/understanding-rtl)
+- [النستعليق مقابل النسخ: مقارنة بين أسلوبين رئيسيين](/ar/blog/nastaliq-vs-naskh)
+- [فن الوصلات العربية](/ar/blog/arabic-ligatures)
+- [الخط الإسلامي: فن مقدس وإرثه المعاصر](/ar/blog/islamic-calligraphy)

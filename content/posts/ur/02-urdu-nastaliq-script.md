@@ -123,7 +123,7 @@ direction: rtl;
 
 ## مزید پڑھیں
 
-- [نستعلیق بمقابلہ نسخ: دو بڑے اندازوں کا موازنہ](/blog/nastaliq-vs-naskh)
-- [RTL متن کی سمت کو سمجھنا](/blog/understanding-rtl)
-- [عام RTL مسائل اور ان کا حل](/blog/common-rtl-bugs)
-- [عربی رسم الخط کی تاریخ](/blog/history-of-arabic-script)
+- [نستعلیق بمقابلہ نسخ: دو بڑے اندازوں کا موازنہ](/ur/blog/nastaliq-vs-naskh)
+- [RTL متن کی سمت کو سمجھنا](/ur/blog/understanding-rtl)
+- [عام RTL مسائل اور ان کا حل](/ur/blog/common-rtl-bugs)
+- [عربی رسم الخط کی تاریخ](/ur/blog/history-of-arabic-script)

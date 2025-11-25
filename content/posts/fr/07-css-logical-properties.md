@@ -311,7 +311,7 @@ CSS Grid fonctionne aussi de manière logique :
 
 ## Pour aller plus loin
 
-- [Comprendre la direction du texte RTL](/blog/understanding-rtl)
-- [Bugs RTL courants et comment les corriger](/blog/common-rtl-bugs)
-- [Le texte bidirectionnel et l'algorithme BiDi Unicode](/blog/bidirectional-text-bidi)
-- [Comment la direction de lecture affecte l'expérience utilisateur](/blog/reading-direction-ux)
+- [Comprendre la direction du texte RTL](/fr/blog/understanding-rtl)
+- [Bugs RTL courants et comment les corriger](/fr/blog/common-rtl-bugs)
+- [Le texte bidirectionnel et l'algorithme BiDi Unicode](/fr/blog/bidirectional-text-bidi)
+- [Comment la direction de lecture affecte l'expérience utilisateur](/fr/blog/reading-direction-ux)

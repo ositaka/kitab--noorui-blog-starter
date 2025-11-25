@@ -154,7 +154,7 @@ La calligraphie animée donne vie aux lettres dans le cinéma et la publicité.
 
 ## Pour aller plus loin
 
-- [L'histoire de l'écriture arabe](/blog/history-of-arabic-script)
-- [Nastaliq vs Naskh : comparaison de deux styles majeurs](/blog/nastaliq-vs-naskh)
-- [Les ligatures arabes : comprendre les lettres connectées](/blog/arabic-ligatures)
-- [Comment la direction de lecture affecte l'expérience utilisateur](/blog/reading-direction-ux)
+- [L'histoire de l'écriture arabe](/fr/blog/history-of-arabic-script)
+- [Nastaliq vs Naskh : comparaison de deux styles majeurs](/fr/blog/nastaliq-vs-naskh)
+- [Les ligatures arabes : comprendre les lettres connectées](/fr/blog/arabic-ligatures)
+- [Comment la direction de lecture affecte l'expérience utilisateur](/fr/blog/reading-direction-ux)

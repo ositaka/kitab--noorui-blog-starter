@@ -1,0 +1,613 @@
+---
+id: "dates-times-calendars-multilingual"
+title: "Dates, Times, and Calendars: A Multilingual Challenge"
+titleAr: "التواريخ والأوقات والتقاويم: تحدي متعدد اللغات"
+titleFr: "Dates, heures et calendriers : un défi multilingue"
+titleUr: "تاریخیں، اوقات، اور کیلنڈر: ایک کثیر لسانی چیلنج"
+excerpt: "Master the complexity of dates, times, and calendar systems across cultures—from Gregorian to Hijri calendars, time zones to prayer times, and everything in between."
+excerptAr: "أتقن تعقيد التواريخ والأوقات وأنظمة التقويم عبر الثقافات—من التقويم الميلادي إلى الهجري، المناطق الزمنية إلى أوقات الصلاة، وكل شيء بينهما."
+excerptFr: "Maîtrisez la complexité des dates, heures et systèmes calendaires à travers les cultures—du calendrier grégorien au hijri, des fuseaux horaires aux heures de prière, et tout le reste."
+excerptUr: "ثقافتوں میں تاریخوں، اوقات، اور کیلنڈر سسٹمز کی پیچیدگی میں مہارت حاصل کریں—گریگورین سے ہجری کیلنڈر تک، ٹائم زونز سے نماز کے اوقات تک، اور درمیان میں سب کچھ۔"
+category: "rtl-ltr-concepts"
+author: "karim-benali"
+publishedAt: "2025-01-24"
+readingTime: 11
+featured: true
+featuredImage: "https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/dates-calendars-multilingual.jpg"
+tags: ["dates", "time", "calendars", "hijri", "i18n", "localization"]
+---
+
+## The Complexity Hidden in Plain Sight
+
+Ask a developer to display "January 15, 2025" in an Arabic interface, and you might get:
+
+- ١٥ يناير ٢٠٢٥ (Eastern Arabic numerals, Gregorian)
+- 15 يناير 2025 (Western numerals, Gregorian)
+- ١٤ رجب ١٤٤٦ هـ (Hijri calendar)
+- Or both: 15 يناير 2025 - ١٤ رجب ١٤٤٦
+
+Which is correct? **It depends.** And that's exactly the challenge.
+
+Date and time localization goes far beyond translation. It involves:
+- Multiple calendar systems
+- Different numbering systems
+- Varying date formats (DD/MM/YYYY vs MM/DD/YYYY)
+- Week start days (Sunday, Monday, or Saturday)
+- Time formats (12-hour vs 24-hour)
+- Time zones and DST
+- Cultural and religious contexts
+
+Let's unpack this complexity.
+
+## Calendar Systems
+
+### The Gregorian Calendar
+
+The worldwide standard, adopted by most countries for civil purposes:
+
+```javascript
+const date = new Date('2025-01-15');
+
+// English
+new Intl.DateTimeFormat('en-US').format(date);
+// "1/15/2025"
+
+// Arabic (Egypt) - Gregorian
+new Intl.DateTimeFormat('ar-EG').format(date);
+// "١٥‏/١‏/٢٠٢٥"
+
+// French
+new Intl.DateTimeFormat('fr-FR').format(date);
+// "15/01/2025"
+```
+
+<Callout type="info">
+Notice how the same date appears differently across locales—not just in language, but in numeral system and order (month/day vs day/month).
+</Callout>
+
+### The Hijri (Islamic) Calendar
+
+A lunar calendar used for religious purposes in Islamic countries. It's approximately 11 days shorter than the solar Gregorian year.
+
+**Key characteristics:**
+- Based on lunar months (29-30 days)
+- Year has 354 or 355 days
+- Months shift ~11 days earlier each Gregorian year
+- Currently in the 15th century (1446 AH as of 2025 CE)
+
+```javascript
+// Arabic (Saudi Arabia) - Hijri calendar
+new Intl.DateTimeFormat('ar-SA-u-ca-islamic').format(date);
+// "١٤ رجب ١٤٤٦ هـ"
+
+// Explicitly requesting Islamic calendar
+new Intl.DateTimeFormat('ar-EG', {
+  calendar: 'islamic',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}).format(date);
+// "١٤ رجب ١٤٤٦ هـ"
+```
+
+<Figure
+  src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/calendars/hijri-gregorian-comparison.jpg"
+  alt="Visual comparison of Hijri and Gregorian calendars showing the date drift"
+  caption="The Hijri calendar shifts approximately 11 days earlier each Gregorian year"
+/>
+
+### When to Use Which Calendar
+
+<WideBox>
+
+| Context | Calendar | Reason |
+|---------|----------|--------|
+| Government documents | Gregorian | International standard |
+| Business/Commerce | Gregorian | Aligns with global markets |
+| Religious events | Hijri | Islamic holidays based on Hijri dates |
+| Historical Islamic events | Hijri | Traditional dating system |
+| Saudi Arabia official docs | Both | Show dual dates |
+| Ramadan/Eid announcements | Hijri (primary) | Religious observance |
+| Flight bookings | Gregorian | International travel standard |
+| Mosque event schedules | Both | Religious context + practical coordination |
+
+</WideBox>
+
+<Callout type="success">
+**Best Practice**: For applications serving Muslim audiences, offer dual calendar display for important dates. Let users toggle their preference in settings.
+</Callout>
+
+### Other Calendar Systems
+
+JavaScript's `Intl` API supports additional calendars:
+
+```javascript
+const date = new Date('2025-01-15');
+
+// Persian (Solar Hijri) - Used in Iran/Afghanistan
+new Intl.DateTimeFormat('fa-IR', {
+  calendar: 'persian',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}).format(date);
+// "۲۶ دی ۱۴۰۳"
+
+// Hebrew calendar
+new Intl.DateTimeFormat('he-IL', {
+  calendar: 'hebrew',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}).format(date);
+// "טו׳ בטבת התשפ״ה"
+
+// Japanese calendar
+new Intl.DateTimeFormat('ja-JP', {
+  calendar: 'japanese',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}).format(date);
+// "令和7年1月15日"
+```
+
+## Date Format Variations
+
+The same date can be written in dramatically different ways:
+
+<ImageGrid columns={2}>
+  <Figure
+    src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/dates/format-us.svg"
+    alt="US date format: 1/15/2025"
+    caption="🇺🇸 US: Month/Day/Year"
+  />
+  <Figure
+    src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/dates/format-europe.svg"
+    alt="European date format: 15/01/2025"
+    caption="🇪🇺 Europe: Day/Month/Year"
+  />
+  <Figure
+    src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/dates/format-iso.svg"
+    alt="ISO date format: 2025-01-15"
+    caption="🌐 ISO 8601: Year-Month-Day"
+  />
+  <Figure
+    src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/dates/format-arabic.svg"
+    alt="Arabic date format with Eastern numerals"
+    caption="🇸🇦 Arabic: ١٥‏/١‏/٢٠٢٥"
+  />
+</ImageGrid>
+
+### Common Format Patterns
+
+```javascript
+const date = new Date('2025-01-15');
+
+// United States (month-first)
+new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit'
+}).format(date);
+// "01/15/2025"
+
+// United Kingdom (day-first)
+new Intl.DateTimeFormat('en-GB', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit'
+}).format(date);
+// "15/01/2025"
+
+// Germany (day-first, different separator)
+new Intl.DateTimeFormat('de-DE', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit'
+}).format(date);
+// "15.01.2025"
+
+// China (year-first)
+new Intl.DateTimeFormat('zh-CN', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit'
+}).format(date);
+// "2025/01/15"
+```
+
+<Callout type="warning">
+**Date Parsing Danger**: Never parse user-entered dates without knowing the locale format. "01/02/2025" could mean January 2 (US) or February 1 (Europe). Always use locale-aware date pickers.
+</Callout>
+
+## Month and Day Names
+
+Month and day names vary not just in language, but in cultural associations:
+
+### Month Names Across Calendars
+
+<WideBox>
+
+| Gregorian (English) | Arabic (Gregorian) | Arabic (Hijri) |
+|---------------------|-------------------|----------------|
+| January | يناير (Yanāyir) | محرم (Muḥarram) |
+| February | فبراير (Fibrāyir) | صفر (Ṣafar) |
+| March | مارس (Māris) | ربيع الأول (Rabīʿ al-Awwal) |
+| April | أبريل (Abrīl) | ربيع الثاني (Rabīʿ ath-Thānī) |
+| May | مايو (Māyū) | جمادى الأولى (Jumādā al-Ūlā) |
+| June | يونيو (Yūnyū) | جمادى الآخرة (Jumādā al-Ākhirah) |
+| July | يوليو (Yūlyū) | رجب (Rajab) |
+| August | أغسطس (Aghusṭus) | شعبان (Shaʿbān) |
+| September | سبتمبر (Sibtimbir) | رمضان (Ramaḍān) |
+| October | أكتوبر (Uktūbir) | شوال (Shawwāl) |
+| November | نوفمبر (Nūfimbir) | ذو القعدة (Dhū al-Qaʿdah) |
+| December | ديسمبر (Dīsimbir) | ذو الحجة (Dhū al-Ḥijjah) |
+
+</WideBox>
+
+### Implementation
+
+```javascript
+// Get month names for a locale
+function getMonthNames(locale, calendar = 'gregory') {
+  const formatter = new Intl.DateTimeFormat(locale, {
+    calendar,
+    month: 'long'
+  });
+
+  return Array.from({ length: 12 }, (_, i) => {
+    const date = new Date(2025, i, 1);
+    return formatter.format(date);
+  });
+}
+
+// Gregorian months in Arabic
+getMonthNames('ar-EG', 'gregory');
+// ["يناير", "فبراير", "مارس", ...]
+
+// Hijri months in Arabic
+getMonthNames('ar-SA', 'islamic');
+// ["محرم", "صفر", "ربيع الأول", ...]
+```
+
+## Week Start Days
+
+Different cultures start their week on different days:
+
+<WideBox>
+
+| Region | Week Starts | Cultural Context |
+|--------|-------------|------------------|
+| USA, Japan, Israel | Sunday | Traditional Jewish/Christian Sabbath connection |
+| Europe, Latin America | Monday | ISO 8601 standard |
+| Middle East (most) | Saturday | Islamic week structure |
+| Afghanistan, Iran | Saturday | Persian calendar alignment |
+
+</WideBox>
+
+<Callout type="info">
+In Islamic tradition, Friday is the day of congregational prayer (Jumu'ah), and the weekend is typically Friday-Saturday or Thursday-Friday in many Middle Eastern countries.
+</Callout>
+
+### Implementing Locale-Aware Week Start
+
+```javascript
+// Get first day of week for a locale
+function getFirstDayOfWeek(locale) {
+  // Create a date formatter and examine the week info
+  const formatter = new Intl.DateTimeFormat(locale, {
+    weekday: 'narrow'
+  });
+
+  // Check locale data (requires Intl.Locale with weekInfo)
+  try {
+    const localeObj = new Intl.Locale(locale);
+    return localeObj.weekInfo?.firstDay || 1; // 1 = Monday (default)
+  } catch {
+    // Fallback for browsers without weekInfo support
+    const weekStartMap = {
+      'ar-SA': 0, // Sunday
+      'ar-EG': 0, // Sunday
+      'he-IL': 0, // Sunday
+      'en-US': 0, // Sunday
+      'fa-IR': 6, // Saturday
+    };
+    return weekStartMap[locale] ?? 1; // Default to Monday
+  }
+}
+
+// Example usage in a calendar component
+function renderCalendar(locale) {
+  const firstDay = getFirstDayOfWeek(locale);
+  const dayNames = getDayNames(locale);
+
+  // Rotate day names to start from correct day
+  const rotatedDays = [
+    ...dayNames.slice(firstDay),
+    ...dayNames.slice(0, firstDay)
+  ];
+
+  // Render calendar with correct week start
+  return rotatedDays;
+}
+```
+
+<Figure
+  src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/calendars/week-starts-comparison.jpg"
+  alt="Three calendars showing different week start days"
+  caption="Calendar views for US (Sunday start), Europe (Monday start), and Saudi Arabia (Saturday start)"
+/>
+
+## Time Formatting
+
+Time display varies between 12-hour and 24-hour formats:
+
+### 12-Hour vs 24-Hour
+
+```javascript
+const time = new Date('2025-01-15T14:30:00');
+
+// English (US) - 12-hour with AM/PM
+new Intl.DateTimeFormat('en-US', {
+  hour: 'numeric',
+  minute: 'numeric',
+  hour12: true
+}).format(time);
+// "2:30 PM"
+
+// English (UK) - 24-hour
+new Intl.DateTimeFormat('en-GB', {
+  hour: 'numeric',
+  minute: 'numeric',
+  hour12: false
+}).format(time);
+// "14:30"
+
+// Arabic (Egypt) - 12-hour
+new Intl.DateTimeFormat('ar-EG', {
+  hour: 'numeric',
+  minute: 'numeric',
+  hour12: true
+}).format(time);
+// "٢:٣٠ م" (م = مساءً = PM)
+
+// Arabic (Saudi) - 12-hour with different formatting
+new Intl.DateTimeFormat('ar-SA', {
+  hour: 'numeric',
+  minute: 'numeric',
+  hour12: true
+}).format(time);
+// "٢:٣٠ م"
+
+// Arabic - 24-hour
+new Intl.DateTimeFormat('ar-EG', {
+  hour: 'numeric',
+  minute: 'numeric',
+  hour12: false
+}).format(time);
+// "١٤:٣٠"
+```
+
+### AM/PM in Different Languages
+
+<WideBox>
+
+| Language | AM | PM | 24-Hour Preference |
+|----------|----|----|-------------------|
+| English | AM | PM | Varies by region |
+| Arabic | ص (صباحاً) | م (مساءً) | Mixed |
+| French | - | - | Preferred |
+| Spanish | a.m. | p.m. | Mixed |
+| German | - | - | Strongly preferred |
+| Japanese | 午前 | 午後 | Mixed |
+
+</WideBox>
+
+## Prayer Times: A Unique Time System
+
+For Muslim users, prayer times (Salah) are a critical feature. Unlike fixed clock times, prayer times are calculated based on the sun's position and vary by location and season.
+
+### The Five Daily Prayers
+
+<WideBox>
+
+| Prayer | Arabic | Time Calculation |
+|--------|--------|------------------|
+| Fajr | الفجر | Dawn (sun 18° below horizon) |
+| Dhuhr | الظهر | Just after solar noon |
+| Asr | العصر | When shadow length equals object height (+ some length) |
+| Maghrib | المغرب | Sunset |
+| Isha | العشاء | When twilight disappears (sun 18° below horizon) |
+
+</WideBox>
+
+### Calculation Methods
+
+Different regions use different calculation methods:
+
+```javascript
+// Example using a prayer times library
+import { PrayerTimes, CalculationMethod } from 'adhan';
+
+const coordinates = {
+  latitude: 21.3891, // Mecca
+  longitude: 39.8579
+};
+
+const date = new Date('2025-01-15');
+
+// Using different calculation methods
+const methodsConfig = {
+  makkah: CalculationMethod.UmmAlQura(),     // Used in Saudi Arabia
+  egypt: CalculationMethod.Egyptian(),        // Used in Egypt
+  isna: CalculationMethod.NorthAmerica(),    // Islamic Society of North America
+  mwl: CalculationMethod.MuslimWorldLeague(), // General purpose
+};
+
+// Calculate prayer times
+const prayerTimes = new PrayerTimes(coordinates, date, methodsConfig.makkah);
+
+console.log('Fajr:', prayerTimes.fajr);
+console.log('Dhuhr:', prayerTimes.dhuhr);
+console.log('Asr:', prayerTimes.asr);
+console.log('Maghrib:', prayerTimes.maghrib);
+console.log('Isha:', prayerTimes.isha);
+```
+
+<Callout type="success">
+**Pro Tip**: If your app serves Muslim users, integrate prayer times. Use geolocation to calculate accurate times, and let users choose their preferred calculation method in settings.
+</Callout>
+
+<YouTube id="bQ8k8mVRVHM" />
+
+*Watch this explainer on how prayer times are calculated based on solar position*
+
+## Time Zones and DST
+
+Time zones add another layer of complexity:
+
+```javascript
+// Same moment in different time zones
+const date = new Date('2025-01-15T12:00:00Z'); // UTC
+
+// New York (EST, UTC-5)
+new Intl.DateTimeFormat('en-US', {
+  timeZone: 'America/New_York',
+  dateStyle: 'full',
+  timeStyle: 'long'
+}).format(date);
+// "Wednesday, January 15, 2025 at 7:00:00 AM EST"
+
+// Dubai (GST, UTC+4)
+new Intl.DateTimeFormat('ar-AE', {
+  timeZone: 'Asia/Dubai',
+  dateStyle: 'full',
+  timeStyle: 'long'
+}).format(date);
+// "الأربعاء، ١٥ يناير ٢٠٢٥ في ٤:٠٠:٠٠ م توقيت الخليج"
+
+// Tokyo (JST, UTC+9)
+new Intl.DateTimeFormat('ja-JP', {
+  timeZone: 'Asia/Tokyo',
+  dateStyle: 'full',
+  timeStyle: 'long'
+}).format(date);
+// "2025年1月15日水曜日 21:00:00 日本標準時"
+```
+
+### Daylight Saving Time Challenges
+
+<Callout type="warning">
+**DST Warning**: Not all countries observe DST, and those that do change on different dates. Saudi Arabia and most Gulf countries don't use DST. Always use timezone-aware date libraries like `date-fns-tz` or built-in `Intl` APIs.
+</Callout>
+
+## Dual Calendar Date Pickers
+
+For applications serving users in regions where both Gregorian and Hijri calendars are relevant, consider a dual calendar picker:
+
+<Figure
+  src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/calendars/dual-calendar-picker.jpg"
+  alt="UI showing both Gregorian and Hijri calendars side by side"
+  caption="Dual calendar picker from noorui-rtl showing synchronized Gregorian and Hijri dates"
+/>
+
+### Implementation Example
+
+```tsx
+import { useState } from 'react';
+import { toHijri, toGregorian } from 'hijri-converter';
+
+function DualCalendarPicker() {
+  const [gregorianDate, setGregorianDate] = useState(new Date());
+
+  // Convert to Hijri
+  const hijriDate = toHijri(
+    gregorianDate.getFullYear(),
+    gregorianDate.getMonth() + 1,
+    gregorianDate.getDate()
+  );
+
+  const handleGregorianChange = (newDate) => {
+    setGregorianDate(newDate);
+  };
+
+  const handleHijriChange = (hy, hm, hd) => {
+    // Convert Hijri to Gregorian
+    const gDate = toGregorian(hy, hm, hd);
+    setGregorianDate(new Date(gDate.gy, gDate.gm - 1, gDate.gd));
+  };
+
+  return (
+    <div className="dual-calendar">
+      <div className="calendar-section">
+        <h3>ميلادي (Gregorian)</h3>
+        <DatePicker
+          selected={gregorianDate}
+          onChange={handleGregorianChange}
+          locale="ar-EG"
+        />
+        <p>{new Intl.DateTimeFormat('ar-EG').format(gregorianDate)}</p>
+      </div>
+
+      <div className="calendar-section">
+        <h3>هجري (Hijri)</h3>
+        <HijriDatePicker
+          selected={hijriDate}
+          onChange={handleHijriChange}
+          locale="ar-SA"
+        />
+        <p>
+          {hijriDate.hd} {getHijriMonthName(hijriDate.hm)} {hijriDate.hy} هـ
+        </p>
+      </div>
+    </div>
+  );
+}
+```
+
+## Relative Time Formatting
+
+"2 hours ago", "in 3 days", "yesterday"—relative time is surprisingly complex:
+
+```javascript
+// English
+const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+rtf.format(-1, 'day');    // "yesterday"
+rtf.format(2, 'day');     // "in 2 days"
+rtf.format(-3, 'hour');   // "3 hours ago"
+
+// Arabic
+const rtfAr = new Intl.RelativeTimeFormat('ar', { numeric: 'auto' });
+rtfAr.format(-1, 'day');  // "أمس"
+rtfAr.format(2, 'day');   // "بعد يومين"
+rtfAr.format(-3, 'hour'); // "قبل ٣ ساعات"
+
+// French
+const rtfFr = new Intl.RelativeTimeFormat('fr', { numeric: 'auto' });
+rtfFr.format(-1, 'day');  // "hier"
+rtfFr.format(2, 'day');   // "dans 2 jours"
+```
+
+## Key Takeaways
+
+1. **Use `Intl` APIs**: JavaScript's Internationalization API handles most date/time localization automatically.
+
+2. **Dual calendars for Muslim audiences**: Show both Gregorian and Hijri dates where relevant.
+
+3. **Respect week start conventions**: Saturday, Sunday, or Monday—it varies by culture.
+
+4. **Prayer times are solar, not fixed**: Calculate them based on location and sun position.
+
+5. **Date format ambiguity**: "01/02/2025" means different things in different locales. Use locale-aware date pickers.
+
+6. **Time zones matter**: Always store UTC, display in user's timezone.
+
+7. **Test across locales**: What works in en-US might not work in ar-SA or fa-IR.
+
+## Further Reading
+
+- [Understanding RTL Text Direction](/en/blog/understanding-rtl)
+- [Numbers in RTL Languages: A Developer's Guide](/en/blog/numbers-in-rtl-languages)
+- [Building Accessible Forms for Arabic Users](/en/blog/accessible-forms-arabic)
+- [The Shared Roots of Arabic and Urdu Script](/en/blog/arabic-urdu-shared-roots)

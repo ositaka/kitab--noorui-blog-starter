@@ -1,0 +1,320 @@
+---
+id: "dates-times-calendars-multilingual"
+title: "Dates, heures et calendriers : un défi multilingue"
+titleAr: "التواريخ والأوقات والتقاويم: تحدي متعدد اللغات"
+titleFr: "Dates, heures et calendriers : un défi multilingue"
+titleUr: "تاریخیں، اوقات، اور کیلنڈر: ایک کثیر لسانی چیلنج"
+excerpt: "Maîtrisez la complexité des dates, heures et systèmes calendaires à travers les cultures—du calendrier grégorien au hijri, des fuseaux horaires aux heures de prière, et tout le reste."
+excerptAr: "أتقن تعقيد التواريخ والأوقات وأنظمة التقويم عبر الثقافات—من التقويم الميلادي إلى الهجري، المناطق الزمنية إلى أوقات الصلاة، وكل شيء بينهما."
+excerptFr: "Maîtrisez la complexité des dates, heures et systèmes calendaires à travers les cultures—du calendrier grégorien au hijri, des fuseaux horaires aux heures de prière, et tout le reste."
+excerptUr: "ثقافتوں میں تاریخوں، اوقات، اور کیلنڈر سسٹمز کی پیچیدگی میں مہارت حاصل کریں—گریگورین سے ہجری کیلنڈر تک، ٹائم زونز سے نماز کے اوقات تک، اور درمیان میں سب کچھ۔"
+category: "rtl-ltr-concepts"
+author: "karim-benali"
+publishedAt: "2025-01-24"
+readingTime: 11
+featured: true
+featuredImage: "https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/dates-calendars-multilingual.jpg"
+tags: ["dates", "time", "calendars", "hijri", "i18n", "localization"]
+---
+
+## La complexité cachée à la vue de tous
+
+Demandez à un développeur d'afficher "15 janvier 2025" dans une interface arabe, et vous pourriez obtenir :
+
+- ١٥ يناير ٢٠٢٥ (chiffres arabes orientaux, grégorien)
+- 15 يناير 2025 (chiffres occidentaux, grégorien)
+- ١٤ رجب ١٤٤٦ هـ (calendrier hijri)
+- Ou les deux : 15 يناير 2025 - ١٤ رجب ١٤٤٦
+
+Lequel est correct ? **Ça dépend.** Et c'est exactement le défi.
+
+La localisation des dates et heures va bien au-delà de la traduction. Elle implique :
+- Plusieurs systèmes calendaires
+- Différents systèmes de numérotation
+- Formats de date variés (JJ/MM/AAAA vs MM/JJ/AAAA)
+- Jours de début de semaine (dimanche, lundi ou samedi)
+- Formats d'heure (12 heures vs 24 heures)
+- Fuseaux horaires et heure d'été
+- Contextes culturels et religieux
+
+Déballons cette complexité.
+
+## Systèmes calendaires
+
+### Le calendrier grégorien
+
+La norme mondiale, adoptée par la plupart des pays à des fins civiles :
+
+```javascript
+const date = new Date('2025-01-15');
+
+// Anglais
+new Intl.DateTimeFormat('en-US').format(date);
+// "1/15/2025"
+
+// Arabe (Égypte) - Grégorien
+new Intl.DateTimeFormat('ar-EG').format(date);
+// "١٥‏/١‏/٢٠٢٥"
+
+// Français
+new Intl.DateTimeFormat('fr-FR').format(date);
+// "15/01/2025"
+```
+
+<Callout type="info">
+Remarquez comment la même date apparaît différemment selon les locales—non seulement en langue, mais aussi en système numérique et ordre (mois/jour vs jour/mois).
+</Callout>
+
+### Le calendrier hijri (islamique)
+
+Un calendrier lunaire utilisé à des fins religieuses dans les pays islamiques. Il est environ 11 jours plus court que l'année solaire grégorienne.
+
+**Caractéristiques clés :**
+- Basé sur des mois lunaires (29-30 jours)
+- L'année compte 354 ou 355 jours
+- Les mois se décalent d'environ 11 jours plus tôt chaque année grégorienne
+- Actuellement au 15e siècle (1446 AH en 2025 CE)
+
+```javascript
+// Arabe (Arabie Saoudite) - Calendrier hijri
+new Intl.DateTimeFormat('ar-SA-u-ca-islamic').format(date);
+// "١٤ رجب ١٤٤٦ هـ"
+
+// Demande explicite du calendrier islamique
+new Intl.DateTimeFormat('ar-EG', {
+  calendar: 'islamic',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}).format(date);
+// "١٤ رجب ١٤٤٦ هـ"
+```
+
+<Figure
+  src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/calendars/hijri-gregorian-comparison.jpg"
+  alt="Comparaison visuelle des calendriers hijri et grégorien montrant le décalage de date"
+  caption="Le calendrier hijri se décale d'environ 11 jours plus tôt chaque année grégorienne"
+/>
+
+### Quand utiliser quel calendrier
+
+<WideBox>
+
+| Contexte | Calendrier | Raison |
+|---------|----------|--------|
+| Documents gouvernementaux | Grégorien | Norme internationale |
+| Affaires/Commerce | Grégorien | S'aligne avec les marchés mondiaux |
+| Événements religieux | Hijri | Les fêtes islamiques basées sur les dates hijri |
+| Événements historiques islamiques | Hijri | Système de datation traditionnel |
+| Documents officiels saoudiens | Les deux | Afficher les dates doubles |
+| Annonces Ramadan/Eid | Hijri (principal) | Observance religieuse |
+| Réservations de vols | Grégorien | Norme de voyage international |
+| Horaires d'événements de mosquée | Les deux | Contexte religieux + coordination pratique |
+
+</WideBox>
+
+<Callout type="success">
+**Meilleure pratique** : Pour les applications desservant les publics musulmans, offrez un affichage de calendrier double pour les dates importantes. Laissez les utilisateurs basculer leur préférence dans les paramètres.
+</Callout>
+
+### Autres systèmes calendaires
+
+L'API `Intl` de JavaScript prend en charge des calendriers supplémentaires :
+
+```javascript
+const date = new Date('2025-01-15');
+
+// Persan (hijri solaire) - Utilisé en Iran/Afghanistan
+new Intl.DateTimeFormat('fa-IR', {
+  calendar: 'persian',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}).format(date);
+// "۲۶ دی ۱۴۰۳"
+
+// Calendrier hébreu
+new Intl.DateTimeFormat('he-IL', {
+  calendar: 'hebrew',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}).format(date);
+// "טו׳ בטבת התשפ״ה"
+```
+
+## Variations de format de date
+
+La même date peut être écrite de manières radicalement différentes :
+
+<ImageGrid columns={2}>
+  <Figure
+    src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/dates/format-us.svg"
+    alt="Format de date US : 1/15/2025"
+    caption="🇺🇸 US : Mois/Jour/Année"
+  />
+  <Figure
+    src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/dates/format-europe.svg"
+    alt="Format de date européen : 15/01/2025"
+    caption="🇪🇺 Europe : Jour/Mois/Année"
+  />
+  <Figure
+    src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/dates/format-iso.svg"
+    alt="Format de date ISO : 2025-01-15"
+    caption="🌐 ISO 8601 : Année-Mois-Jour"
+  />
+  <Figure
+    src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/dates/format-arabic.svg"
+    alt="Format de date arabe avec chiffres orientaux"
+    caption="🇸🇦 Arabe : ١٥‏/١‏/٢٠٢٥"
+  />
+</ImageGrid>
+
+<Callout type="warning">
+**Danger d'analyse de date** : Ne jamais analyser les dates saisies par l'utilisateur sans connaître le format de la locale. "01/02/2025" pourrait signifier le 2 janvier (US) ou le 1er février (Europe). Utilisez toujours des sélecteurs de date conscients de la locale.
+</Callout>
+
+## Noms de mois et de jours
+
+Les noms de mois et de jours varient non seulement en langue, mais en associations culturelles :
+
+### Noms de mois à travers les calendriers
+
+<WideBox>
+
+| Grégorien (Anglais) | Arabe (Grégorien) | Arabe (Hijri) |
+|---------------------|-------------------|----------------|
+| January | يناير | محرم |
+| February | فبراير | صفر |
+| March | مارس | ربيع الأول |
+| April | أبريل | ربيع الثاني |
+| May | مايو | جمادى الأولى |
+| June | يونيو | جمادى الآخرة |
+| July | يوليو | رجب |
+| August | أغسطس | شعبان |
+| September | سبتمبر | رمضان |
+| October | أكتوبر | شوال |
+| November | نوفمبر | ذو القعدة |
+| December | ديسمبر | ذو الحجة |
+
+</WideBox>
+
+## Jours de début de semaine
+
+Différentes cultures commencent leur semaine à différents jours :
+
+<WideBox>
+
+| Région | Début de semaine | Contexte culturel |
+|--------|-------------|------------------|
+| USA, Japon, Israël | Dimanche | Connexion sabbat juif/chrétien traditionnel |
+| Europe, Amérique latine | Lundi | Norme ISO 8601 |
+| Moyen-Orient (la plupart) | Samedi | Structure de la semaine islamique |
+| Afghanistan, Iran | Samedi | Alignement du calendrier persan |
+
+</WideBox>
+
+<Callout type="info">
+Dans la tradition islamique, le vendredi est le jour de la prière congrégation (Jumu'ah), et le week-end est généralement vendredi-samedi ou jeudi-vendredi dans de nombreux pays du Moyen-Orient.
+</Callout>
+
+## Format d'heure
+
+L'affichage de l'heure varie entre les formats 12 heures et 24 heures :
+
+### 12 heures vs 24 heures
+
+```javascript
+const time = new Date('2025-01-15T14:30:00');
+
+// Anglais (US) - 12 heures avec AM/PM
+new Intl.DateTimeFormat('en-US', {
+  hour: 'numeric',
+  minute: 'numeric',
+  hour12: true
+}).format(time);
+// "2:30 PM"
+
+// Anglais (UK) - 24 heures
+new Intl.DateTimeFormat('en-GB', {
+  hour: 'numeric',
+  minute: 'numeric',
+  hour12: false
+}).format(time);
+// "14:30"
+
+// Arabe (Égypte) - 12 heures
+new Intl.DateTimeFormat('ar-EG', {
+  hour: 'numeric',
+  minute: 'numeric',
+  hour12: true
+}).format(time);
+// "٢:٣٠ م" (م = مساءً = PM)
+
+// Arabe - 24 heures
+new Intl.DateTimeFormat('ar-EG', {
+  hour: 'numeric',
+  minute: 'numeric',
+  hour12: false
+}).format(time);
+// "١٤:٣٠"
+```
+
+## Heures de prière : un système horaire unique
+
+Pour les utilisateurs musulmans, les heures de prière (Salah) sont une fonctionnalité critique. Contrairement aux heures fixes, les heures de prière sont calculées en fonction de la position du soleil et varient selon l'emplacement et la saison.
+
+### Les cinq prières quotidiennes
+
+<WideBox>
+
+| Prière | Arabe | Calcul du temps |
+|--------|--------|------------------|
+| Fajr | الفجر | Aube (soleil 18° sous l'horizon) |
+| Dhuhr | الظهر | Juste après midi solaire |
+| Asr | العصر | Quand la longueur de l'ombre égale la hauteur de l'objet |
+| Maghrib | المغرب | Coucher du soleil |
+| Isha | العشاء | Quand le crépuscule disparaît |
+
+</WideBox>
+
+<Callout type="success">
+**Conseil pro** : Si votre application dessert des utilisateurs musulmans, intégrez les heures de prière. Utilisez la géolocalisation pour calculer les heures précises et laissez les utilisateurs choisir leur méthode de calcul préférée dans les paramètres.
+</Callout>
+
+<YouTube id="bQ8k8mVRVHM" />
+
+*Regardez cette explication sur la façon dont les heures de prière sont calculées en fonction de la position solaire*
+
+## Sélecteur de date à double calendrier
+
+Pour les applications desservant les utilisateurs dans les régions où les calendriers grégorien et hijri sont pertinents, envisagez un sélecteur de calendrier double :
+
+<Figure
+  src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/calendars/dual-calendar-picker.jpg"
+  alt="Interface utilisateur montrant les calendriers grégorien et hijri côte à côte"
+  caption="Sélecteur de calendrier double de noorui-rtl montrant des dates grégoriennes et hijri synchronisées"
+/>
+
+## Points clés à retenir
+
+1. **Utilisez les API `Intl`** : L'API d'internationalisation de JavaScript gère automatiquement la plupart des localisations de date/heure.
+
+2. **Calendriers doubles pour les publics musulmans** : Affichez les dates grégoriennes et hijri lorsque pertinent.
+
+3. **Respectez les conventions de début de semaine** : Samedi, dimanche ou lundi—cela varie selon la culture.
+
+4. **Les heures de prière sont solaires, pas fixes** : Calculez-les en fonction de l'emplacement et de la position du soleil.
+
+5. **Ambiguïté du format de date** : "01/02/2025" signifie différentes choses dans différentes locales. Utilisez des sélecteurs de date conscients de la locale.
+
+6. **Les fuseaux horaires comptent** : Stockez toujours en UTC, affichez dans le fuseau horaire de l'utilisateur.
+
+7. **Testez à travers les locales** : Ce qui fonctionne en en-US pourrait ne pas fonctionner en ar-SA ou fa-IR.
+
+## Lectures complémentaires
+
+- [Comprendre la direction du texte RTL](/fr/blog/understanding-rtl)
+- [Les chiffres dans les langues RTL : Guide du développeur](/fr/blog/numbers-in-rtl-languages)
+- [Créer des formulaires accessibles pour les utilisateurs arabes](/fr/blog/accessible-forms-arabic)
+- [Les racines communes de l'écriture arabe et ourdou](/fr/blog/arabic-urdu-shared-roots)

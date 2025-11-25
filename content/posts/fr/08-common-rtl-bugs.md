@@ -306,7 +306,7 @@ Utilisez cette checklist lors des tests RTL :
 
 ## Pour aller plus loin
 
-- [Comprendre la direction du texte RTL](/blog/understanding-rtl)
-- [Propriétés logiques CSS pour le support RTL/LTR](/blog/css-logical-properties)
-- [Le texte bidirectionnel et l'algorithme BiDi Unicode](/blog/bidirectional-text-bidi)
-- [Comment la direction de lecture affecte l'expérience utilisateur](/blog/reading-direction-ux)
+- [Comprendre la direction du texte RTL](/fr/blog/understanding-rtl)
+- [Propriétés logiques CSS pour le support RTL/LTR](/fr/blog/css-logical-properties)
+- [Le texte bidirectionnel et l'algorithme BiDi Unicode](/fr/blog/bidirectional-text-bidi)
+- [Comment la direction de lecture affecte l'expérience utilisateur](/fr/blog/reading-direction-ux)

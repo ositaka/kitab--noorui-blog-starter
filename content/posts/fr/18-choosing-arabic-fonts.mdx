@@ -1,0 +1,475 @@
+---
+id: "choosing-arabic-fonts"
+title: "Choisir des polices arabes pour le Web"
+titleAr: "اختيار الخطوط العربية للويب"
+titleFr: "Choisir des polices arabes pour le Web"
+titleUr: "ویب کے لیے عربی فونٹس کا انتخاب"
+excerpt: "Un guide complet pour sélectionner, associer et optimiser les polices Web arabes pour les performances et la lisibilité."
+excerptAr: "دليل شامل لاختيار الخطوط العربية للويب ومطابقتها وتحسينها لتحقيق الأداء وسهولة القراءة."
+excerptFr: "Un guide complet pour sélectionner, associer et optimiser les polices Web arabes pour les performances et la lisibilité."
+excerptUr: "کارکردگی اور پڑھنے کی آسانی کے لیے عربی ویب فونٹس کو منتخب کرنے، جوڑنے اور بہتر بنانے کے لیے ایک جامع گائیڈ۔"
+category: "typography"
+author: "amira-hassan"
+publishedAt: "2025-01-25"
+readingTime: 10
+featured: true
+featuredImage: "https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/arabic-fonts-comparison.jpg"
+tags: ["typography", "fonts", "arabic", "performance", "web-fonts"]
+---
+
+## Le paysage de la typographie arabe sur le Web
+
+La typographie est le fondement d'un bon design, et dans le développement Web arabe, le choix de la police appropriée est plus critique que beaucoup ne le réalisent. L'écriture arabe possède des caractéristiques uniques qui rendent le choix des polices à la fois difficile et crucial : lettres connectées, formes contextuelles, diacritiques optionnels et diverses traditions calligraphiques.
+
+Contrairement aux polices latines où n'importe quelle police lisible fonctionnera généralement, les polices arabes peuvent affecter considérablement la lisibilité, l'adéquation culturelle et les performances techniques. Un mauvais choix de police peut rendre votre contenu difficile à lire ou culturellement inadapté à votre public.
+
+La bonne nouvelle ? Le paysage des polices Web arabes a considérablement mûri ces dernières années. Nous disposons maintenant d'excellentes options qui équilibrent la tradition avec la sensibilité du design moderne.
+
+<Callout type="info">
+Les polices arabes sont généralement 2 à 3 fois plus grandes que les polices latines équivalentes en raison de la complexité des formes de lettres, de la mise en forme contextuelle et des exigences de ligatures. L'optimisation des performances est essentielle.
+</Callout>
+
+## Comprendre les styles de polices arabes
+
+Avant de plonger dans des polices spécifiques, comprenons les deux catégories de styles principales :
+
+### Style Naskh
+
+**Naskh** (نسخ) est le style standard utilisé pour le texte du corps. C'est ce que vous voyez dans la plupart des livres, journaux et sites Web. Le Naskh se caractérise par :
+
+- Des formes de lettres claires et lisibles
+- Un flux de texte horizontal
+- Un contraste modéré des traits
+- Des courbes arrondies
+- Bien adapté à la lecture de longs passages
+
+**Idéal pour :** Texte du corps, articles, documentation, contenu formel
+
+### Style Kufi
+
+**Kufi** (كوفي) est plus géométrique et angulaire. Les polices Kufi modernes sont souvent utilisées pour :
+
+- Les titres et en-têtes
+- Les logos et l'image de marque
+- Le texte court et percutant
+- Les designs modernes et minimalistes
+
+**Idéal pour :** Titres, éléments d'interface, logos, texte d'affichage
+
+<PullQuote>
+"La bonne police arabe ne concerne pas seulement l'esthétique—il s'agit de respecter les modèles de lecture et les attentes culturelles de votre public."
+</PullQuote>
+
+## Comparaison des polices : les meilleurs candidats
+
+Examinons les polices Web arabes les plus populaires et fiables disponibles aujourd'hui.
+
+### 1. Noto Sans Arabic
+
+**Type :** Sans-serif, inspiré du Kufi
+**Designer :** Google Fonts
+**Poids :** 9 poids (Thin à Black)
+
+**Caractéristiques :**
+- Fait partie de la mission de Google de soutenir toutes les langues ("Noto" = "No Tofu")
+- Excellente couverture Unicode
+- Esthétique moderne et épurée
+- Fonctionne bien à toutes les tailles
+- S'associe naturellement avec Noto Sans pour le texte latin
+
+**Taille du fichier :** ~150KB (poids normal, woff2)
+
+**Meilleurs cas d'utilisation :**
+- Applications Web
+- Interfaces multilingues
+- Designs modernes et neutres
+- Lorsque vous avez besoin d'une grande variété de poids
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100..900&display=swap');
+
+body {
+  font-family: 'Noto Sans Arabic', sans-serif;
+}
+```
+
+<Callout type="success">
+Noto Sans Arabic est un excellent choix par défaut pour les applications Web. Sa large prise en charge des caractères et ses multiples poids le rendent polyvalent et fiable.
+</Callout>
+
+### 2. Cairo
+
+**Type :** Sans-serif, géométrique
+**Designer :** Mohamed Gaber
+**Poids :** 7 poids (ExtraLight à Black)
+
+**Caractéristiques :**
+- Populaire dans les marchés égyptiens et nord-africains
+- Apparence géométrique et moderne
+- Lignes épurées avec une sensation contemporaine
+- Open-source et gratuit
+- Bon équilibre entre traditionnel et moderne
+
+**Taille du fichier :** ~120KB (poids normal, woff2)
+
+**Meilleurs cas d'utilisation :**
+- Sites Web de startups
+- Entreprises technologiques
+- Marques modernes
+- Lorsque vous voulez un look frais et contemporain
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+
+.heading {
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+}
+```
+
+### 3. IBM Plex Sans Arabic
+
+**Type :** Sans-serif
+**Designer :** IBM (studio Bold Monday)
+**Poids :** 7 poids (Thin à Bold)
+
+**Caractéristiques :**
+- Apparence professionnelle et d'entreprise
+- Conçu pour s'associer avec IBM Plex Sans Latin
+- Excellent pour les applications d'entreprise
+- Forte identité de marque
+- Esthétique de documentation technique
+
+**Taille du fichier :** ~135KB (poids normal, woff2)
+
+**Meilleurs cas d'utilisation :**
+- Tableaux de bord d'entreprise
+- Services professionnels
+- Documentation technique
+- Sites Web d'entreprise
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100..700&display=swap');
+
+.corporate-text {
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+}
+```
+
+<ImageGrid columns={2}>
+  <Figure
+    src="/images/posts/fonts/noto-sans-arabic-sample.jpg"
+    alt="Exemple de texte Noto Sans Arabic"
+    caption="Noto Sans Arabic - Neutre et polyvalent"
+  />
+  <Figure
+    src="/images/posts/fonts/cairo-sample.jpg"
+    alt="Exemple de texte de la police Cairo"
+    caption="Cairo - Moderne et géométrique"
+  />
+</ImageGrid>
+
+### 4. Tajawal
+
+**Type :** Sans-serif, style Kufi
+**Designer :** Boutros International
+**Poids :** 5 poids (ExtraLight à Black)
+
+**Caractéristiques :**
+- Léger et optimisé pour le Web
+- Tailles de fichiers plus petites que les concurrents
+- Bon pour les éléments d'interface
+- Design épuré et minimaliste
+- Créé spécifiquement pour l'affichage sur écran
+
+**Taille du fichier :** ~85KB (poids normal, woff2)
+
+**Meilleurs cas d'utilisation :**
+- Applications mobiles
+- Sites critiques en termes de performances
+- Composants d'interface
+- Lorsque la taille du fichier compte
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200..900&display=swap');
+
+.button {
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 500;
+}
+```
+
+### 5. Amiri
+
+**Type :** Serif, style Naskh
+**Designer :** Khaled Hosny
+**Poids :** 2 poids (Normal, Gras)
+
+**Caractéristiques :**
+- Style calligraphique Naskh traditionnel
+- Inclut une prise en charge étendue des diacritiques
+- Parfait pour les textes arabes classiques
+- Ligatures de haute qualité
+- Inspiré de la typographie métallique traditionnelle
+
+**Taille du fichier :** ~185KB (poids normal, woff2)
+
+**Meilleurs cas d'utilisation :**
+- Contenu littéraire
+- Textes religieux
+- Contextes traditionnels ou formels
+- Lorsque l'authenticité compte
+- Poésie et littérature classique
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+
+.traditional-text {
+  font-family: 'Amiri', serif;
+  line-height: 1.8; /* Naskh nécessite plus d'interligne */
+}
+```
+
+<Callout type="info">
+Amiri inclut une prise en charge étendue du texte coranique, y compris tous les signes diacritiques et les symboles spéciaux. Si vous affichez du contenu religieux, c'est votre meilleur choix.
+</Callout>
+
+### 6. Readex Pro
+
+**Type :** Police variable, Sans-serif
+**Designer :** Thomas Jockin (pour Google Fonts)
+**Poids :** Variable (200-700)
+
+**Caractéristiques :**
+- Technologie moderne de police variable
+- Fichier unique pour tous les poids
+- Optimisé pour la lecture à l'écran
+- Design contemporain
+- Excellent pour les interfaces de lecture
+
+**Taille du fichier :** ~145KB (police variable, woff2)
+
+**Meilleurs cas d'utilisation :**
+- Applications de lecture
+- Livres électroniques et contenu long
+- Lorsque vous avez besoin de plusieurs poids efficacement
+- Applications Web modernes
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200..700&display=swap');
+
+.reading-interface {
+  font-family: 'Readex Pro', sans-serif;
+  font-variation-settings: 'wght' 350; /* Contrôle de la police variable */
+}
+```
+
+## Tableau de comparaison des polices
+
+<WideBox>
+
+| Police | Style | Poids | Taille | Idéal pour | Performance |
+|------|-------|---------|-----------|----------|-------------|
+| **Noto Sans Arabic** | Sans-serif (Kufi) | 9 | ~150KB | Usage général, applis | Bon |
+| **Cairo** | Sans-serif (Géométrique) | 7 | ~120KB | Sites modernes | Excellent |
+| **IBM Plex Arabic** | Sans-serif | 7 | ~135KB | Entreprise, corporate | Bon |
+| **Tajawal** | Sans-serif (Kufi) | 5 | ~85KB | UI, mobile | Excellent |
+| **Amiri** | Serif (Naskh) | 2 | ~185KB | Traditionnel, formel | Modéré |
+| **Readex Pro** | Variable | Variable | ~145KB | Applis de lecture | Bon |
+
+</WideBox>
+
+## Associer les polices arabes et latines
+
+La plupart des sites Web bilingues nécessitent à la fois des scripts arabes et latins. Voici comment les associer efficacement :
+
+### Les principes d'association
+
+1. **Hauteur d'x similaire :** Les polices latines et arabes doivent avoir des proportions similaires
+2. **Poids correspondant :** Les deux polices doivent sembler aussi lourdes ou légères
+3. **Personnalité compatible :** Géométrique s'associe avec géométrique, humaniste avec humaniste
+4. **Largeur de trait cohérente :** Une épaisseur similaire crée une harmonie visuelle
+
+### Associations recommandées
+
+<WideBox>
+
+```css
+/* Association 1 : Noto Sans Arabic + Noto Sans */
+:root {
+  --font-ar: 'Noto Sans Arabic', sans-serif;
+  --font-en: 'Noto Sans', sans-serif;
+}
+
+/* Association 2 : Cairo + Inter */
+:root {
+  --font-ar: 'Cairo', sans-serif;
+  --font-en: 'Inter', sans-serif;
+}
+
+/* Association 3 : IBM Plex Sans Arabic + IBM Plex Sans */
+:root {
+  --font-ar: 'IBM Plex Sans Arabic', sans-serif;
+  --font-en: 'IBM Plex Sans', sans-serif;
+}
+
+/* Association 4 : Tajawal + Roboto */
+:root {
+  --font-ar: 'Tajawal', sans-serif;
+  --font-en: 'Roboto', sans-serif;
+}
+
+/* Association 5 : Amiri + Crimson Pro */
+:root {
+  --font-ar: 'Amiri', serif;
+  --font-en: 'Crimson Pro', serif;
+}
+
+/* Utilisation avec détection de langue */
+body {
+  font-family: var(--font-en);
+}
+
+:lang(ar) {
+  font-family: var(--font-ar);
+}
+```
+
+</WideBox>
+
+<Callout type="success">
+La famille de polices Noto (Noto Sans Arabic + Noto Sans) est spécifiquement conçue pour fonctionner ensemble sur tous les scripts. Si vous voulez une harmonie garantie, commencez par là.
+</Callout>
+
+## Stratégies d'optimisation des performances
+
+Les polices arabes sont volumineuses. Voici comment les charger efficacement :
+
+### 1. Sous-ensemble de vos polices
+
+Ne chargez que les caractères dont vous avez besoin :
+
+```html
+<!-- Google Fonts : spécifier le paramètre text -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&text=أبتثجحخدذرزسشصضطظعغفقكلمنهويءآإؤئ" rel="stylesheet">
+```
+
+Ou utilisez des outils de sous-ensemble de polices :
+
+```bash
+# Utilisation de glyphhanger
+npm install -g glyphhanger
+
+# Sous-ensemble d'un fichier de police
+glyphhanger --subset=font.ttf --formats=woff2 --css
+```
+
+### 2. Utilisez font-display
+
+Contrôlez comment les polices se chargent et évitez les décalages de mise en page :
+
+```css
+@font-face {
+  font-family: 'Noto Sans Arabic';
+  src: url('/fonts/noto-sans-arabic.woff2') format('woff2');
+  font-display: swap; /* Afficher la police de secours, échanger lors du chargement */
+  font-weight: 400;
+  font-style: normal;
+}
+```
+
+**Options font-display :**
+- `swap` - Afficher la police de secours immédiatement, échanger lors du chargement (recommandé)
+- `block` - Brève période invisible, puis afficher la police
+- `fallback` - Très brève période invisible, échanger si chargé rapidement, sinon rester avec la police de secours
+- `optional` - Laisser le navigateur décider en fonction de la vitesse de connexion
+
+<Callout type="warning">
+Évitez `font-display: block` pour les polices arabes. Les tailles de fichiers peuvent causer de longues périodes de blocage, créant une mauvaise expérience utilisateur. Utilisez `swap` à la place.
+</Callout>
+
+### 3. Préchargez les polices critiques
+
+Pour les polices utilisées au-dessus du pli :
+
+```html
+<link rel="preload" href="/fonts/noto-sans-arabic-regular.woff2" as="font" type="font/woff2" crossorigin>
+```
+
+### 4. Polices variables pour plusieurs poids
+
+Si vous avez besoin de nombreux poids, considérez les polices variables :
+
+```css
+@font-face {
+  font-family: 'Readex Pro';
+  src: url('/fonts/readex-pro-variable.woff2') format('woff2-variations');
+  font-weight: 200 700; /* Plage complète dans un seul fichier */
+  font-display: swap;
+}
+
+/* Utilisez n'importe quel poids */
+.heading {
+  font-weight: 350; /* Poids exact */
+}
+```
+
+## Interligne et considérations d'espacement
+
+Le texte arabe nécessite un espacement différent du latin :
+
+```css
+/* Texte latin */
+.text-latin {
+  font-size: 16px;
+  line-height: 1.5; /* 24px */
+  letter-spacing: 0;
+}
+
+/* Texte arabe */
+.text-arabic {
+  font-size: 16px;
+  line-height: 1.8; /* 28.8px - Plus d'espace pour les diacritiques */
+  letter-spacing: 0; /* Ne jamais ajouter de letter-spacing à l'arabe ! */
+}
+```
+
+<Callout type="error">
+N'utilisez jamais `letter-spacing` sur le texte arabe. Cela brise les connexions entre les lettres et détruit l'intégrité visuelle de l'écriture.
+</Callout>
+
+## Quand utiliser chaque police
+
+Voici un arbre de décision rapide :
+
+**Besoin d'un choix sûr et polyvalent ?** → Noto Sans Arabic
+
+**Construction d'une startup moderne ou d'un produit technologique ?** → Cairo
+
+**Création d'un tableau de bord d'entreprise ?** → IBM Plex Sans Arabic
+
+**Optimisation pour mobile ou performance ?** → Tajawal
+
+**Affichage de contenu traditionnel, littéraire ou religieux ?** → Amiri
+
+**Construction d'une interface de lecture ?** → Readex Pro
+
+**Besoin de plusieurs poids efficacement ?** → Readex Pro (police variable)
+
+## Points clés à retenir
+
+1. **Le style de police compte** : Choisissez Naskh pour le texte du corps, Kufi pour les titres et l'interface
+2. **La taille du fichier est importante** : Les polices arabes sont 2-3x plus grandes que les équivalents latins
+3. **L'association est critique** : Faites correspondre la hauteur d'x, le poids et la personnalité entre les polices arabes et latines
+4. **Optimisez le chargement** : Utilisez font-display: swap, sous-ensemble et préchargement
+5. **L'interligne diffère** : L'arabe a besoin de plus d'interligne (1,6-2,0) que le latin (1,4-1,6)
+6. **Ne jamais espacer** : L'arabe est une écriture connectée—l'espacement la brise
+7. **Les polices variables économisent les octets** : Considérez les polices variables si vous avez besoin de plusieurs poids
+8. **Le contexte compte** : Le contenu traditionnel a besoin de polices traditionnelles ; les applications modernes ont besoin de polices modernes
+
+## Lectures complémentaires
+
+- [Comprendre les bases de la typographie arabe](/fr/blog/arabic-typography-basics)
+- [Optimisation des performances pour les sites Web RTL](/fr/blog/rtl-performance)
+- [Diacritiques à travers les scripts](/fr/blog/diacritics-french-arabic)
+- [L'anatomie des lettres arabes](/fr/blog/arabic-letters-anatomy)

@@ -142,7 +142,7 @@ Flexbox اور CSS Grid قدرتی طور پر RTL کی سپورٹ کرتے ہی
 
 ## مزید پڑھیں
 
-- [دو طرفہ متن اور یونیکوڈ BiDi الگورتھم](/blog/bidirectional-text-bidi)
-- [RTL/LTR سپورٹ کے لیے CSS منطقی خصوصیات](/blog/css-logical-properties)
-- [عام RTL مسائل اور ان کا حل](/blog/common-rtl-bugs)
-- [RTL زبانوں میں نمبر](/blog/numbers-in-rtl-languages)
+- [دو طرفہ متن اور یونیکوڈ BiDi الگورتھم](/ur/blog/bidirectional-text-bidi)
+- [RTL/LTR سپورٹ کے لیے CSS منطقی خصوصیات](/ur/blog/css-logical-properties)
+- [عام RTL مسائل اور ان کا حل](/ur/blog/common-rtl-bugs)
+- [RTL زبانوں میں نمبر](/ur/blog/numbers-in-rtl-languages)

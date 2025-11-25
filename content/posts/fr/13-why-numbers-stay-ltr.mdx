@@ -1,0 +1,180 @@
+---
+id: "why-numbers-stay-ltr"
+title: "Pourquoi les chiffres restent de gauche à droite dans le texte arabe"
+titleAr: "لماذا تبقى الأرقام من اليسار إلى اليمين في النص العربي"
+titleFr: "Pourquoi les chiffres restent de gauche à droite dans le texte arabe"
+titleUr: "عربی متن میں نمبر بائیں سے دائیں کیوں رہتے ہیں"
+excerpt: "Découvrez pourquoi les chiffres ne s'inversent pas dans les langues RTL, et pourquoi les 'chiffres arabes' ne sont pas vraiment arabes."
+excerptAr: "اكتشف السبب الرائع وراء عدم انعكاس الأرقام في اللغات التي تُكتب من اليمين إلى اليسار، ولماذا 'الأرقام العربية' ليست عربية في الواقع."
+excerptFr: "Découvrez pourquoi les chiffres ne s'inversent pas dans les langues RTL, et pourquoi les 'chiffres arabes' ne sont pas vraiment arabes."
+excerptUr: "دریافت کریں کہ RTL زبانوں میں نمبر کیوں الٹ نہیں ہوتے، اور 'عربی اعداد' دراصل عربی کیوں نہیں ہیں۔"
+category: "rtl-ltr-concepts"
+author: "karim-benali"
+publishedAt: "2025-01-20"
+readingTime: 7
+featured: true
+featuredImage: "https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/numbers-ltr-rtl.jpg"
+tags: ["numbers", "rtl", "arabic", "unicode", "bidi"]
+---
+
+## La vérité contre-intuitive
+
+Si vous découvrez les langues s'écrivant de droite à gauche (RTL), vous pourriez vous attendre à ce que tout soit inversé lors du passage de l'anglais à l'arabe. Le texte s'écoule de droite à gauche, les interfaces se reflètent, la mise en page s'inverse—alors sûrement les chiffres doivent aussi s'inverser ?
+
+Voici la surprise : **في عام 2024** (qui signifie "en l'année 2024" en arabe). Regardez attentivement les chiffres. Ils se lisent 2-0-2-4, pas 4-2-0-2. Même si le texte arabe s'écoule de droite à gauche, les chiffres conservent leur ordre de gauche à droite.
+
+Ce n'est pas un bug. C'est voulu, et l'histoire derrière révèle un morceau fascinant d'histoire mathématique et culturelle.
+
+## La grande ironie de dénomination
+
+<PullQuote>
+"Ce que l'Occident appelle 'chiffres arabes' n'est pas vraiment arabe—et ce que les Arabes utilisent s'appelle 'chiffres indiens'."
+</PullQuote>
+
+Clarifions l'une des grandes ironies de dénomination de l'histoire. Les chiffres que vous lisez maintenant—0, 1, 2, 3, 4, 5, 6, 7, 8, 9—sont appelés "chiffres arabes" dans le monde occidental. Mais demandez à un arabophone comment il les appelle, et vous entendrez **أرقام هندية** (arqām hindiyya)—littéralement "chiffres indiens".
+
+### La véritable histoire d'origine
+
+Le système numérique que nous utilisons aujourd'hui est originaire de l'Inde vers le 6ème siècle de notre ère. Les mathématiciens indiens ont développé un système décimal à valeur positionnelle avec neuf chiffres et le concept révolutionnaire du zéro (शून्य, śūnya).
+
+Ce système a voyagé vers l'ouest le long des routes commerciales :
+
+1. **Savants indiens** (6ème siècle) : Ont développé le système décimal
+2. **Mathématiciens persans** (7ème-8ème siècles) : L'ont adopté et perfectionné
+3. **Savants arabes** (9ème siècle) : L'ont embrassé et transmis dans tout le monde islamique
+4. **Savants européens** (12ème siècle) : L'ont appris des textes arabes et les ont appelés "chiffres arabes"
+
+Le mathématicien arabe **Al-Khwarizmi** a écrit un traité crucial au 9ème siècle qui a introduit ce système au monde islamique élargi. Son œuvre a ensuite été traduite en latin, diffusant le système en Europe.
+
+<Callout type="info">
+Le mot "algorithme" vient du nom d'Al-Khwarizmi, et "algèbre" vient du mot arabe "al-jabr" (الجبر) du titre de son livre.
+</Callout>
+
+## Deux systèmes, une direction
+
+Aujourd'hui, les régions arabophones utilisent deux systèmes numériques différents, mais les deux se lisent de gauche à droite.
+
+<WideBox>
+
+| Système | Glyphes | Nom commun | Où utilisé | Direction |
+|---------|---------|------------|------------|-----------|
+| Arabe occidental | 0 1 2 3 4 5 6 7 8 9 | "Chiffres arabes" | Europe, Amériques, Afrique du Nord | LTR |
+| Arabe oriental | ٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ | "Chiffres indiens" | Moyen-Orient, Égypte | LTR |
+| Persan | ۰ ۱ ۲ ۳ ۴ ۵ ۶ ۷ ۸ ۹ | Chiffres persans | Iran, Afghanistan | LTR |
+
+</WideBox>
+
+Notez que malgré les glyphes différents, **tous les systèmes se lisent de gauche à droite**. Le nombre 123 signifie "cent vingt-trois" dans les trois systèmes, en lisant les chiffres dans le même ordre : le chiffre le plus significatif en premier (à gauche).
+
+### Pourquoi de gauche à droite a du sens
+
+La notation mathématique est fondamentalement un langage à part entière, avec des conventions qui transcendent la direction d'écriture :
+
+- **Valeur positionnelle** : La position détermine la magnitude (centaines → dizaines → unités)
+- **Notation universelle** : Les symboles mathématiques (+, −, ×, ÷, =) sont reconnus mondialement
+- **Lecture des nombres** : Nous lisons depuis le chiffre le plus significatif (valeur positionnelle la plus grande) quelle que soit la direction de la langue
+
+Imaginez si les chiffres s'inversaient dans le texte RTL. Le nombre 123 deviendrait 321, changeant sa valeur de cent vingt-trois à trois cent vingt-et-un. La notation mathématique s'effondrerait.
+
+## Comment les ordinateurs gèrent cela
+
+L'algorithme bidirectionnel Unicode (BiDi) est la magie qui fait fonctionner correctement les chiffres dans le texte RTL.
+
+<Callout type="warning">
+N'essayez jamais d'inverser manuellement les chaînes de chiffres dans le texte RTL ! Le navigateur gère cela automatiquement via l'algorithme Unicode BiDi.
+</Callout>
+
+### L'algorithme BiDi en action
+
+Voici ce qui se passe quand vous écrivez : **السعر 1,234 ريال**
+
+```javascript
+// Le texte tel que tapé (ordre logique)
+const text = "السعر 1,234 ريال";
+
+// L'algorithme BiDi du navigateur le traite :
+// 1. Identifie la direction globale (RTL des caractères arabes)
+// 2. Trouve la séquence de chiffres (1,234)
+// 3. Garde les chiffres en ordre LTR (faiblement directionnel)
+// 4. Rend visuellement correctement
+```
+
+Le résultat : Le texte s'affiche de droite à gauche, mais les chiffres restent 1,234
+
+### Types de caractères dans BiDi
+
+La norme Unicode classe les caractères par directionnalité :
+
+```javascript
+// Caractères RTL forts
+// Lettres arabes : ا ب ت ث (forcent la direction RTL)
+
+// Caractères LTR forts
+// Lettres latines : A B C D (forcent la direction LTR)
+
+// Caractères directionnels faibles
+// Chiffres : 0 1 2 3 4 5 6 7 8 9 (héritent du contexte)
+// Ponctuation : , . ! ? (héritent du contexte)
+
+// Caractères neutres
+// Espaces, la plupart des symboles (prennent la direction des voisins)
+```
+
+Les chiffres sont classés comme caractères directionnels "faibles". Ils ne forcent pas de direction mais maintiennent l'ordre LTR dans leur séquence.
+
+## Implications pratiques pour les développeurs
+
+### Numéros de téléphone
+
+Les numéros de téléphone doivent **toujours** s'afficher de gauche à droite, même dans les interfaces RTL :
+
+```html
+<p dir="rtl">
+  للتواصل: <span dir="ltr">+966 50 123 4567</span>
+</p>
+```
+
+Cela garantit la reconnaissance internationale et la cohérence lors de la composition.
+
+### Prix et devises
+
+Le formatage des devises varie selon les paramètres régionaux, mais les chiffres eux-mêmes restent LTR :
+
+```javascript
+// Arabe (Arabie Saoudite)
+new Intl.NumberFormat('ar-SA', {
+  style: 'currency',
+  currency: 'SAR'
+}).format(1234.56)
+// Sortie : "١٬٢٣٤٫٥٦ ر.س.‏"
+// Les chiffres se lisent : 1,234.56 (de gauche à droite)
+```
+
+### Dates
+
+Le formatage des dates diffère, mais les séquences de chiffres individuels restent LTR :
+
+```html
+<!-- Format de date arabe -->
+<time dir="rtl">٢٠٢٤/٠١/١٥</time>
+<!-- Se lit : 2024/01/15 (année/mois/jour, chaque partie LTR) -->
+```
+
+## Points clés à retenir
+
+1. **Les chiffres ne s'inversent pas** : Dans le texte RTL, les chiffres conservent leur ordre de lecture de gauche à droite pour préserver leur signification mathématique.
+
+2. **Confusion de dénomination** : Ce que l'Occident appelle "chiffres arabes" est originaire de l'Inde. Les Arabes les appellent "chiffres indiens".
+
+3. **Unicode le gère** : L'algorithme BiDi gère automatiquement le texte à direction mixte. Faites-lui confiance.
+
+4. **Affichage cohérent** : Les numéros de téléphone, prix, dates et expressions mathématiques doivent toujours s'afficher avec des chiffres en ordre LTR.
+
+5. **Laissez les navigateurs travailler** : Évitez de contrôler manuellement la direction des chiffres sauf si vous avez un cas limite spécifique qui le nécessite.
+
+## Lectures complémentaires
+
+- [Comprendre la direction du texte RTL](/fr/blog/understanding-rtl)
+- [Texte bidirectionnel et algorithme Unicode BiDi](/fr/blog/bidirectional-text-bidi)
+- [Les chiffres dans les langues RTL : Guide du développeur](/fr/blog/numbers-in-rtl-languages)
+- [Créer des formulaires accessibles pour les utilisateurs arabes](/fr/blog/accessible-forms-arabic)

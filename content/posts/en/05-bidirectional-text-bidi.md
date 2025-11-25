@@ -374,7 +374,7 @@ Rendering should be consistent across:
 
 ## Further Reading
 
-- [Understanding RTL Text Direction](/blog/understanding-rtl)
-- [Numbers in RTL Languages](/blog/numbers-in-rtl-languages)
-- [CSS Logical Properties for RTL/LTR Support](/blog/css-logical-properties)
-- [Common RTL Bugs and How to Fix Them](/blog/common-rtl-bugs)
+- [Understanding RTL Text Direction](/en/blog/understanding-rtl)
+- [Numbers in RTL Languages](/en/blog/numbers-in-rtl-languages)
+- [CSS Logical Properties for RTL/LTR Support](/en/blog/css-logical-properties)
+- [Common RTL Bugs and How to Fix Them](/en/blog/common-rtl-bugs)

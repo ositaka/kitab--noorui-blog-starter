@@ -154,7 +154,7 @@ tags: ["خط", "فن-إسلامي", "طباعة", "ثقافة", "تاريخ"]
 
 ## للمزيد من القراءة
 
-- [تاريخ الخط العربي](/blog/history-of-arabic-script)
-- [النستعليق مقابل النسخ: مقارنة بين أسلوبين رئيسيين](/blog/nastaliq-vs-naskh)
-- [الوصلات العربية: فهم الحروف المتصلة](/blog/arabic-ligatures)
-- [كيف يؤثر اتجاه القراءة على تجربة المستخدم](/blog/reading-direction-ux)
+- [تاريخ الخط العربي](/ar/blog/history-of-arabic-script)
+- [النستعليق مقابل النسخ: مقارنة بين أسلوبين رئيسيين](/ar/blog/nastaliq-vs-naskh)
+- [الوصلات العربية: فهم الحروف المتصلة](/ar/blog/arabic-ligatures)
+- [كيف يؤثر اتجاه القراءة على تجربة المستخدم](/ar/blog/reading-direction-ux)

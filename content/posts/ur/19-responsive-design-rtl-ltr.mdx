@@ -1,0 +1,217 @@
+---
+id: "responsive-design-rtl-ltr"
+title: "دونوں سمتوں میں ریسپانسیو ڈیزائن"
+titleAr: "التصميم المتجاوب في كلا الاتجاهين"
+titleFr: "Design responsive dans les deux directions"
+titleUr: "دونوں سمتوں میں ریسپانسیو ڈیزائن"
+excerpt: "CSS منطقی خصوصیات اور جدید لے آؤٹ تکنیکوں کا استعمال کرتے ہوئے، RTL اور LTR دونوں سیاق و سباق میں بے عیب طریقے سے کام کرنے والے ریسپانسیو لے آؤٹس بنانا سیکھیں۔"
+excerptAr: "تعلم كيفية بناء تخطيطات متجاوبة تعمل بسلاسة في سياقات RTL و LTR، باستخدام خصائص CSS المنطقية وتقنيات التخطيط الحديثة."
+excerptFr: "Apprenez à créer des mises en page réactives qui fonctionnent parfaitement dans les contextes RTL et LTR, en utilisant les propriétés logiques CSS et les techniques de mise en page modernes."
+excerptUr: "CSS منطقی خصوصیات اور جدید لے آؤٹ تکنیکوں کا استعمال کرتے ہوئے، RTL اور LTR دونوں سیاق و سباق میں بے عیب طریقے سے کام کرنے والے ریسپانسیو لے آؤٹس بنانا سیکھیں۔"
+category: "rtl-ltr-concepts"
+author: "karim-benali"
+publishedAt: "2025-01-26"
+readingTime: 9
+featured: true
+featuredImage: "https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/responsive-rtl-ltr-design.jpg"
+tags: ["responsive", "rtl", "css", "flexbox", "grid", "logical-properties"]
+---
+
+## پہلے خوشخبری
+
+یہاں ایک ایسی بات ہے جو آپ کا دن بنا دے گی: **breakpoints RTL اور LTR میں یکساں طور پر کام کرتے ہیں**۔ 768px کی سکرین اب بھی 768px چوڑی ہے چاہے آپ عربی پڑھ رہے ہوں یا انگریزی۔ آپ کے media queries کو تبدیل کرنے کی ضرورت نہیں۔
+
+چیلنج سکرین کے سائز کے بارے میں نہیں ہے—یہ ان breakpoints کے اندر مواد کے بہاؤ کے بارے میں ہے۔ لیکن اس سے بھی بہتر خبر؟ جدید CSS نے کم سے کم اضافی کام کے ساتھ directional layouts کو سنبھالنے کے لیے ترقی کی ہے۔
+
+<PullQuote>
+"دونوں سمتوں میں ریسپانسیو ڈیزائن styles کے دو سیٹ لکھنے کے بارے میں نہیں ہے—یہ شروع سے ہی direction-agnostic styles لکھنے کے بارے میں ہے۔"
+</PullQuote>
+
+میں آپ کو دکھاتا ہوں کہ کس طرح لے آؤٹس بنائیں جو کسی بھی سکرین سائز *اور* کسی بھی متن کی سمت میں خوبصورتی سے ڈھل جائیں۔
+
+## بنیاد: CSS منطقی خصوصیات
+
+دو طرفہ ریسپانسیو ڈیزائن کا راز physical properties کی بجائے CSS logical properties کا استعمال ہے۔
+
+### Physical بمقابلہ Logical خصوصیات
+
+```css
+/* ❌ Physical properties - سمت کے مخصوص */
+.sidebar {
+  margin-left: 20px;
+  padding-right: 10px;
+  border-right: 1px solid gray;
+  left: 0;
+}
+
+/* ✅ Logical properties - سمت سے آزاد */
+.sidebar {
+  margin-inline-start: 20px;
+  padding-inline-end: 10px;
+  border-inline-end: 1px solid gray;
+  inset-inline-start: 0;
+}
+```
+
+منطقی ورژن خودکار طور پر ڈھل جاتا ہے:
+- LTR میں: `inline-start` = بائیں، `inline-end` = دائیں
+- RTL میں: `inline-start` = دائیں، `inline-end` = بائیں
+
+<Callout type="info">
+"inline" کو پڑھنے کی سمت (زیادہ تر زبانوں میں افقی) کے طور پر سوچیں اور "block" کو کھڑی سمت (stacked مواد کے لیے عمودی) کے طور پر۔
+</Callout>
+
+## ریسپانسیو سائیڈبار لے آؤٹس
+
+سائیڈبارز دو طرفہ ڈیزائنز میں سب سے عام لے آؤٹ چیلنج ہیں۔ آئیے ایک ایسا بنائیں جو ہر جگہ کام کرے۔
+
+### ڈیسک ٹاپ: ساتھ ساتھ لے آؤٹ
+
+```css
+/* سائیڈبار اور مرکزی مواد کے ساتھ کنٹینر */
+.layout {
+  display: flex;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* سائیڈبار - خودکار طور پر پوزیشن پلٹتا ہے */
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  padding-inline-end: 2rem;
+  border-inline-end: 1px solid #e5e7eb;
+}
+
+/* مرکزی مواد باقی جگہ بھرتا ہے */
+.main {
+  flex: 1;
+  min-width: 0; /* overflow سے بچیں */
+}
+```
+
+LTR میں، سائیڈبار بائیں طرف ہے۔ RTL میں، یہ خودکار طور پر دائیں طرف ہے۔ کوئی اضافی کوڈ کی ضرورت نہیں۔
+
+<Callout type="success">
+Flexbox خودکار طور پر RTL/LTR سمت کو سنبھالتا ہے جب آپ `flex-direction: row` استعمال کرتے ہیں۔ آئٹمز کسی اضافی خصوصیات کے بغیر پڑھنے کی سمت میں بہتے ہیں۔
+</Callout>
+
+## دو طرفہ لے آؤٹس کے لیے CSS Grid
+
+CSS Grid ریسپانسیو، سمت سے آزاد لے آؤٹس کے لیے ناقابل یقین حد تک طاقتور ہے۔
+
+### بنیادی Grid لے آؤٹ
+
+```css
+/* Grid خودکار طور پر پڑھنے کی سمت میں ڈھل جاتا ہے */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+/* آئٹمز بطور ڈیفالٹ پڑھنے کی سمت میں بہتے ہیں */
+.grid-item {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+```
+
+یہ grid خودکار طور پر عربی میں RTL اور انگریزی میں LTR بہتا ہے۔ کوئی اضافی کوڈ کی ضرورت نہیں۔
+
+<ImageGrid columns={2}>
+  <Figure
+    src="/images/posts/responsive/sidebar-ltr-desktop.jpg"
+    alt="ڈیسک ٹاپ پر LTR میں سائیڈبار لے آؤٹ"
+    caption="LTR ڈیسک ٹاپ: سائیڈبار بائیں طرف"
+  />
+  <Figure
+    src="/images/posts/responsive/sidebar-rtl-desktop.jpg"
+    alt="ڈیسک ٹاپ پر RTL میں سائیڈبار لے آؤٹ"
+    caption="RTL ڈیسک ٹاپ: سائیڈبار دائیں طرف"
+  />
+</ImageGrid>
+
+## موبائل نیویگیشن کے نمونے
+
+موبائل نیویگیشن دو طرفہ ڈیزائنز میں خصوصی توجہ کی ضرورت ہے۔
+
+### ہیمبرگر مینو کی پوزیشن
+
+ہیمبرگر مینو عام طور پر پڑھنے کے آغاز کے کنارے پر جاتا ہے:
+
+```css
+/* ہیمبرگر مینو کے ساتھ ہیڈر */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: white;
+  border-block-end: 1px solid #e5e7eb;
+}
+
+/* پڑھنے کے آغاز پر مینو بٹن */
+.menu-button {
+  /* Flexbox خودکار طور پر اسے شروع میں رکھتا ہے */
+  order: -1; /* یقینی بنائیں کہ یہ پہلے آتا ہے */
+}
+
+.logo {
+  /* لوگو کو درمیان میں */
+  margin-inline: auto;
+}
+
+.actions {
+  /* آخر میں actions */
+  display: flex;
+  gap: 0.5rem;
+}
+```
+
+## اپنے ریسپانسیو لے آؤٹس کی جانچ
+
+ایک جامع ٹیسٹنگ چیک لسٹ بنائیں:
+
+### Breakpoint ٹیسٹس
+
+```css
+/* ان عام breakpoints پر ٹیسٹ کریں */
+/* موبائل: 320px، 375px، 425px */
+/* ٹیبلٹ: 768px، 834px */
+/* ڈیسک ٹاپ: 1024px، 1440px، 1920px */
+```
+
+### سمت + Breakpoint میٹرکس
+
+ہر breakpoint کو دونوں سمتوں میں ٹیسٹ کریں:
+
+- [ ] موبائل (375px) - LTR
+- [ ] موبائل (375px) - RTL
+- [ ] ٹیبلٹ (768px) - LTR
+- [ ] ٹیبلٹ (768px) - RTL
+- [ ] ڈیسک ٹاپ (1440px) - LTR
+- [ ] ڈیسک ٹاپ (1440px) - RTL
+
+## اہم نکات
+
+1. **Breakpoints عالمگیر ہیں**: سکرین کی چوڑائی متن کی سمت کے ساتھ تبدیل نہیں ہوتی
+2. **منطقی خصوصیات استعمال کریں**: `inline-start`، `inline-end`، `block-start`، `block-end`
+3. **Flexbox اور Grid ڈھل جاتے ہیں**: جدید لے آؤٹ کے طریقے خودکار طور پر سمت کو سنبھالتے ہیں
+4. **دونوں سمتوں کو ٹیسٹ کریں**: LTR اور RTL میں ہر breakpoint کو چیک کریں
+5. **سائیڈبارز خودکار طور پر پلٹتے ہیں**: Flexbox/Grid استعمال کرتے ہوئے، سائیڈبارز خود کو صحیح طریقے سے رکھتے ہیں
+6. **موبائل نیویگیشن**: Drawers کو پڑھنے کے آغاز کے کنارے سے سلائیڈ ہونا چاہیے
+7. **physical properties سے بچیں**: `left`، `right`، `margin-left`، وغیرہ استعمال کرنا بند کریں
+8. **نام والے grid علاقے**: یہ RTL لے آؤٹس میں خودکار طور پر پلٹتے ہیں
+
+## مزید مطالعہ
+
+- [CSS منطقی خصوصیات کی گہرائی](/ur/blog/css-logical-properties)
+- [عربی صارفین کے لیے قابل رسائی فارم بنانا](/ur/blog/accessible-forms-arabic)
+- [آئیکن کی سمت: کیا پلٹتا ہے اور کیا نہیں](/ur/blog/icon-direction-flip-guide)
+- [عام RTL لے آؤٹ کی خرابیاں اور حل](/ur/blog/common-rtl-bugs)

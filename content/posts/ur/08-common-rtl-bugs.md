@@ -401,7 +401,7 @@ document.body.setAttribute('dir', 'rtl');
 
 ## مزید پڑھیں
 
-- [RTL متن کی سمت کو سمجھنا](/blog/understanding-rtl)
-- [RTL/LTR سپورٹ کے لیے CSS منطقی خصوصیات](/blog/css-logical-properties)
-- [دو طرفہ متن اور یونیکوڈ BiDi الگورتھم](/blog/bidirectional-text-bidi)
-- [RTL زبانوں میں نمبر](/blog/numbers-in-rtl-languages)
+- [RTL متن کی سمت کو سمجھنا](/ur/blog/understanding-rtl)
+- [RTL/LTR سپورٹ کے لیے CSS منطقی خصوصیات](/ur/blog/css-logical-properties)
+- [دو طرفہ متن اور یونیکوڈ BiDi الگورتھم](/ur/blog/bidirectional-text-bidi)
+- [RTL زبانوں میں نمبر](/ur/blog/numbers-in-rtl-languages)

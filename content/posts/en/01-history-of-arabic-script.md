@@ -155,7 +155,7 @@ Modern type designers are creating innovative Arabic typefaces that honor callig
 
 ## Further Reading
 
-- [Understanding RTL Text Direction](/blog/understanding-rtl)
-- [Nastaliq vs Naskh: Comparing Two Major Arabic Script Styles](/blog/nastaliq-vs-naskh)
-- [The Art of Arabic Ligatures](/blog/arabic-ligatures)
-- [Islamic Calligraphy: Sacred Art and Its Modern Legacy](/blog/islamic-calligraphy)
+- [Understanding RTL Text Direction](/en/blog/understanding-rtl)
+- [Nastaliq vs Naskh: Comparing Two Major Arabic Script Styles](/en/blog/nastaliq-vs-naskh)
+- [The Art of Arabic Ligatures](/en/blog/arabic-ligatures)
+- [Islamic Calligraphy: Sacred Art and Its Modern Legacy](/en/blog/islamic-calligraphy)

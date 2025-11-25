@@ -1,0 +1,391 @@
+---
+id: "bilingual-code-switching"
+title: "Concevoir pour les utilisateurs bilingues : alternance codique dans l'interface"
+titleAr: "التصميم للمستخدمين ثنائيي اللغة: التبديل اللغوي في واجهة المستخدم"
+titleFr: "Concevoir pour les utilisateurs bilingues : alternance codique dans l'interface"
+titleUr: "دو لسانی صارفین کے لیے ڈیزائن: UI میں کوڈ سوئچنگ"
+excerpt: "Découvrez comment les utilisateurs bilingues mélangent naturellement les langues—et pourquoi votre interface devrait accepter l'alternance codique plutôt que de la combattre."
+excerptAr: "اكتشف كيف يمزج المستخدمون ثنائيو اللغة اللغات بشكل طبيعي—ولماذا يجب أن تتبنى واجهة المستخدم التبديل اللغوي بدلاً من محاربته."
+excerptFr: "Découvrez comment les utilisateurs bilingues mélangent naturellement les langues—et pourquoi votre interface devrait accepter l'alternance codique plutôt que de la combattre."
+excerptUr: "جانیں کہ دو لسانی صارفین قدرتی طور پر زبانیں کیسے ملاتے ہیں—اور آپ کی UI کو لڑنے کے بجائے کوڈ سوئچنگ کو کیوں اپنانا چاہیے۔"
+category: "cultural-context"
+author: "amira-hassan"
+publishedAt: "2025-01-27"
+readingTime: 10
+featured: true
+featuredImage: "https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/code-switching-bilingual-ui.jpg"
+tags: ["bilingual", "code-switching", "ux", "cultural-context", "arabic", "localization"]
+---
+
+## La réalité de la communication bilingue
+
+Entrez dans n'importe quel café à Dubaï, Beyrouth ou Casablanca, et vous entendrez quelque chose comme ceci :
+
+> "أنا going to the mall بعدين، you coming معي؟"
+
+Ce mélange fluide d'arabe et d'anglais—connu sous le nom **d'alternance codique**—est la façon dont des millions de personnes communiquent réellement. Ce n'est pas de la confusion ou de mauvaises compétences linguistiques ; c'est une pratique linguistique sophistiquée qui reflète la réalité de la vie multilingue.
+
+Pourtant, la plupart des applications obligent les utilisateurs à choisir une seule langue et à s'y tenir. Cela crée une friction entre la façon dont les gens pensent et communiquent réellement et la façon dont nous leur demandons d'interagir avec nos interfaces.
+
+<PullQuote>
+"L'alternance codique n'est pas un bug dans la communication humaine—c'est une fonctionnalité. Votre interface devrait refléter cela."
+</PullQuote>
+
+## Qu'est-ce que l'alternance codique ?
+
+**L'alternance codique** est la pratique d'alterner entre deux langues ou plus au sein d'une seule conversation ou même d'une seule phrase. Cela se produit naturellement chez les locuteurs bilingues et remplit d'importantes fonctions sociales et cognitives.
+
+### Pourquoi les gens pratiquent l'alternance codique
+
+1. **Efficacité** : Certains concepts sont plus faciles à exprimer dans une langue
+2. **Identité** : Changer de langue signale l'appartenance à un groupe
+3. **Emphase** : Changer de langue ajoute du poids émotionnel
+4. **Combler les lacunes** : Utiliser un mot d'une autre langue quand la première n'a pas d'équivalent
+5. **Contexte social** : S'adapter au confort linguistique des autres
+
+Dans les États du Golfe, il est incroyablement courant de mélanger l'arabe et l'anglais :
+
+- **Noms de marque** : Toujours en anglais, même dans les phrases arabes
+- **Termes techniques** : "download", "app", "screenshot" restent souvent en anglais
+- **Vocabulaire professionnel** : De nombreux termes professionnels sont en anglais
+- **Nombres** : Parfois prononcés en anglais, même dans les conversations en arabe
+
+<Callout type="info">
+Les études montrent que l'alternance codique est plus complexe cognitivement que parler une seule langue. Les utilisateurs bilingues qui pratiquent l'alternance codique sont des gestionnaires de langue experts, pas des locuteurs confus.
+</Callout>
+
+## Le phénomène Arabizi
+
+**Arabizi** (également appelé "Franco-arabe" ou "3arabeezy") est l'arabe écrit en utilisant des lettres latines et des chiffres pour représenter les sons qui n'existent pas dans l'alphabet latin.
+
+### Comment fonctionne Arabizi
+
+Les chiffres représentent les sons arabes :
+
+- **2** = ء (hamza/coup de glotte)
+- **3** = ع (ayn)
+- **5** = خ (kha)
+- **6** = ط (ta)
+- **7** = ح (ha)
+- **8** = ق (qaf) - parfois
+- **9** = ص (sad)
+
+**Exemples :**
+- **مرحبا** (marhaba) → `mar7aba`
+- **صباح الخير** (sabah al-khair) → `9aba7 el5eir`
+- **معلش** (ma3lish) → `ma3lesh`
+- **إن شاء الله** (inshallah) → `inshallah` ou `inshaa2allah`
+
+### Pourquoi Arabizi existe
+
+1. **Contraintes de l'internet primitif** : Avant une bonne prise en charge du clavier arabe, Arabizi était nécessaire
+2. **Vitesse** : Taper en Arabizi sur les claviers QWERTY est plus rapide pour certains utilisateurs
+3. **Limitations de plateforme** : Certains systèmes gèrent encore mal l'arabe
+4. **Décontraction** : Arabizi signale une communication informelle et amicale
+5. **Habitude** : Une génération a grandi en l'utilisant et continue par choix
+
+<Blockquote variant="accent" author="Sara, 28 ans, Designer UX au Caire">
+"Quand je discute avec des amis, j'utilise Arabizi. C'est plus décontracté que l'écriture arabe formelle, et plus rapide que de changer de clavier. Mais pour les documents professionnels, je passe à l'arabe approprié."
+</Blockquote>
+
+Bien qu'Arabizi soit né de limitations techniques, c'est maintenant un choix culturel. De nombreux jeunes Arabes le préfèrent pour la communication informelle même lorsque les claviers arabes sont facilement disponibles.
+
+<Callout type="warning">
+Ne supposez pas qu'Arabizi disparaît. Pour de nombreux utilisateurs, en particulier dans des contextes informels comme le chat et les réseaux sociaux, il reste le moyen préféré d'écrire l'arabe de manière décontractée.
+</Callout>
+
+## Alternance codique dans les applications réelles
+
+Examinons comment les applications régionales à succès gèrent les utilisateurs bilingues.
+
+### Careem (VTC)
+
+**Approche linguistique** : Interface principalement en arabe avec noms de marque en anglais
+
+**Exemples d'alternance codique :**
+- Texte du bouton : "احجز Careem الآن" (Réserver Careem maintenant)
+- Types de voiture : "Careem GO", "Careem Business" (noms anglais dans l'interface arabe)
+- Paiement : "ادفع بواسطة Credit Card"
+
+**Ce qu'ils font bien :**
+- Ne traduisent pas le nom de marque
+- Gardent les noms de gammes de produits en anglais (reconnaissables mondialement)
+- Utilisent l'arabe pour les actions et instructions
+- Permettent le contenu mixte dans le chat de support
+
+### Talabat (Livraison de nourriture)
+
+**Approche linguistique** : Interfaces entièrement localisées mais accepte les noms de restaurants en anglais
+
+**Exemples d'alternance codique :**
+- "اطلب من McDonald's"
+- "Pizza Hut - توصيل مجاني"
+- Les noms de restaurants restent dans la langue d'origine
+- Catégories de cuisine : "Italian", "Asian", "مأكولات عربية"
+
+**Ce qu'ils font bien :**
+- Ne traduisent jamais les noms de restaurants
+- Affichent les types de cuisine dans la langue recherchée par les utilisateurs
+- Descriptions en arabe même pour les restaurants étrangers
+- Langue mixte dans les avis (les utilisateurs écrivent naturellement)
+
+### Noon (E-commerce)
+
+**Approche linguistique** : Entièrement bilingue avec mélange intelligent des langues
+
+**Exemples d'alternance codique :**
+- "أضف للسلة" avec noms de produits en anglais
+- "Brand: Nike" dans l'interface arabe
+- Prix : "99.99 ريال" (nombre + devise)
+- Spécifications mixtes : "اللون: Blue"
+
+**Ce qu'ils font bien :**
+- Les noms de produits restent dans la langue d'origine (généralement anglais)
+- Les spécifications techniques restent souvent en anglais
+- Les avis utilisateurs apparaissent dans la langue dans laquelle ils ont été écrits
+- La recherche fonctionne simultanément dans les deux langues
+
+<ImageGrid columns={2}>
+  <Figure
+    src="/images/posts/code-switching/careem-app-screenshot.jpg"
+    alt="Application Careem montrant du contenu mixte arabe-anglais"
+    caption="Careem : Interface arabe avec éléments de marque anglais"
+  />
+  <Figure
+    src="/images/posts/code-switching/noon-product-page.jpg"
+    alt="Page produit Noon avec contenu bilingue"
+    caption="Noon : Noms de produits en anglais, interface en arabe"
+  />
+</ImageGrid>
+
+## Principes de conception pour les interfaces bilingues
+
+### 1. Ne forcez pas la pureté linguistique
+
+```html
+<!-- ❌ Forcer la cohérence crée de la maladresse -->
+<button>أضف إلى حقيبة التسوق</button>
+<!-- La traduction "shopping bag" semble peu naturelle -->
+
+<!-- ✅ Laissez les utilisateurs parler naturellement -->
+<button>أضف للـ Cart</button>
+<!-- Le mélange semble naturel pour les utilisateurs bilingues -->
+```
+
+**Principe** : Si vos utilisateurs utilisent naturellement des mots anglais dans les phrases arabes, votre interface peut aussi le faire—stratégiquement.
+
+### 2. Ne traduisez jamais les noms propres
+
+- **Noms de marque** : Nike, Apple, Samsung restent tels quels
+- **Noms de produits** : iPhone, Galaxy, MacBook restent en anglais
+- **Noms de personnes** : Gardez les scripts et l'orthographe d'origine
+- **Noms de lieux** : Utilisez les conventions locales (New York, نيويورك, ou les deux)
+
+```jsx
+// Bon : Noms de marque non traduits
+<ProductCard
+  brand="Nike"
+  name="Air Max 270"
+  description="حذاء رياضي مريح للاستخدام اليومي"
+/>
+
+// Mauvais : Translittération des noms de marque
+<ProductCard
+  brand="نايكي"  // Maladroit et réduit la reconnaissance
+  name="إير ماكس ٢٧٠"
+  description="حذاء رياضي مريح للاستخدام اليومي"
+/>
+```
+
+### 3. Laissez les termes techniques rester en anglais
+
+De nombreux termes techniques sont plus reconnaissables en anglais :
+
+**Couramment gardés en anglais :**
+- Email (pas بريد إلكتروني)
+- Download (pas تنزيل)
+- Upload (pas رفع)
+- Login (pas تسجيل الدخول) - bien que celui-ci varie
+- Notification (pas إشعار) - varie selon l'application
+- Settings (parfois reste en anglais)
+
+<Callout type="success">
+Testez avec de vrais utilisateurs. Certains termes techniques doivent être traduits, d'autres semblent plus naturels en anglais. Il n'y a pas de règle universelle—cela dépend de votre public et du contexte.
+</Callout>
+
+### 4. Prenez en charge la saisie en langue mixte
+
+```html
+<!-- Recherche qui fonctionne avec saisie mixte -->
+<input
+  type="search"
+  placeholder="ابحث عن منتجات، brands، أو categories"
+  lang="ar"
+/>
+```
+
+Votre recherche devrait gérer :
+- **Arabe pur** : "حذاء رياضي"
+- **Anglais pur** : "running shoes"
+- **Mixte** : "حذاء Nike"
+- **Arabizi** : "7e2a2 rya'6y"
+
+### 5. Respectez le contenu généré par les utilisateurs
+
+**Ne forcez pas la traduction** des avis, commentaires ou messages des utilisateurs. Les utilisateurs pratiqueront naturellement l'alternance codique :
+
+```html
+<!-- Avis utilisateur tel qu'écrit -->
+<div class="review">
+  <p lang="ar">
+    المنتج حلو بس the delivery كان متأخر شوي
+  </p>
+  <span class="author">@user123</span>
+</div>
+```
+
+Appliquez l'attribut `lang` au conteneur, mais laissez le contenu mixte exister naturellement.
+
+<WideBox>
+
+### Cadre de décision pour l'alternance codique
+
+| Élément UI | Recommandation | Exemple |
+|------------|----------------|---------|
+| **Noms de marque** | Toujours garder l'original | "Careem", "Noon", "Apple" |
+| **Noms de produits** | Garder l'original | "iPhone 15 Pro", "Galaxy S24" |
+| **Actions d'interface** | Localiser complètement | "أضف إلى السلة" pas "Add to cart" |
+| **Spéc. techniques** | Dépend du contexte | "RAM", "Storage" restent souvent en anglais |
+| **Catégories** | Localiser | "إلكترونيات" pas "Electronics" |
+| **Contenu utilisateur** | Ne jamais modifier | Afficher comme l'utilisateur l'a écrit |
+| **Nombres & unités** | Mixte OK | "99 ريال", "5 km" |
+| **Messages d'erreur** | Localiser complètement | Les utilisateurs doivent comprendre les problèmes |
+
+</WideBox>
+
+## Concevoir le choix de langue
+
+### Ne détectez pas automatiquement en fonction de l'emplacement
+
+```javascript
+// ❌ Mauvais : Forcer l'arabe en fonction de l'emplacement
+if (userCountry === 'SA' || userCountry === 'AE') {
+  setLanguage('ar');
+}
+
+// ✅ Mieux : Demander ou mémoriser la préférence
+const userLanguage = localStorage.getItem('preferred-language')
+  || navigator.language
+  || 'en'; // Valeur par défaut sensée
+```
+
+**Pourquoi c'est important :**
+- Les expatriés vivant dans les pays arabes peuvent préférer l'anglais
+- Les locuteurs arabes en voyage peuvent vouloir garder l'arabe
+- Les utilisateurs professionnels peuvent avoir besoin de l'anglais pour le travail, de l'arabe pour le personnel
+
+### Facilitez le changement de langue
+
+```jsx
+// Sélecteur de langue toujours accessible
+<LanguageSwitcher>
+  <option value="ar">العربية</option>
+  <option value="en">English</option>
+  <option value="fr">Français</option>
+</LanguageSwitcher>
+```
+
+**Meilleures pratiques :**
+- Afficher le sélecteur dans l'en-tête/pied de page
+- Afficher les noms de langues dans leur propre script
+- Mémoriser le choix entre les sessions
+- Ne pas exiger de connexion pour changer de langue
+
+<Callout type="success">
+Placez le sélecteur de langue où les utilisateurs s'attendent à le trouver : coin supérieur droit dans les mises en page LTR, coin supérieur gauche dans RTL. Utilisez une icône globe 🌐 pour une reconnaissance universelle.
+</Callout>
+
+## Gestion du contenu en direction mixte
+
+Lorsque vous avez de l'arabe et de l'anglais sur la même ligne :
+
+```html
+<!-- Le wrapper a la direction de base -->
+<p dir="rtl">
+  اشترِ
+  <span lang="en">iPhone 15 Pro</span>
+  الآن بسعر
+  <span dir="ltr">$999</span>
+</p>
+```
+
+**S'affiche comme :**
+```
+الآن بسعر $999 iPhone 15 Pro اشترِ
+```
+
+L'algorithme bidirectionnel Unicode gère cela automatiquement, mais vous pouvez l'aider :
+
+```css
+/* Isoler le contenu intégré */
+[lang="en"] {
+  unicode-bidi: isolate;
+}
+
+/* Garder les nombres LTR */
+.price {
+  direction: ltr;
+  unicode-bidi: embed;
+}
+```
+
+<Callout type="warning">
+Faites attention à la ponctuation dans le texte en direction mixte. Les points, virgules et points d'interrogation peuvent apparaître à des endroits inattendus. Testez soigneusement avec du contenu réel.
+</Callout>
+
+## Interfaces de chat et messagerie
+
+Le chat est l'endroit où l'alternance codique se produit le plus naturellement.
+
+### Prise en charge des deux scripts
+
+```jsx
+<ChatMessage dir="auto" lang="ar">
+  <Avatar user={user} />
+  <MessageBubble>
+    السلام عليكم! I sent you the document
+  </MessageBubble>
+  <Timestamp>2:34 PM</Timestamp>
+</ChatMessage>
+```
+
+**Utilisez `dir="auto"`** pour les messages de chat. Le navigateur détectera le premier caractère directionnel fort et définira la direction en conséquence.
+
+## Points clés à retenir
+
+1. **L'alternance codique est naturelle** : Les utilisateurs bilingues mélangent les langues dans la parole et s'attendent à le faire dans les interfaces
+
+2. **Ne forcez pas la pureté** : Laisser les termes techniques ou les noms de marque rester en anglais dans les interfaces arabes est souvent plus naturel
+
+3. **Arabizi est réel** : Des millions l'utilisent quotidiennement. Votre recherche et votre chat doivent le gérer
+
+4. **Ne traduisez jamais les noms propres** : Les noms de marque, de produits et de personnes restent dans leur forme originale
+
+5. **Respectez le contenu généré par les utilisateurs** : Ne forcez pas la traduction des avis, commentaires ou messages
+
+6. **Facilitez le changement** : Le sélecteur de langue doit être accessible et mémoriser les préférences
+
+7. **Utilisez `dir="auto"`** : Pour le contenu généré par l'utilisateur, laissez le navigateur détecter la direction
+
+8. **Testez avec de vrais utilisateurs** : Ce qui "semble naturel" varie selon la région et la démographie
+
+9. **Pensez par contexte** : Les utilisateurs peuvent vouloir différentes langues pour l'interface, le contenu et les notifications
+
+10. **Étudiez les applications locales à succès** : Careem, Noon et Talabat ont affiné l'UX bilingue grâce à une utilisation réelle
+
+## Lectures complémentaires
+
+- [Créer des formulaires accessibles pour les utilisateurs arabes](/fr/blog/accessible-forms-arabic)
+- [Choisir des polices arabes pour le Web](/fr/blog/choosing-arabic-fonts)
+- [Comprendre la direction de texte RTL](/fr/blog/understanding-rtl)
+- [Les racines partagées de l'écriture arabe et ourdoue](/fr/blog/arabic-urdu-shared-roots)

@@ -314,7 +314,7 @@ Tailwind CSS v3+ منطقی خصوصیات کی سپورٹ کرتا ہے:
 
 ## مزید پڑھیں
 
-- [RTL متن کی سمت کو سمجھنا](/blog/understanding-rtl)
-- [عام RTL مسائل اور ان کا حل](/blog/common-rtl-bugs)
-- [دو طرفہ متن اور یونیکوڈ BiDi الگورتھم](/blog/bidirectional-text-bidi)
-- [پڑھنے کی سمت صارف کے تجربے پر کیسے اثر ڈالتی ہے](/blog/reading-direction-ux)
+- [RTL متن کی سمت کو سمجھنا](/ur/blog/understanding-rtl)
+- [عام RTL مسائل اور ان کا حل](/ur/blog/common-rtl-bugs)
+- [دو طرفہ متن اور یونیکوڈ BiDi الگورتھم](/ur/blog/bidirectional-text-bidi)
+- [پڑھنے کی سمت صارف کے تجربے پر کیسے اثر ڈالتی ہے](/ur/blog/reading-direction-ux)

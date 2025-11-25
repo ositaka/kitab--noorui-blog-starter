@@ -1,0 +1,224 @@
+---
+id: "why-numbers-stay-ltr"
+title: "Why Numbers Stay Left-to-Right in Arabic Text"
+titleAr: "لماذا تبقى الأرقام من اليسار إلى اليمين في النص العربي"
+titleFr: "Pourquoi les chiffres restent de gauche à droite dans le texte arabe"
+titleUr: "عربی متن میں نمبر بائیں سے دائیں کیوں رہتے ہیں"
+excerpt: "Discover the fascinating reason why numbers don't reverse in RTL languages, and why 'Arabic numerals' aren't actually Arabic."
+excerptAr: "اكتشف السبب الرائع وراء عدم انعكاس الأرقام في اللغات التي تُكتب من اليمين إلى اليسار، ولماذا 'الأرقام العربية' ليست عربية في الواقع."
+excerptFr: "Découvrez pourquoi les chiffres ne s'inversent pas dans les langues RTL, et pourquoi les 'chiffres arabes' ne sont pas vraiment arabes."
+excerptUr: "دریافت کریں کہ RTL زبانوں میں نمبر کیوں الٹ نہیں ہوتے، اور 'عربی اعداد' دراصل عربی کیوں نہیں ہیں۔"
+category: "rtl-ltr-concepts"
+author: "karim-benali"
+publishedAt: "2025-01-20"
+readingTime: 7
+featured: true
+featuredImage: "https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/numbers-ltr-rtl.jpg"
+tags: ["numbers", "rtl", "arabic", "unicode", "bidi"]
+---
+
+## The Counterintuitive Truth
+
+If you're new to right-to-left (RTL) languages, you might expect everything to flip when switching from English to Arabic. Text flows right to left, interfaces mirror, layout reverses—so surely numbers must reverse too?
+
+Here's the surprise: **في عام 2024** (which means "in the year 2024" in Arabic). Look closely at the numbers. They read 2-0-2-4, not 4-2-0-2. Even though the Arabic text flows right to left, the numbers maintain their left-to-right order.
+
+This isn't a bug. It's by design, and the story behind it reveals a fascinating piece of mathematical and cultural history.
+
+## The Great Numeral Misnomer
+
+<PullQuote>
+"What the West calls 'Arabic numerals' aren't actually Arabic—and what Arabs use are called 'Indian numerals'."
+</PullQuote>
+
+Let's clear up one of history's great naming ironies. The numerals you're reading right now—0, 1, 2, 3, 4, 5, 6, 7, 8, 9—are called "Arabic numerals" in the Western world. But ask an Arabic speaker what they call them, and you'll hear **أرقام هندية** (arqām hindiyya)—literally "Indian numerals."
+
+### The True Origin Story
+
+The number system we use today originated in India around the 6th century CE. Indian mathematicians developed a decimal place-value system with nine digits and the revolutionary concept of zero (شून्य, śūnya).
+
+This system traveled westward along trade routes:
+
+1. **Indian scholars** (6th century): Developed the decimal system
+2. **Persian mathematicians** (7th-8th centuries): Adopted and refined it
+3. **Arab scholars** (9th century): Embraced and transmitted it throughout the Islamic world
+4. **European scholars** (12th century): Learned it from Arabic texts and called them "Arabic numerals"
+
+The Arab mathematician **Al-Khwarizmi** wrote a crucial treatise in the 9th century that introduced this system to the wider Islamic world. His work was later translated into Latin, spreading the system to Europe.
+
+<Callout type="info">
+The word "algorithm" comes from Al-Khwarizmi's name, and "algebra" comes from the Arabic word "al-jabr" (الجبر) from his book title.
+</Callout>
+
+## Two Systems, One Direction
+
+Today, Arabic-speaking regions use two different numeral systems, but both read left to right.
+
+<WideBox>
+
+| System | Glyphs | Common Name | Where Used | Direction |
+|--------|--------|-------------|------------|-----------|
+| Western Arabic | 0 1 2 3 4 5 6 7 8 9 | "Arabic numerals" | Europe, Americas, North Africa | LTR |
+| Eastern Arabic | ٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ | "Indian numerals" | Middle East, Egypt | LTR |
+| Persian | ۰ ۱ ۲ ۳ ۴ ۵ ۶ ۷ ۸ ۹ | Persian numerals | Iran, Afghanistan | LTR |
+
+</WideBox>
+
+Notice that despite the different glyphs, **all systems read left to right**. The number 123 means "one hundred twenty-three" in all three systems, reading the digits in the same order: most significant digit first (on the left).
+
+### Why Left-to-Right Makes Sense
+
+Mathematical notation is fundamentally a language of its own, with conventions that transcend writing direction:
+
+- **Place value**: The position determines magnitude (hundreds → tens → ones)
+- **Universal notation**: Math symbols (+, −, ×, ÷, =) are recognized globally
+- **Reading numbers**: We read from the most significant digit (largest place value) regardless of language direction
+
+Imagine if numbers reversed in RTL text. The number 123 would become 321, changing its value from one hundred twenty-three to three hundred twenty-one. Mathematical notation would break.
+
+## How Computers Handle This
+
+The Unicode Bidirectional Algorithm (BiDi) is the magic that makes numbers work correctly in RTL text.
+
+<Callout type="warning">
+Never try to manually reverse number strings in RTL text! The browser handles this automatically through the Unicode BiDi algorithm.
+</Callout>
+
+### The BiDi Algorithm in Action
+
+Here's what happens when you write: **السعر 1,234 ريال**
+
+```javascript
+// The text as typed (logical order)
+const text = "السعر 1,234 ریال";
+
+// The browser's BiDi algorithm processes it:
+// 1. Identifies the overall direction (RTL from Arabic characters)
+// 2. Finds the number sequence (1,234)
+// 3. Keeps numbers in LTR order (weakly directional)
+// 4. Renders visually correctly
+```
+
+The result: **ریال 1,234 السعر** (displayed right-to-left, but the numbers stay 1,234)
+
+### Character Types in BiDi
+
+The Unicode standard classifies characters by directionality:
+
+```javascript
+// Strong RTL characters
+// Arabic letters: ا ب ت ث (force RTL direction)
+
+// Strong LTR characters
+// Latin letters: A B C D (force LTR direction)
+
+// Weak directional characters
+// Numbers: 0 1 2 3 4 5 6 7 8 9 (inherit from context)
+// Punctuation: , . ! ? (inherit from context)
+
+// Neutral characters
+// Spaces, most symbols (take direction from neighbors)
+```
+
+Numbers are classified as "weak" directional characters. They don't force a direction but maintain LTR order within their sequence.
+
+## Practical Implications for Developers
+
+### Phone Numbers
+
+Phone numbers should **always** display left-to-right, even in RTL interfaces:
+
+```html
+<p dir="rtl">
+  للتواصل: <span dir="ltr">+966 50 123 4567</span>
+</p>
+```
+
+This ensures international recognition and consistency when dialing.
+
+### Prices and Currency
+
+Currency formatting varies by locale, but the numbers themselves stay LTR:
+
+```javascript
+// Arabic (Saudi Arabia)
+new Intl.NumberFormat('ar-SA', {
+  style: 'currency',
+  currency: 'SAR'
+}).format(1234.56)
+// Output: "١٬٢٣٤٫٥٦ ر.س.‏"
+// Numbers read: 1,234.56 (left to right)
+```
+
+### Dates
+
+Date formatting differs, but individual number sequences remain LTR:
+
+```html
+<!-- Arabic date format -->
+<time dir="rtl">٢٠٢٤/٠١/١٥</time>
+<!-- Reads: 2024/01/15 (year/month/day, each part LTR) -->
+```
+
+### Mixed Content
+
+When you have numbers mixed with RTL text, let the browser handle it:
+
+```html
+<!-- Good: Let the browser figure it out -->
+<p dir="rtl">في عام 2024 تم إطلاق المنتج الجديد</p>
+
+<!-- Bad: Don't try to manually control it -->
+<p dir="rtl">في عام <span dir="ltr">2024</span> تم إطلاق المنتج الجديد</p>
+```
+
+The first approach is sufficient. The browser's BiDi algorithm automatically handles the number sequence correctly.
+
+<Callout type="success">
+Trust the browser's BiDi algorithm for mixed RTL text and numbers. It's been refined over decades and handles edge cases better than manual direction overrides.
+</Callout>
+
+## Edge Cases and Gotchas
+
+### Ranges and Hyphens
+
+Number ranges can be tricky:
+
+```html
+<!-- The hyphen might appear on the wrong side -->
+<p dir="rtl">الصفحات 10-20</p>
+
+<!-- Better: use an en-dash or isolate the range -->
+<p dir="rtl">الصفحات <span dir="ltr">10-20</span></p>
+<!-- Or use Arabic text -->
+<p dir="rtl">الصفحات ١٠ إلى ٢٠</p>
+```
+
+### Math Expressions
+
+Mathematical expressions are universally LTR:
+
+```html
+<p dir="rtl">
+  المعادلة: <span dir="ltr" class="math">2x + 5 = 15</span>
+</p>
+```
+
+## Key Takeaways
+
+1. **Numbers don't flip**: In RTL text, numbers maintain their left-to-right reading order to preserve their mathematical meaning.
+
+2. **Naming confusion**: What the West calls "Arabic numerals" originated in India. Arabs call them "Indian numerals."
+
+3. **Unicode handles it**: The BiDi algorithm automatically manages mixed-direction text. Trust it.
+
+4. **Consistent display**: Phone numbers, prices, dates, and math expressions should always render with numbers in LTR order.
+
+5. **Let browsers work**: Avoid manually controlling number direction unless you have a specific edge case that requires it.
+
+## Further Reading
+
+- [Understanding RTL Text Direction](/en/blog/understanding-rtl)
+- [Bidirectional Text and the Unicode BiDi Algorithm](/en/blog/bidirectional-text-bidi)
+- [Numbers in RTL Languages: A Developer's Guide](/en/blog/numbers-in-rtl-languages)
+- [Building Accessible Forms for Arabic Users](/en/blog/accessible-forms-arabic)

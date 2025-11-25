@@ -175,7 +175,7 @@ Always test Urdu Nastaliq interfaces with:
 
 ## Further Reading
 
-- [Nastaliq vs Naskh: Comparing Two Major Arabic Script Styles](/blog/nastaliq-vs-naskh)
-- [Understanding RTL Text Direction](/blog/understanding-rtl)
-- [Common RTL Bugs and How to Fix Them](/blog/common-rtl-bugs)
-- [The History of Arabic Script](/blog/history-of-arabic-script)
+- [Nastaliq vs Naskh: Comparing Two Major Arabic Script Styles](/en/blog/nastaliq-vs-naskh)
+- [Understanding RTL Text Direction](/en/blog/understanding-rtl)
+- [Common RTL Bugs and How to Fix Them](/en/blog/common-rtl-bugs)
+- [The History of Arabic Script](/en/blog/history-of-arabic-script)

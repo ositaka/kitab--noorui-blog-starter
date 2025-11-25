@@ -256,7 +256,7 @@ This shared heritage reminds us that writing—like language itself—is a funda
 
 ## Further Reading
 
-- [The History of Arabic Script](/blog/history-of-arabic-script)
-- [Understanding RTL Text Direction](/blog/understanding-rtl)
-- [Bidirectional Text and the Unicode BiDi Algorithm](/blog/bidirectional-text-bidi)
-- [How Reading Direction Affects User Experience](/blog/reading-direction-ux)
+- [The History of Arabic Script](/en/blog/history-of-arabic-script)
+- [Understanding RTL Text Direction](/en/blog/understanding-rtl)
+- [Bidirectional Text and the Unicode BiDi Algorithm](/en/blog/bidirectional-text-bidi)
+- [How Reading Direction Affects User Experience](/en/blog/reading-direction-ux)

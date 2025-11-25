@@ -159,7 +159,7 @@ Cet héritage partagé nous rappelle que l'écriture — comme le langage lui-m�
 
 ## Pour aller plus loin
 
-- [L'histoire de l'écriture arabe](/blog/history-of-arabic-script)
-- [Comprendre la direction du texte RTL](/blog/understanding-rtl)
-- [Le texte bidirectionnel et l'algorithme BiDi Unicode](/blog/bidirectional-text-bidi)
-- [Comment la direction de lecture affecte l'expérience utilisateur](/blog/reading-direction-ux)
+- [L'histoire de l'écriture arabe](/fr/blog/history-of-arabic-script)
+- [Comprendre la direction du texte RTL](/fr/blog/understanding-rtl)
+- [Le texte bidirectionnel et l'algorithme BiDi Unicode](/fr/blog/bidirectional-text-bidi)
+- [Comment la direction de lecture affecte l'expérience utilisateur](/fr/blog/reading-direction-ux)

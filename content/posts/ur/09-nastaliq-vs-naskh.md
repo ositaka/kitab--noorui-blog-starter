@@ -261,7 +261,7 @@ tags: ["نستعلیق", "نسخ", "ٹائپوگرافی", "عربی", "اردو
 
 ## مزید پڑھیں
 
-- [اردو اور نستعلیق: جنوبی ایشیا کا خوبصورت رسم الخط](/blog/urdu-nastaliq-script)
-- [عربی رسم الخط کی تاریخ](/blog/history-of-arabic-script)
-- [عربی خطاطی میں جوڑ اور سیاقی شکلیں](/blog/arabic-ligatures)
-- [RTL متن کی سمت کو سمجھنا](/blog/understanding-rtl)
+- [اردو اور نستعلیق: جنوبی ایشیا کا خوبصورت رسم الخط](/ur/blog/urdu-nastaliq-script)
+- [عربی رسم الخط کی تاریخ](/ur/blog/history-of-arabic-script)
+- [عربی خطاطی میں جوڑ اور سیاقی شکلیں](/ur/blog/arabic-ligatures)
+- [RTL متن کی سمت کو سمجھنا](/ur/blog/understanding-rtl)

@@ -549,7 +549,7 @@ Use this checklist when testing RTL:
 
 ## Further Reading
 
-- [Understanding RTL Text Direction](/blog/understanding-rtl)
-- [CSS Logical Properties for RTL/LTR Support](/blog/css-logical-properties)
-- [Bidirectional Text and the Unicode BiDi Algorithm](/blog/bidirectional-text-bidi)
-- [How Reading Direction Affects User Experience](/blog/reading-direction-ux)
+- [Understanding RTL Text Direction](/en/blog/understanding-rtl)
+- [CSS Logical Properties for RTL/LTR Support](/en/blog/css-logical-properties)
+- [Bidirectional Text and the Unicode BiDi Algorithm](/en/blog/bidirectional-text-bidi)
+- [How Reading Direction Affects User Experience](/en/blog/reading-direction-ux)

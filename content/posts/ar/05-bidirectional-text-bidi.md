@@ -170,7 +170,7 @@ const text = `مرحباً ${LRI}Microsoft${PDI} العالم`;
 
 ## للمزيد من القراءة
 
-- [فهم اتجاه النص RTL](/blog/understanding-rtl)
-- [الأرقام في لغات RTL](/blog/numbers-in-rtl-languages)
-- [خصائص CSS المنطقية لدعم RTL/LTR](/blog/css-logical-properties)
-- [الأخطاء الشائعة في RTL وكيفية إصلاحها](/blog/common-rtl-bugs)
+- [فهم اتجاه النص RTL](/ar/blog/understanding-rtl)
+- [الأرقام في لغات RTL](/ar/blog/numbers-in-rtl-languages)
+- [خصائص CSS المنطقية لدعم RTL/LTR](/ar/blog/css-logical-properties)
+- [الأخطاء الشائعة في RTL وكيفية إصلاحها](/ar/blog/common-rtl-bugs)

@@ -192,7 +192,7 @@ ff → ﬀ  (بديل أنيق)
 
 ## للمزيد من القراءة
 
-- [تاريخ الخط العربي](/blog/history-of-arabic-script)
-- [النستعليق مقابل النسخ: مقارنة بين أسلوبين رئيسيين](/blog/nastaliq-vs-naskh)
-- [فهم اتجاه النص RTL](/blog/understanding-rtl)
-- [الخط الإسلامي: فن مقدس وإرثه المعاصر](/blog/islamic-calligraphy)
+- [تاريخ الخط العربي](/ar/blog/history-of-arabic-script)
+- [النستعليق مقابل النسخ: مقارنة بين أسلوبين رئيسيين](/ar/blog/nastaliq-vs-naskh)
+- [فهم اتجاه النص RTL](/ar/blog/understanding-rtl)
+- [الخط الإسلامي: فن مقدس وإرثه المعاصر](/ar/blog/islamic-calligraphy)

@@ -1,0 +1,217 @@
+---
+id: "responsive-design-rtl-ltr"
+title: "Design responsive dans les deux directions"
+titleAr: "التصميم المتجاوب في كلا الاتجاهين"
+titleFr: "Design responsive dans les deux directions"
+titleUr: "دونوں سمتوں میں ریسپانسیو ڈیزائن"
+excerpt: "Apprenez à créer des mises en page réactives qui fonctionnent parfaitement dans les contextes RTL et LTR, en utilisant les propriétés logiques CSS et les techniques de mise en page modernes."
+excerptAr: "تعلم كيفية بناء تخطيطات متجاوبة تعمل بسلاسة في سياقات RTL و LTR، باستخدام خصائص CSS المنطقية وتقنيات التخطيط الحديثة."
+excerptFr: "Apprenez à créer des mises en page réactives qui fonctionnent parfaitement dans les contextes RTL et LTR, en utilisant les propriétés logiques CSS et les techniques de mise en page modernes."
+excerptUr: "CSS منطقی خصوصیات اور جدید لے آؤٹ تکنیکوں کا استعمال کرتے ہوئے، RTL اور LTR دونوں سیاق و سباق میں بے عیب طریقے سے کام کرنے والے ریسپانسیو لے آؤٹس بنانا سیکھیں۔"
+category: "rtl-ltr-concepts"
+author: "karim-benali"
+publishedAt: "2025-01-26"
+readingTime: 9
+featured: true
+featuredImage: "https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/responsive-rtl-ltr-design.jpg"
+tags: ["responsive", "rtl", "css", "flexbox", "grid", "logical-properties"]
+---
+
+## La bonne nouvelle d'abord
+
+Voici quelque chose qui va vous faire plaisir : **les points d'arrêt fonctionnent de manière identique en RTL et LTR**. Un écran de 768px reste de 768px de large, que vous lisiez de l'arabe ou de l'anglais. Vos media queries n'ont pas besoin de changer.
+
+Le défi ne concerne pas la taille de l'écran—il s'agit de la façon dont le contenu circule dans ces points d'arrêt. Mais la meilleure nouvelle ? Le CSS moderne a évolué pour gérer les mises en page directionnelles avec un minimum de travail supplémentaire.
+
+<PullQuote>
+"Le design responsive dans les deux directions ne consiste pas à écrire deux ensembles de styles—il s'agit d'écrire des styles indépendants de la direction dès le départ."
+</PullQuote>
+
+Laissez-moi vous montrer comment créer des mises en page qui s'adaptent gracieusement à n'importe quelle taille d'écran *et* n'importe quelle direction de texte.
+
+## La fondation : propriétés logiques CSS
+
+Le secret du design responsive bidirectionnel est d'utiliser les propriétés logiques CSS au lieu des propriétés physiques.
+
+### Propriétés physiques vs logiques
+
+```css
+/* ❌ Propriétés physiques - spécifiques à la direction */
+.sidebar {
+  margin-left: 20px;
+  padding-right: 10px;
+  border-right: 1px solid gray;
+  left: 0;
+}
+
+/* ✅ Propriétés logiques - indépendantes de la direction */
+.sidebar {
+  margin-inline-start: 20px;
+  padding-inline-end: 10px;
+  border-inline-end: 1px solid gray;
+  inset-inline-start: 0;
+}
+```
+
+La version logique s'adapte automatiquement :
+- En LTR : `inline-start` = gauche, `inline-end` = droite
+- En RTL : `inline-start` = droite, `inline-end` = gauche
+
+<Callout type="info">
+Pensez à "inline" comme la direction de lecture (horizontale dans la plupart des langues) et "block" comme la direction perpendiculaire (verticale pour le contenu empilé).
+</Callout>
+
+## Mises en page de barre latérale responsive
+
+Les barres latérales sont le défi de mise en page le plus courant dans les conceptions bidirectionnelles. Créons-en une qui fonctionne partout.
+
+### Bureau : mise en page côte à côte
+
+```css
+/* Conteneur avec barre latérale et contenu principal */
+.layout {
+  display: flex;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Barre latérale - inverse automatiquement la position */
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  padding-inline-end: 2rem;
+  border-inline-end: 1px solid #e5e7eb;
+}
+
+/* Le contenu principal remplit l'espace restant */
+.main {
+  flex: 1;
+  min-width: 0; /* Éviter le débordement */
+}
+```
+
+En LTR, la barre latérale est à gauche. En RTL, elle est automatiquement à droite. Aucun code supplémentaire nécessaire.
+
+<Callout type="success">
+Flexbox gère automatiquement la direction RTL/LTR lorsque vous utilisez `flex-direction: row`. Les éléments circulent dans la direction de lecture sans propriétés supplémentaires.
+</Callout>
+
+## CSS Grid pour les mises en page bidirectionnelles
+
+CSS Grid est incroyablement puissant pour les mises en page responsive et indépendantes de la direction.
+
+### Mise en page Grid de base
+
+```css
+/* La grille s'adapte automatiquement à la direction de lecture */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+/* Les éléments circulent dans la direction de lecture par défaut */
+.grid-item {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+```
+
+Cette grille circule automatiquement en RTL en arabe et en LTR en anglais. Aucun code supplémentaire requis.
+
+<ImageGrid columns={2}>
+  <Figure
+    src="/images/posts/responsive/sidebar-ltr-desktop.jpg"
+    alt="Mise en page de la barre latérale en LTR sur bureau"
+    caption="Bureau LTR : barre latérale à gauche"
+  />
+  <Figure
+    src="/images/posts/responsive/sidebar-rtl-desktop.jpg"
+    alt="Mise en page de la barre latérale en RTL sur bureau"
+    caption="Bureau RTL : barre latérale à droite"
+  />
+</ImageGrid>
+
+## Modèles de navigation mobile
+
+La navigation mobile nécessite une attention particulière dans les conceptions bidirectionnelles.
+
+### Position du menu hamburger
+
+Le menu hamburger va généralement au bord de début de lecture :
+
+```css
+/* En-tête avec menu hamburger */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: white;
+  border-block-end: 1px solid #e5e7eb;
+}
+
+/* Bouton de menu au début */
+.menu-button {
+  /* Flexbox le place au début automatiquement */
+  order: -1; /* S'assurer qu'il vient en premier */
+}
+
+.logo {
+  /* Logo centré */
+  margin-inline: auto;
+}
+
+.actions {
+  /* Actions à la fin */
+  display: flex;
+  gap: 0.5rem;
+}
+```
+
+## Tester vos mises en page responsive
+
+Créez une liste de contrôle de test complète :
+
+### Tests des points d'arrêt
+
+```css
+/* Testez à ces points d'arrêt communs */
+/* Mobile : 320px, 375px, 425px */
+/* Tablette : 768px, 834px */
+/* Bureau : 1024px, 1440px, 1920px */
+```
+
+### Matrice Direction + Point d'arrêt
+
+Testez chaque point d'arrêt dans les deux directions :
+
+- [ ] Mobile (375px) - LTR
+- [ ] Mobile (375px) - RTL
+- [ ] Tablette (768px) - LTR
+- [ ] Tablette (768px) - RTL
+- [ ] Bureau (1440px) - LTR
+- [ ] Bureau (1440px) - RTL
+
+## Points clés à retenir
+
+1. **Les points d'arrêt sont universels** : La largeur de l'écran ne change pas avec la direction du texte
+2. **Utilisez les propriétés logiques** : `inline-start`, `inline-end`, `block-start`, `block-end`
+3. **Flexbox et Grid s'adaptent** : Les méthodes de mise en page modernes gèrent la direction automatiquement
+4. **Testez les deux directions** : Vérifiez chaque point d'arrêt en LTR et RTL
+5. **Les barres latérales s'inversent automatiquement** : Avec Flexbox/Grid, les barres latérales se positionnent correctement
+6. **Navigation mobile** : Les tiroirs doivent glisser depuis le bord de début de lecture
+7. **Évitez les propriétés physiques** : Arrêtez d'utiliser `left`, `right`, `margin-left`, etc.
+8. **Zones de grille nommées** : Elles s'inversent automatiquement dans les mises en page RTL
+
+## Lectures complémentaires
+
+- [Propriétés logiques CSS en profondeur](/fr/blog/css-logical-properties)
+- [Créer des formulaires accessibles pour les utilisateurs arabes](/fr/blog/accessible-forms-arabic)
+- [Direction des icônes : ce qui s'inverse et ce qui ne s'inverse pas](/fr/blog/icon-direction-flip-guide)
+- [Bugs de mise en page RTL courants et corrections](/fr/blog/common-rtl-bugs)

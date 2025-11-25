@@ -290,7 +290,7 @@ Start with individual letters, then combinations, then words.
 
 ## Further Reading
 
-- [The History of Arabic Script](/blog/history-of-arabic-script)
-- [Nastaliq vs Naskh: Comparing Two Major Script Styles](/blog/nastaliq-vs-naskh)
-- [Arabic Ligatures: Understanding Connected Letters](/blog/arabic-ligatures)
-- [How Reading Direction Affects User Experience](/blog/reading-direction-ux)
+- [The History of Arabic Script](/en/blog/history-of-arabic-script)
+- [Nastaliq vs Naskh: Comparing Two Major Script Styles](/en/blog/nastaliq-vs-naskh)
+- [Arabic Ligatures: Understanding Connected Letters](/en/blog/arabic-ligatures)
+- [How Reading Direction Affects User Experience](/en/blog/reading-direction-ux)

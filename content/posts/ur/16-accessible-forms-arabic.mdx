@@ -1,0 +1,393 @@
+---
+id: "accessible-forms-arabic"
+title: "عربی صارفین کے لیے قابل رسائی فارم بنانا"
+titleAr: "بناء نماذج يسهل الوصول إليها للمستخدمين العرب"
+titleFr: "Créer des formulaires accessibles pour les utilisateurs arabes"
+titleUr: "عربی صارفین کے لیے قابل رسائی فارم بنانا"
+excerpt: "عربی صارفین کے لیے خوبصورت طریقے سے کام کرنے والے فارمز کو ڈیزائن اور تیار کرنے کے لیے ایک جامع رہنما، جس میں لے آؤٹ، توثیق، رسائی، اور مخلوط زبان کے ان پٹ کے چیلنجز شامل ہیں۔"
+excerptAr: "دليل شامل لتصميم وتطوير النماذج التي تعمل بشكل جميل للمستخدمين العرب، تغطي التخطيط والتحقق وإمكانية الوصول وتحديات الإدخال متعدد اللغات."
+excerptFr: "Un guide complet pour concevoir et développer des formulaires qui fonctionnent parfaitement pour les utilisateurs arabes, couvrant la mise en page, la validation, l'accessibilité et les défis de saisie multilingue."
+excerptUr: "عربی صارفین کے لیے خوبصورت طریقے سے کام کرنے والے فارمز کو ڈیزائن اور تیار کرنے کے لیے ایک جامع رہنما، جس میں لے آؤٹ، توثیق، رسائی، اور مخلوط زبان کے ان پٹ کے چیلنجز شامل ہیں۔"
+category: "rtl-ltr-concepts"
+author: "karim-benali"
+publishedAt: "2025-01-23"
+readingTime: 12
+featured: true
+featuredImage: "https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/accessible-forms-arabic.jpg"
+tags: ["forms", "accessibility", "rtl", "arabic", "ux", "a11y"]
+---
+
+## RTL میں فارمز کا چیلنج
+
+فارمز ویب پر صارف کی تعامل کی ریڑھ کی ہڈی ہیں—رجسٹریشن، چیک آؤٹ، رابطہ فارمز، تلاش کے بار۔ لیکن جب عربی اور دوسری RTL زبانوں کی بات آتی ہے، تو فارمز منفرد چیلنجز پیش کرتے ہیں جو صرف لے آؤٹ کو پلٹنے سے آگے ہیں۔
+
+غلط طریقے سے کیا گیا، فارمز الجھن، مایوسی یا یہاں تک کہ ناقابل استعمال ہو سکتے ہیں۔ صحیح طریقے سے کیا گیا، وہ قدرتی اور ہموار محسوس ہوتے ہیں۔
+
+یہ گائیڈ عربی صارفین کے لیے واقعی قابل رسائی، صارف دوست فارمز بنانے کے لیے ہر چیز کا احاطہ کرتی ہے۔
+
+## لیبل کی جگہ: کیا بہترین کام کرتا ہے
+
+### روایتی طریقہ (بائیں سیدھے لیبل)
+
+LTR فارمز میں، لیبل اکثر ان پٹس کے بائیں طرف رکھے جاتے ہیں۔ جب RTL کے لیے سادہ طریقے سے پلٹایا جائے، تو لیبل دور بائیں طرف ظاہر ہوتے ہیں۔
+
+<Callout type="warning">
+**مسئلہ**: RTL میں، صارفین دائیں سے بائیں اسکین کرتے ہیں۔ لیبل کو دور بائیں طرف رکھنا ایک لمبا آنکھ کا سفر فاصلہ بناتا ہے اور قدرتی پڑھنے کے بہاؤ کو توڑتا ہے۔
+</Callout>
+
+### بہتر طریقہ: اوپر سیدھے لیبل
+
+RTL فارمز کے لیے، **لیبلز کو ان پٹس کے اوپر رکھیں**:
+
+<ImageGrid columns={2}>
+  <Figure
+    src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/forms/label-inline-rtl.svg"
+    alt="ان لائن لیبلز کے ساتھ RTL فارم - خراب UX"
+    caption="❌ ان لائن لیبلز: لمبا آنکھ کا سفر فاصلہ"
+  />
+  <Figure
+    src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/forms/label-top-rtl.svg"
+    alt="اوپر سیدھے لیبلز کے ساتھ RTL فارم - اچھا UX"
+    caption="✅ اوپری لیبلز: قدرتی پڑھنے کا بہاؤ"
+  />
+</ImageGrid>
+
+**فوائد:**
+- LTR اور RTL میں یکساں طور پر کام کرتا ہے
+- چھوٹا آنکھ کا سفر فاصلہ
+- موبائل ریسپانسیو ڈیزائن کے لیے بہتر
+- لمبے ترجمہ شدہ لیبلز کے لیے زیادہ جگہ
+- صاف بصری درجہ بندی
+
+<Callout type="success">
+**بہترین عمل**: تمام کثیر لسانی فارمز کے لیے اوپر سیدھے لیبل استعمال کریں۔ وہ عالمی سطح پر کام کرتے ہیں اور سمت مخصوص لے آؤٹس کی ضرورت کو ختم کرتے ہیں۔
+</Callout>
+
+### نفاذ
+
+```css
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-block-end: 1.5rem;
+}
+
+.form-label {
+  margin-block-end: 0.5rem;
+  font-weight: 500;
+  text-align: start; /* RTL میں دائیں، LTR میں بائیں سیدھ */
+}
+
+.form-input {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+}
+```
+
+## ان پٹس کے اندر متن کی صف بندی
+
+ان پٹ فیلڈز کو متن کو پڑھنے کی سمت کے **شروع** میں سیدھ میں لانا چاہیے:
+
+```css
+/* صحیح: منطقی خاصیت */
+.form-input {
+  text-align: start;
+}
+
+/* غلط: مقررہ سمت */
+.form-input {
+  text-align: right; /* یہ LTR میں ٹوٹ جاتا ہے! */
+}
+```
+
+## پلیس ہولڈر متن کی سمت
+
+پلیس ہولڈر متن کو متوقع ان پٹ زبان سے مماثل ہونا چاہیے:
+
+```html
+<!-- عربی فارم -->
+<input
+  type="text"
+  placeholder="أدخل البريد الإلكتروني"
+  dir="auto"
+/>
+```
+
+### `dir="auto"` وصف
+
+یہ طاقتور HTML وصف پہلے مضبوط سمتی کردار کی سمت کا پتہ لگاتا ہے:
+
+```html
+<!-- اگر صارف عربی میں ٹائپ کرتا ہے، فیلڈ RTL بن جاتی ہے -->
+<!-- اگر صارف انگریزی میں ٹائپ کرتا ہے، فیلڈ LTR بن جاتی ہے -->
+<input type="text" dir="auto" />
+```
+
+<Callout type="info">
+**یہ کیسے کام کرتا ہے**: براؤزر مضبوط سمت والے پہلے کردار کی جانچ کرتا ہے (عربی حرف = RTL، لاطینی حرف = LTR) اور اس کے مطابق فیلڈ کی سمت مقرر کرتا ہے۔ نمبر اور اوقاف غیر جانبدار ہیں اور سمت کو متاثر نہیں کرتے۔
+</Callout>
+
+## مخلوط زبان ان پٹ چیلنج
+
+حقیقی دنیا کے فارمز کو اکثر مخلوط زبان ان پٹ قبول کرنے کی ضرورت ہوتی ہے:
+
+<WideBox>
+
+| فیلڈ کی قسم | سمت | وجہ |
+|------------|-----------|--------|
+| نام | `dir="auto"` | عربی یا لاطینی ہو سکتا ہے |
+| ای میل | `dir="ltr"` | ای میل ایڈریس ہمیشہ LTR |
+| پاس ورڈ | `dir="ltr"` | عام طور پر لاطینی حروف استعمال کرتا ہے |
+| فون | `dir="ltr"` | بین الاقوامی شکل کی شناخت |
+| پتہ | `dir="auto"` | مخلوط زبان ہو سکتی ہے |
+| تلاش | `dir="auto"` | صارف کسی بھی زبان میں تلاش کر سکتا ہے |
+| پیغام/تبصرہ | `dir="auto"` | صارف کی قدرتی زبان |
+| URL | `dir="ltr"` | URLs ہمیشہ LTR |
+| کریڈٹ کارڈ | `dir="ltr"` | نمبر اور لاطینی حروف |
+
+</WideBox>
+
+### حکمت عملی: واضح سمت کی ترتیب
+
+ان پٹ کی قسم کی بنیاد پر سمت کو واضح طور پر مقرر کریں:
+
+```html
+<!-- نام: خودکار پتہ لگانے کی اجازت دیں -->
+<input
+  type="text"
+  name="fullName"
+  placeholder="الاسم الكامل"
+  dir="auto"
+/>
+
+<!-- ای میل: LTR مجبور کریں -->
+<input
+  type="email"
+  name="email"
+  placeholder="example@domain.com"
+  dir="ltr"
+/>
+
+<!-- پاس ورڈ: LTR مجبور کریں -->
+<input
+  type="password"
+  name="password"
+  dir="ltr"
+/>
+
+<!-- فون: مناسب فارمیٹنگ کے ساتھ LTR مجبور کریں -->
+<input
+  type="tel"
+  name="phone"
+  placeholder="+966 50 123 4567"
+  dir="ltr"
+  inputmode="tel"
+/>
+```
+
+## توثیق کے پیغامات
+
+توثیق کے پیغامات کو محتاط پوزیشننگ اور عربی میں واضح پیغامات کی ضرورت ہے۔
+
+### پوزیشننگ
+
+توثیق کے پیغامات کو ان پٹ فیلڈ کے **نیچے** رکھیں:
+
+```html
+<div class="form-group">
+  <label for="email" class="form-label">البريد الإلكتروني</label>
+  <input
+    type="email"
+    id="email"
+    class="form-input"
+    aria-invalid="true"
+    aria-describedby="email-error"
+  />
+  <span id="email-error" class="form-error" role="alert">
+    يرجى إدخال عنوان بريد إلكتروني صالح
+  </span>
+</div>
+```
+
+```css
+.form-error {
+  display: block;
+  margin-block-start: 0.5rem;
+  padding-inline-start: 0.75rem;
+  color: #dc2626;
+  font-size: 0.875rem;
+  border-inline-start: 3px solid #dc2626;
+}
+```
+
+### خرابی کے پیغام کی زبان
+
+ہمیشہ صارف کی زبان میں خرابی کے پیغامات دکھائیں:
+
+<Callout type="warning">
+**نہ کریں**: عربی انٹرفیس میں انگریزی خرابی کے پیغامات دکھائیں۔ یہ صارف کے تجربے کو توڑتا ہے اور ان صارفین کو الجھا سکتا ہے جو انگریزی نہیں سمجھتے۔
+</Callout>
+
+```javascript
+// اچھا: مقامی توثیق کے پیغامات
+const validationMessages = {
+  ar: {
+    required: 'هذا الحقل مطلوب',
+    email: 'يرجى إدخال عنوان بريد إلكتروني صالح',
+    minLength: (min) => `يجب أن يحتوي على ${min} أحرف على الأقل`,
+  },
+  ur: {
+    required: 'یہ فیلڈ ضروری ہے',
+    email: 'براہ کرم درست ای میل ایڈریس درج کریں',
+    minLength: (min) => `کم از کم ${min} حروف ہونے چاہیں`,
+  }
+};
+```
+
+## ضروری فیلڈ کے اشارے
+
+ستارہ (*) عالمی سطح پر سمجھا جاتا ہے لیکن مناسب جگہ کی ضرورت ہے:
+
+```html
+<!-- عربی میں لیبل کے متن کے بعد ستارہ رکھیں -->
+<label for="name" class="form-label">
+  الاسم الكامل
+  <span class="required" aria-label="مطلوب">*</span>
+</label>
+```
+
+```css
+.required {
+  color: #dc2626;
+  margin-inline-start: 0.25rem;
+}
+```
+
+## چیک باکسز اور ریڈیو بٹن
+
+چیک باکس اور ریڈیو بٹن کی صف بندی کو RTL میں خصوصی توجہ کی ضرورت ہے:
+
+```css
+.form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-block-end: 1rem;
+}
+
+.form-check-input {
+  order: -1;
+  margin-block-start: 0.25rem;
+  flex-shrink: 0;
+}
+```
+
+<ImageGrid columns={2}>
+  <Figure
+    src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/forms/checkbox-ltr.svg"
+    alt="LTR لے آؤٹ میں چیک باکس"
+    caption="LTR: بائیں طرف چیک باکس، دائیں طرف لیبل"
+  />
+  <Figure
+    src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/forms/checkbox-rtl.svg"
+    alt="RTL لے آؤٹ میں چیک باکس"
+    caption="RTL: دائیں طرف چیک باکس، بائیں طرف لیبل"
+  />
+</ImageGrid>
+
+## رسائی کے تحفظات
+
+### اسکرین ریڈر سپورٹ
+
+عربی اسکرین ریڈرز کو مناسب مارک اپ کی ضرورت ہے:
+
+```html
+<form aria-label="نموذج التسجيل">
+  <div class="form-group">
+    <label for="username" id="username-label">
+      اسم المستخدم
+      <span class="required" aria-label="مطلوب">*</span>
+    </label>
+    <input
+      type="text"
+      id="username"
+      aria-labelledby="username-label"
+      aria-required="true"
+    />
+  </div>
+</form>
+```
+
+### عربی میں ARIA لیبلز
+
+ہمیشہ صارف کی زبان میں ARIA لیبلز فراہم کریں:
+
+```html
+<!-- اچھا: عربی ARIA لیبلز -->
+<button aria-label="إرسال النموذج">إرسال</button>
+
+<!-- برا: عربی انٹرفیس میں انگریزی ARIA لیبلز -->
+<button aria-label="Submit form">إرسال</button>
+```
+
+## مکمل مثال: رجسٹریشن فارم
+
+```html
+<form class="form" aria-label="نموذج التسجيل" dir="rtl">
+  <div class="form-group">
+    <label for="fullName" class="form-label">
+      الاسم الكامل
+      <span class="required" aria-label="مطلوب">*</span>
+    </label>
+    <input
+      type="text"
+      id="fullName"
+      class="form-input"
+      dir="auto"
+      placeholder="أدخل اسمك الكامل"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="email" class="form-label">
+      البريد الإلكتروني
+      <span class="required" aria-label="مطلوب">*</span>
+    </label>
+    <input
+      type="email"
+      id="email"
+      class="form-input"
+      dir="ltr"
+      placeholder="example@domain.com"
+      required
+    />
+  </div>
+
+  <button type="submit" class="btn btn-primary">
+    إنشاء حساب
+  </button>
+</form>
+```
+
+## اہم نکات
+
+1. **اوپر سیدھے لیبل بہترین کام کرتے ہیں**: وہ عالمگیر، ریسپانسیو ہیں اور RTL مخصوص مسائل کو ختم کرتے ہیں۔
+
+2. **لچکدار ان پٹس کے لیے `dir="auto"` استعمال کریں**: براؤزر کو نام، پتہ، اور تلاش کے فیلڈز کے لیے متن کی سمت کا پتہ لگانے دیں۔
+
+3. **تکنیکی ان پٹس کے لیے LTR مجبور کریں**: ای میل، پاس ورڈ، فون، اور URLs ہمیشہ LTR ہونے چاہیں۔
+
+4. **عربی میں توثیق**: وضاحت کے لیے خرابی کے پیغامات صارف کی زبان میں ہونے چاہیں۔
+
+5. **CSS منطقی خصوصیات**: خودکار سمت سپورٹ کے لیے `inline-start`، `inline-end`، `text-align: start` استعمال کریں۔
+
+6. **رسائی غیر قابل گفت و شنید ہے**: مناسب ARIA لیبلز، کی بورڈ نیویگیشن، اور اسکرین ریڈر سپورٹ ضروری ہیں۔
+
+## مزید مطالعہ
+
+- [RTL/LTR سپورٹ کے لیے CSS منطقی خصوصیات](/ur/blog/css-logical-properties)
+- [RTL متن کی سمت کو سمجھنا](/ur/blog/understanding-rtl)
+- [عام RTL بگز اور انہیں ٹھیک کرنے کا طریقہ](/ur/blog/common-rtl-bugs)
+- [آئیکن کی سمت: کیا پلٹتا ہے اور کیا نہیں](/ur/blog/icon-direction-flip-guide)

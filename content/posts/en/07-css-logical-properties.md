@@ -502,7 +502,7 @@ background-position-x: left; /* No logical equivalent yet */
 
 ## Further Reading
 
-- [Understanding RTL Text Direction](/blog/understanding-rtl)
-- [Common RTL Bugs and How to Fix Them](/blog/common-rtl-bugs)
-- [Bidirectional Text and the Unicode BiDi Algorithm](/blog/bidirectional-text-bidi)
-- [How Reading Direction Affects User Experience](/blog/reading-direction-ux)
+- [Understanding RTL Text Direction](/en/blog/understanding-rtl)
+- [Common RTL Bugs and How to Fix Them](/en/blog/common-rtl-bugs)
+- [Bidirectional Text and the Unicode BiDi Algorithm](/en/blog/bidirectional-text-bidi)
+- [How Reading Direction Affects User Experience](/en/blog/reading-direction-ux)

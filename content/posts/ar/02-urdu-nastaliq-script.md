@@ -130,7 +130,7 @@ direction: rtl;
 
 ## للمزيد من القراءة
 
-- [النستعليق مقابل النسخ: مقارنة بين أسلوبين رئيسيين](/blog/nastaliq-vs-naskh)
-- [فهم اتجاه النص من اليمين إلى اليسار](/blog/understanding-rtl)
-- [الأخطاء الشائعة في RTL وكيفية إصلاحها](/blog/common-rtl-bugs)
-- [تاريخ الخط العربي](/blog/history-of-arabic-script)
+- [النستعليق مقابل النسخ: مقارنة بين أسلوبين رئيسيين](/ar/blog/nastaliq-vs-naskh)
+- [فهم اتجاه النص من اليمين إلى اليسار](/ar/blog/understanding-rtl)
+- [الأخطاء الشائعة في RTL وكيفية إصلاحها](/ar/blog/common-rtl-bugs)
+- [تاريخ الخط العربي](/ar/blog/history-of-arabic-script)

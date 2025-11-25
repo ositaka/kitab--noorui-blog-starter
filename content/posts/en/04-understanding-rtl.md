@@ -345,7 +345,7 @@ const pseudoRTL = (text) => text.split('').reverse().join('');
 
 ## Further Reading
 
-- [Bidirectional Text and the Unicode BiDi Algorithm](/blog/bidirectional-text-bidi)
-- [CSS Logical Properties for RTL/LTR Support](/blog/css-logical-properties)
-- [Common RTL Bugs and How to Fix Them](/blog/common-rtl-bugs)
-- [Numbers in RTL Languages: A Developer's Guide](/blog/numbers-in-rtl-languages)
+- [Bidirectional Text and the Unicode BiDi Algorithm](/en/blog/bidirectional-text-bidi)
+- [CSS Logical Properties for RTL/LTR Support](/en/blog/css-logical-properties)
+- [Common RTL Bugs and How to Fix Them](/en/blog/common-rtl-bugs)
+- [Numbers in RTL Languages: A Developer's Guide](/en/blog/numbers-in-rtl-languages)

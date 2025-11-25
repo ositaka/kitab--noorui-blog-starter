@@ -155,7 +155,7 @@ Les designers de caractères modernes créent des polices arabes innovantes qui 
 
 ## Pour aller plus loin
 
-- [Comprendre la direction du texte RTL](/blog/understanding-rtl)
-- [Nastaliq vs Naskh : Comparaison de deux styles majeurs](/blog/nastaliq-vs-naskh)
-- [L'art des ligatures arabes](/blog/arabic-ligatures)
-- [La calligraphie islamique : un art sacré et son héritage moderne](/blog/islamic-calligraphy)
+- [Comprendre la direction du texte RTL](/fr/blog/understanding-rtl)
+- [Nastaliq vs Naskh : Comparaison de deux styles majeurs](/fr/blog/nastaliq-vs-naskh)
+- [L'art des ligatures arabes](/fr/blog/arabic-ligatures)
+- [La calligraphie islamique : un art sacré et son héritage moderne](/fr/blog/islamic-calligraphy)

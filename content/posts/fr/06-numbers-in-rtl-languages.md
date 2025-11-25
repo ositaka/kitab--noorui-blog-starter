@@ -229,7 +229,7 @@ Utilisez toujours `Intl.NumberFormat` plutôt qu'un formatage manuel.
 
 ## Pour aller plus loin
 
-- [Comprendre la direction du texte RTL](/blog/understanding-rtl)
-- [Le texte bidirectionnel et l'algorithme BiDi Unicode](/blog/bidirectional-text-bidi)
-- [Bugs RTL courants et comment les corriger](/blog/common-rtl-bugs)
-- [Propriétés logiques CSS pour le support RTL/LTR](/blog/css-logical-properties)
+- [Comprendre la direction du texte RTL](/fr/blog/understanding-rtl)
+- [Le texte bidirectionnel et l'algorithme BiDi Unicode](/fr/blog/bidirectional-text-bidi)
+- [Bugs RTL courants et comment les corriger](/fr/blog/common-rtl-bugs)
+- [Propriétés logiques CSS pour le support RTL/LTR](/fr/blog/css-logical-properties)

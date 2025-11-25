@@ -149,7 +149,7 @@ tags: ["نستعليق", "نسخ", "خط", "طباعة", "عربي"]
 
 ## للمزيد من القراءة
 
-- [تاريخ الخط العربي](/blog/history-of-arabic-script)
-- [الأردية والنستعليق: الخط الأنيق لجنوب آسيا](/blog/urdu-nastaliq-script)
-- [الوصلات العربية: فهم الحروف المتصلة](/blog/arabic-ligatures)
-- [الخط الإسلامي: فن مقدس وإرثه المعاصر](/blog/islamic-calligraphy)
+- [تاريخ الخط العربي](/ar/blog/history-of-arabic-script)
+- [الأردية والنستعليق: الخط الأنيق لجنوب آسيا](/ar/blog/urdu-nastaliq-script)
+- [الوصلات العربية: فهم الحروف المتصلة](/ar/blog/arabic-ligatures)
+- [الخط الإسلامي: فن مقدس وإرثه المعاصر](/ar/blog/islamic-calligraphy)

@@ -202,7 +202,7 @@ RTL: [------------<=====] ٤٠٪
 
 ## للمزيد من القراءة
 
-- [فهم اتجاه النص RTL](/blog/understanding-rtl)
-- [خصائص CSS المنطقية لدعم RTL/LTR](/blog/css-logical-properties)
-- [الأخطاء الشائعة في RTL وكيفية إصلاحها](/blog/common-rtl-bugs)
-- [النص ثنائي الاتجاه وخوارزمية يونيكود BiDi](/blog/bidirectional-text-bidi)
+- [فهم اتجاه النص RTL](/ar/blog/understanding-rtl)
+- [خصائص CSS المنطقية لدعم RTL/LTR](/ar/blog/css-logical-properties)
+- [الأخطاء الشائعة في RTL وكيفية إصلاحها](/ar/blog/common-rtl-bugs)
+- [النص ثنائي الاتجاه وخوارزمية يونيكود BiDi](/ar/blog/bidirectional-text-bidi)

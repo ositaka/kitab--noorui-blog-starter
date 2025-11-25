@@ -275,7 +275,7 @@ CSS Grid يعمل أيضاً بشكل منطقي:
 
 ## للمزيد من القراءة
 
-- [فهم اتجاه النص RTL](/blog/understanding-rtl)
-- [الأخطاء الشائعة في RTL وكيفية إصلاحها](/blog/common-rtl-bugs)
-- [النص ثنائي الاتجاه وخوارزمية يونيكود BiDi](/blog/bidirectional-text-bidi)
-- [كيف يؤثر اتجاه القراءة على تجربة المستخدم](/blog/reading-direction-ux)
+- [فهم اتجاه النص RTL](/ar/blog/understanding-rtl)
+- [الأخطاء الشائعة في RTL وكيفية إصلاحها](/ar/blog/common-rtl-bugs)
+- [النص ثنائي الاتجاه وخوارزمية يونيكود BiDi](/ar/blog/bidirectional-text-bidi)
+- [كيف يؤثر اتجاه القراءة على تجربة المستخدم](/ar/blog/reading-direction-ux)

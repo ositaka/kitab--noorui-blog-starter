@@ -108,7 +108,7 @@ tags: ["عربی", "تاریخ", "خطاطی", "رسم الخط"]
 
 ## مزید پڑھیں
 
-- [RTL متن کی سمت کو سمجھنا](/blog/understanding-rtl)
-- [نستعلیق بمقابلہ نسخ: دو بڑے اندازوں کا موازنہ](/blog/nastaliq-vs-naskh)
-- [عربی جوڑوں کا فن](/blog/arabic-ligatures)
-- [اسلامی خطاطی: مقدس فن اور اس کی جدید میراث](/blog/islamic-calligraphy)
+- [RTL متن کی سمت کو سمجھنا](/ur/blog/understanding-rtl)
+- [نستعلیق بمقابلہ نسخ: دو بڑے اندازوں کا موازنہ](/ur/blog/nastaliq-vs-naskh)
+- [عربی جوڑوں کا فن](/ur/blog/arabic-ligatures)
+- [اسلامی خطاطی: مقدس فن اور اس کی جدید میراث](/ur/blog/islamic-calligraphy)

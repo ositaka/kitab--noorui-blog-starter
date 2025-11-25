@@ -1,0 +1,439 @@
+---
+id: "responsive-design-rtl-ltr"
+title: "التصميم المتجاوب في كلا الاتجاهين"
+titleAr: "التصميم المتجاوب في كلا الاتجاهين"
+titleFr: "Design responsive dans les deux directions"
+titleUr: "دونوں سمتوں میں ریسپانسیو ڈیزائن"
+excerpt: "تعلم كيفية بناء تخطيطات متجاوبة تعمل بسلاسة في سياقات RTL و LTR، باستخدام خصائص CSS المنطقية وتقنيات التخطيط الحديثة."
+excerptAr: "تعلم كيفية بناء تخطيطات متجاوبة تعمل بسلاسة في سياقات RTL و LTR، باستخدام خصائص CSS المنطقية وتقنيات التخطيط الحديثة."
+excerptFr: "Apprenez à créer des mises en page réactives qui fonctionnent parfaitement dans les contextes RTL et LTR, en utilisant les propriétés logiques CSS et les techniques de mise en page modernes."
+excerptUr: "CSS منطقی خصوصیات اور جدید لے آؤٹ تکنیکوں کا استعمال کرتے ہوئے، RTL اور LTR دونوں سیاق و سباق میں بے عیب طریقے سے کام کرنے والے ریسپانسیو لے آؤٹس بنانا سیکھیں۔"
+category: "rtl-ltr-concepts"
+author: "karim-benali"
+publishedAt: "2025-01-26"
+readingTime: 9
+featured: true
+featuredImage: "https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/responsive-rtl-ltr-design.jpg"
+tags: ["responsive", "rtl", "css", "flexbox", "grid", "logical-properties"]
+---
+
+## الأخبار الجيدة أولاً
+
+إليك شيء سيجعل يومك أفضل: **نقاط التوقف تعمل بشكل متطابق في RTL و LTR**. الشاشة بعرض 768 بكسل لا تزال 768 بكسل سواء كنت تقرأ العربية أو الإنجليزية. لا تحتاج استعلامات الوسائط الخاصة بك إلى التغيير.
+
+التحدي ليس حول حجم الشاشة—بل يتعلق بكيفية تدفق المحتوى ضمن نقاط التوقف هذه. لكن الأخبار الأفضل؟ تطورت CSS الحديثة للتعامل مع التخطيطات الاتجاهية بأقل قدر من العمل الإضافي.
+
+<PullQuote>
+"التصميم المتجاوب في كلا الاتجاهين ليس عن كتابة مجموعتين من الأنماط—بل يتعلق بكتابة أنماط محايدة الاتجاه من البداية."
+</PullQuote>
+
+دعني أريك كيفية بناء تخطيطات تتكيف بأناقة مع أي حجم شاشة *وأي* اتجاه نص.
+
+## الأساس: خصائص CSS المنطقية
+
+سر التصميم المتجاوب ثنائي الاتجاه هو استخدام خصائص CSS المنطقية بدلاً من الخصائص الفيزيائية.
+
+### الخصائص الفيزيائية مقابل المنطقية
+
+```css
+/* ❌ الخصائص الفيزيائية - خاصة بالاتجاه */
+.sidebar {
+  margin-left: 20px;
+  padding-right: 10px;
+  border-right: 1px solid gray;
+  left: 0;
+}
+
+/* ✅ الخصائص المنطقية - محايدة الاتجاه */
+.sidebar {
+  margin-inline-start: 20px;
+  padding-inline-end: 10px;
+  border-inline-end: 1px solid gray;
+  inset-inline-start: 0;
+}
+```
+
+النسخة المنطقية تتكيف تلقائيًا:
+- في LTR: `inline-start` = يسار، `inline-end` = يمين
+- في RTL: `inline-start` = يمين، `inline-end` = يسار
+
+<Callout type="info">
+فكر في "inline" كاتجاه القراءة (أفقي في معظم اللغات) و "block" كالاتجاه العمودي (عمودي للمحتوى المكدس).
+</Callout>
+
+### خريطة الخصائص المنطقية الكاملة
+
+<WideBox>
+
+| الخاصية الفيزيائية | المكافئ المنطقي | المعنى |
+|-------------------|-------------------|---------|
+| `margin-left` | `margin-inline-start` | الهامش في بداية القراءة |
+| `margin-right` | `margin-inline-end` | الهامش في نهاية القراءة |
+| `margin-top` | `margin-block-start` | الهامش في بداية الكتلة |
+| `margin-bottom` | `margin-block-end` | الهامش في نهاية الكتلة |
+| `padding-left` | `padding-inline-start` | الحشو في بداية القراءة |
+| `padding-right` | `padding-inline-end` | الحشو في نهاية القراءة |
+| `border-left` | `border-inline-start` | الحد في بداية القراءة |
+| `border-right` | `border-inline-end` | الحد في نهاية القراءة |
+| `left` | `inset-inline-start` | الموضع من بداية القراءة |
+| `right` | `inset-inline-end` | الموضع من نهاية القراءة |
+| `text-align: left` | `text-align: start` | المحاذاة إلى بداية القراءة |
+| `text-align: right` | `text-align: end` | المحاذاة إلى نهاية القراءة |
+
+</WideBox>
+
+## تخطيطات الشريط الجانبي المتجاوبة
+
+الأشرطة الجانبية هي أكثر تحديات التخطيط شيوعًا في التصاميم ثنائية الاتجاه. دعنا نبني واحدة تعمل في كل مكان.
+
+### سطح المكتب: تخطيط جنبًا إلى جنب
+
+```css
+/* حاوية مع شريط جانبي ومحتوى رئيسي */
+.layout {
+  display: flex;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* الشريط الجانبي - يقلب الموضع تلقائيًا */
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  padding-inline-end: 2rem;
+  border-inline-end: 1px solid #e5e7eb;
+}
+
+/* المحتوى الرئيسي يملأ المساحة المتبقية */
+.main {
+  flex: 1;
+  min-width: 0; /* منع الفيضان */
+}
+```
+
+في LTR، يكون الشريط الجانبي على اليسار. في RTL، يكون تلقائيًا على اليمين. لا حاجة لكود إضافي.
+
+### الهاتف المحمول: تخطيط مكدس
+
+```css
+/* أولاً للهاتف المحمول: كدس عموديًا */
+.layout {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.sidebar {
+  width: 100%;
+  padding-inline-end: 0;
+  padding-block-end: 2rem;
+  border-inline-end: none;
+  border-block-end: 1px solid #e5e7eb;
+}
+
+/* سطح المكتب: جنبًا إلى جنب */
+@media (min-width: 768px) {
+  .layout {
+    flex-direction: row;
+  }
+
+  .sidebar {
+    width: 250px;
+    padding-inline-end: 2rem;
+    padding-block-end: 0;
+    border-inline-end: 1px solid #e5e7eb;
+    border-block-end: none;
+  }
+}
+```
+
+<Callout type="success">
+يتعامل Flexbox تلقائيًا مع اتجاه RTL/LTR عند استخدام `flex-direction: row`. تتدفق العناصر في اتجاه القراءة دون أي خصائص إضافية.
+</Callout>
+
+<ImageGrid columns={2}>
+  <Figure
+    src="/images/posts/responsive/sidebar-ltr-desktop.jpg"
+    alt="تخطيط الشريط الجانبي في LTR على سطح المكتب"
+    caption="سطح المكتب LTR: الشريط الجانبي على اليسار"
+  />
+  <Figure
+    src="/images/posts/responsive/sidebar-rtl-desktop.jpg"
+    alt="تخطيط الشريط الجانبي في RTL على سطح المكتب"
+    caption="سطح المكتب RTL: الشريط الجانبي على اليمين"
+  />
+</ImageGrid>
+
+## أنماط التنقل على الهاتف المحمول
+
+يحتاج التنقل على الهاتف المحمول إلى اهتمام خاص في التصاميم ثنائية الاتجاه.
+
+### موضع قائمة الهامبرغر
+
+تذهب قائمة الهامبرغر عادةً إلى حافة بداية القراءة:
+
+```css
+/* رأس مع قائمة هامبرغر */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: white;
+  border-block-end: 1px solid #e5e7eb;
+}
+
+/* زر القائمة في البداية */
+.menu-button {
+  /* Flexbox يضعه في البداية تلقائيًا */
+  order: -1; /* تأكد من أنه يأتي أولاً */
+}
+
+.logo {
+  /* شعار في الوسط */
+  margin-inline: auto;
+}
+
+.actions {
+  /* الإجراءات في النهاية */
+  display: flex;
+  gap: 0.5rem;
+}
+```
+
+### اتجاه انزلاق الدرج
+
+يجب أن تنزلق الأدراج المحمولة من حافة بداية القراءة:
+
+```css
+/* يبدأ الدرج خارج الشاشة عند بداية القراءة */
+.mobile-drawer {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: 80%;
+  max-width: 300px;
+  background: white;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+[dir="rtl"] .mobile-drawer {
+  transform: translateX(100%);
+}
+
+/* حالة الفتح */
+.mobile-drawer.is-open {
+  transform: translateX(0);
+}
+
+/* التراكب */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.drawer-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+```
+
+<Callout type="warning">
+تجنب استخدام الموضع المطلق مع قيم `left` أو `right` للأدراج. استخدم `inset-inline-start` مع التحويلات المنطقية بدلاً من ذلك. هذا يضمن انتقالات RTL سلسة.
+</Callout>
+
+## CSS Grid للتخطيطات ثنائية الاتجاه
+
+CSS Grid قوية بشكل لا يصدق للتخطيطات المتجاوبة والمحايدة للاتجاه.
+
+### تخطيط Grid الأساسي
+
+```css
+/* تتكيف الشبكة مع اتجاه القراءة تلقائيًا */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+/* العناصر تتدفق في اتجاه القراءة افتراضيًا */
+.grid-item {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+```
+
+تتدفق هذه الشبكة تلقائيًا بـ RTL في العربية و LTR في الإنجليزية. لا حاجة لكود إضافي.
+
+### شبكة لوحة التحكم مع مناطق مسماة
+
+```css
+/* الهاتف المحمول: عمود واحد */
+.dashboard {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "stats"
+    "chart"
+    "activity"
+    "sidebar";
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* الجهاز اللوحي: عمودان */
+@media (min-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "header header"
+      "stats stats"
+      "chart chart"
+      "activity sidebar";
+  }
+}
+
+/* سطح المكتب: ثلاثة أعمدة مع شريط جانبي */
+@media (min-width: 1024px) {
+  .dashboard {
+    grid-template-columns: 250px 1fr 1fr;
+    grid-template-areas:
+      "sidebar header header"
+      "sidebar stats stats"
+      "sidebar chart activity";
+  }
+}
+
+/* وضع المكونات */
+.header { grid-area: header; }
+.stats { grid-area: stats; }
+.chart { grid-area: chart; }
+.activity { grid-area: activity; }
+.sidebar { grid-area: sidebar; }
+```
+
+تقلب مناطق الشبكة المسماة تلقائيًا في RTL. ينتقل الشريط الجانبي من اليسار إلى اليمين دون أي كود خاص بالاتجاه.
+
+## تخطيطات البطاقات المتجاوبة
+
+البطاقات هي عناصر واجهة شائعة تحتاج إلى اهتمام دقيق في التصاميم ثنائية الاتجاه.
+
+### البطاقات الأفقية
+
+```css
+/* بطاقة مع صورة ومحتوى جنبًا إلى جنب */
+.card {
+  display: flex;
+  gap: 1rem;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-image {
+  width: 150px;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.card-content {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-block-end: 0.5rem;
+}
+
+.card-actions {
+  margin-block-start: auto;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end; /* دائمًا في النهاية */
+}
+
+/* الهاتف المحمول: كدس عموديًا */
+@media (max-width: 640px) {
+  .card {
+    flex-direction: column;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 200px;
+  }
+}
+```
+
+تظهر الصورة تلقائيًا في بداية القراءة (يسار في LTR، يمين في RTL) دون أي كود خاص بالاتجاه.
+
+<ImageGrid columns={2}>
+  <Figure
+    src="/images/posts/responsive/cards-ltr-mobile.jpg"
+    alt="تخطيط البطاقة في LTR على الهاتف المحمول"
+    caption="البطاقات المحمولة تتكدس عموديًا"
+  />
+  <Figure
+    src="/images/posts/responsive/cards-rtl-desktop.jpg"
+    alt="شبكة البطاقات في RTL على سطح المكتب"
+    caption="شبكة سطح المكتب تتدفق في اتجاه القراءة"
+  />
+</ImageGrid>
+
+## اختبار تخطيطاتك المتجاوبة
+
+أنشئ قائمة تحقق شاملة للاختبار:
+
+### اختبارات نقاط التوقف
+
+```css
+/* اختبر عند نقاط التوقف الشائعة هذه */
+/* الهاتف المحمول: 320px، 375px، 425px */
+/* الجهاز اللوحي: 768px، 834px */
+/* سطح المكتب: 1024px، 1440px، 1920px */
+```
+
+### مصفوفة الاتجاه + نقطة التوقف
+
+اختبر كل نقطة توقف في كلا الاتجاهين:
+
+- [ ] الهاتف المحمول (375px) - LTR
+- [ ] الهاتف المحمول (375px) - RTL
+- [ ] الجهاز اللوحي (768px) - LTR
+- [ ] الجهاز اللوحي (768px) - RTL
+- [ ] سطح المكتب (1440px) - LTR
+- [ ] سطح المكتب (1440px) - RTL
+
+## النقاط الرئيسية
+
+1. **نقاط التوقف عالمية**: لا يتغير عرض الشاشة مع اتجاه النص
+2. **استخدم الخصائص المنطقية**: `inline-start`، `inline-end`، `block-start`، `block-end`
+3. **Flexbox و Grid تتكيف**: طرق التخطيط الحديثة تتعامل مع الاتجاه تلقائيًا
+4. **اختبر كلا الاتجاهين**: تحقق من كل نقطة توقف في LTR و RTL
+5. **الأشرطة الجانبية تقلب تلقائيًا**: باستخدام Flexbox/Grid، تضع الأشرطة الجانبية نفسها بشكل صحيح
+6. **التنقل على الهاتف المحمول**: يجب أن تنزلق الأدراج من حافة بداية القراءة
+7. **تجنب الخصائص الفيزيائية**: توقف عن استخدام `left`، `right`، `margin-left`، إلخ.
+8. **مناطق الشبكة المسماة**: تنعكس تلقائيًا في تخطيطات RTL
+
+## مزيد من القراءة
+
+- [خصائص CSS المنطقية بعمق](/ar/blog/css-logical-properties)
+- [بناء نماذج يمكن الوصول إليها للمستخدمين العرب](/ar/blog/accessible-forms-arabic)
+- [اتجاه الأيقونات: ما ينقلب وما لا ينقلب](/ar/blog/icon-direction-flip-guide)
+- [أخطاء تخطيط RTL الشائعة وإصلاحاتها](/ar/blog/common-rtl-bugs)

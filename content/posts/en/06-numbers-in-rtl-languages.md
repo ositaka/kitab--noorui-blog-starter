@@ -357,7 +357,7 @@ Always use `Intl.NumberFormat` rather than manual formatting.
 
 ## Further Reading
 
-- [Understanding RTL Text Direction](/blog/understanding-rtl)
-- [Bidirectional Text and the Unicode BiDi Algorithm](/blog/bidirectional-text-bidi)
-- [Common RTL Bugs and How to Fix Them](/blog/common-rtl-bugs)
-- [CSS Logical Properties for RTL/LTR Support](/blog/css-logical-properties)
+- [Understanding RTL Text Direction](/en/blog/understanding-rtl)
+- [Bidirectional Text and the Unicode BiDi Algorithm](/en/blog/bidirectional-text-bidi)
+- [Common RTL Bugs and How to Fix Them](/en/blog/common-rtl-bugs)
+- [CSS Logical Properties for RTL/LTR Support](/en/blog/css-logical-properties)

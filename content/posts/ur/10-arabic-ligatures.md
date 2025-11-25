@@ -253,7 +253,7 @@ const direct = 'لا';
 
 ## مزید پڑھیں
 
-- [نستعلیق بمقابلہ نسخ: دو بڑے اندازوں کا موازنہ](/blog/nastaliq-vs-naskh)
-- [عربی رسم الخط کی تاریخ](/blog/history-of-arabic-script)
-- [اسلامی خطاطی: ثقافتی ورثہ](/blog/islamic-calligraphy)
-- [RTL متن کی سمت کو سمجھنا](/blog/understanding-rtl)
+- [نستعلیق بمقابلہ نسخ: دو بڑے اندازوں کا موازنہ](/ur/blog/nastaliq-vs-naskh)
+- [عربی رسم الخط کی تاریخ](/ur/blog/history-of-arabic-script)
+- [اسلامی خطاطی: ثقافتی ورثہ](/ur/blog/islamic-calligraphy)
+- [RTL متن کی سمت کو سمجھنا](/ur/blog/understanding-rtl)

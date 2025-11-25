@@ -144,7 +144,7 @@ Le Nastaliq nécessite une attention particulière :
 
 ## Pour aller plus loin
 
-- [Nastaliq vs Naskh : Comparaison de deux styles majeurs](/blog/nastaliq-vs-naskh)
-- [Comprendre la direction du texte RTL](/blog/understanding-rtl)
-- [Bugs RTL courants et comment les corriger](/blog/common-rtl-bugs)
-- [L'histoire de l'écriture arabe](/blog/history-of-arabic-script)
+- [Nastaliq vs Naskh : Comparaison de deux styles majeurs](/fr/blog/nastaliq-vs-naskh)
+- [Comprendre la direction du texte RTL](/fr/blog/understanding-rtl)
+- [Bugs RTL courants et comment les corriger](/fr/blog/common-rtl-bugs)
+- [L'histoire de l'écriture arabe](/fr/blog/history-of-arabic-script)

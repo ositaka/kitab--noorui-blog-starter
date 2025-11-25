@@ -208,7 +208,7 @@ Note : Les champs email ont souvent besoin d'un `dir="ltr"` explicite car les ad
 
 ## Pour aller plus loin
 
-- [Le texte bidirectionnel et l'algorithme BiDi Unicode](/blog/bidirectional-text-bidi)
-- [Propriétés logiques CSS pour le support RTL/LTR](/blog/css-logical-properties)
-- [Bugs RTL courants et comment les corriger](/blog/common-rtl-bugs)
-- [Les nombres dans les langues RTL](/blog/numbers-in-rtl-languages)
+- [Le texte bidirectionnel et l'algorithme BiDi Unicode](/fr/blog/bidirectional-text-bidi)
+- [Propriétés logiques CSS pour le support RTL/LTR](/fr/blog/css-logical-properties)
+- [Bugs RTL courants et comment les corriger](/fr/blog/common-rtl-bugs)
+- [Les nombres dans les langues RTL](/fr/blog/numbers-in-rtl-languages)

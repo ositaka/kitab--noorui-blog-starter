@@ -278,7 +278,7 @@ Using the wrong script style creates cognitive dissonance:
 
 ## Further Reading
 
-- [The History of Arabic Script](/blog/history-of-arabic-script)
-- [Urdu and Nastaliq: The Elegant Script of South Asia](/blog/urdu-nastaliq-script)
-- [Arabic Ligatures: Understanding Connected Letters](/blog/arabic-ligatures)
-- [Islamic Calligraphy: Sacred Art and Its Modern Legacy](/blog/islamic-calligraphy)
+- [The History of Arabic Script](/en/blog/history-of-arabic-script)
+- [Urdu and Nastaliq: The Elegant Script of South Asia](/en/blog/urdu-nastaliq-script)
+- [Arabic Ligatures: Understanding Connected Letters](/en/blog/arabic-ligatures)
+- [Islamic Calligraphy: Sacred Art and Its Modern Legacy](/en/blog/islamic-calligraphy)

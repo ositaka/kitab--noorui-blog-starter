@@ -117,7 +117,7 @@ tags: ["فینیشین", "تاریخ", "حروف-تہجی", "تحریری-نظا
 
 ## مزید پڑھیں
 
-- [عربی رسم الخط کی تاریخ](/blog/history-of-arabic-script)
-- [RTL متن کی سمت کو سمجھنا](/blog/understanding-rtl)
-- [دو طرفہ متن اور یونیکوڈ BiDi الگورتھم](/blog/bidirectional-text-bidi)
-- [پڑھنے کی سمت صارف کے تجربے پر کیسے اثر ڈالتی ہے](/blog/reading-direction-ux)
+- [عربی رسم الخط کی تاریخ](/ur/blog/history-of-arabic-script)
+- [RTL متن کی سمت کو سمجھنا](/ur/blog/understanding-rtl)
+- [دو طرفہ متن اور یونیکوڈ BiDi الگورتھم](/ur/blog/bidirectional-text-bidi)
+- [پڑھنے کی سمت صارف کے تجربے پر کیسے اثر ڈالتی ہے](/ur/blog/reading-direction-ux)

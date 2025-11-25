@@ -339,7 +339,7 @@ LTR موبائل:           RTL موبائل:
 
 ## مزید پڑھیں
 
-- [RTL متن کی سمت کو سمجھنا](/blog/understanding-rtl)
-- [RTL/LTR سپورٹ کے لیے CSS منطقی خصوصیات](/blog/css-logical-properties)
-- [عام RTL مسائل اور ان کا حل](/blog/common-rtl-bugs)
-- [اسلامی خطاطی: ثقافتی ورثہ](/blog/islamic-calligraphy)
+- [RTL متن کی سمت کو سمجھنا](/ur/blog/understanding-rtl)
+- [RTL/LTR سپورٹ کے لیے CSS منطقی خصوصیات](/ur/blog/css-logical-properties)
+- [عام RTL مسائل اور ان کا حل](/ur/blog/common-rtl-bugs)
+- [اسلامی خطاطی: ثقافتی ورثہ](/ur/blog/islamic-calligraphy)

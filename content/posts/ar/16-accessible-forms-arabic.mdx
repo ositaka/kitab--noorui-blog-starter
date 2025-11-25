@@ -1,0 +1,436 @@
+---
+id: "accessible-forms-arabic"
+title: "بناء نماذج يسهل الوصول إليها للمستخدمين العرب"
+titleAr: "بناء نماذج يسهل الوصول إليها للمستخدمين العرب"
+titleFr: "Créer des formulaires accessibles pour les utilisateurs arabes"
+titleUr: "عربی صارفین کے لیے قابل رسائی فارم بنانا"
+excerpt: "دليل شامل لتصميم وتطوير النماذج التي تعمل بشكل جميل للمستخدمين العرب، تغطي التخطيط والتحقق وإمكانية الوصول وتحديات الإدخال متعدد اللغات."
+excerptAr: "دليل شامل لتصميم وتطوير النماذج التي تعمل بشكل جميل للمستخدمين العرب، تغطي التخطيط والتحقق وإمكانية الوصول وتحديات الإدخال متعدد اللغات."
+excerptFr: "Un guide complet pour concevoir et développer des formulaires qui fonctionnent parfaitement pour les utilisateurs arabes, couvrant la mise en page, la validation, l'accessibilité et les défis de saisie multilingue."
+excerptUr: "عربی صارفین کے لیے خوبصورت طریقے سے کام کرنے والے فارمز کو ڈیزائن اور تیار کرنے کے لیے ایک جامع رہنما، جس میں لے آؤٹ، توثیق، رسائی، اور مخلوط زبان کے ان پٹ کے چیلنجز شامل ہیں۔"
+category: "rtl-ltr-concepts"
+author: "karim-benali"
+publishedAt: "2025-01-23"
+readingTime: 12
+featured: true
+featuredImage: "https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/accessible-forms-arabic.jpg"
+tags: ["forms", "accessibility", "rtl", "arabic", "ux", "a11y"]
+---
+
+## تحدي النماذج في RTL
+
+النماذج هي العمود الفقري لتفاعل المستخدم على الويب—التسجيل، الخروج، نماذج الاتصال، أشرطة البحث. لكن عندما يتعلق الأمر بالعربية ولغات RTL الأخرى، تقدم النماذج تحديات فريدة تتجاوز مجرد قلب التخطيط.
+
+عندما يتم بشكل خاطئ، يمكن أن تكون النماذج مربكة ومحبطة أو حتى غير قابلة للاستخدام. عندما يتم بشكل صحيح، تشعر بأنها طبيعية وسلسة.
+
+يغطي هذا الدليل كل ما تحتاجه لبناء نماذج يسهل الوصول إليها وسهلة الاستخدام حقًا للمستخدمين العرب.
+
+## وضع التسميات: ما الذي يعمل بشكل أفضل
+
+### النهج التقليدي (تسميات محاذاة لليسار)
+
+في نماذج LTR، غالبًا ما توضع التسميات على يسار المدخلات. عند القلب بشكل ساذج لـ RTL، تظهر التسميات على اليسار البعيد.
+
+<Callout type="warning">
+**المشكلة**: في RTL، يقوم المستخدمون بالمسح من اليمين إلى اليسار. وجود التسمية بعيدًا على اليسار يخلق مسافة سفر طويلة للعين ويكسر تدفق القراءة الطبيعي.
+</Callout>
+
+### النهج الأفضل: تسميات محاذاة للأعلى
+
+بالنسبة لنماذج RTL، **ضع التسميات فوق المدخلات**:
+
+<ImageGrid columns={2}>
+  <Figure
+    src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/forms/label-inline-rtl.svg"
+    alt="نموذج RTL مع تسميات مضمنة - تجربة مستخدم سيئة"
+    caption="❌ تسميات مضمنة: مسافة سفر طويلة للعين"
+  />
+  <Figure
+    src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/forms/label-top-rtl.svg"
+    alt="نموذج RTL مع تسميات محاذاة للأعلى - تجربة مستخدم جيدة"
+    caption="✅ تسميات علوية: تدفق قراءة طبيعي"
+  />
+</ImageGrid>
+
+**الفوائد:**
+- تعمل بشكل متطابق في LTR و RTL
+- مسافة سفر أقصر للعين
+- أفضل للتصميم المتجاوب للهاتف المحمول
+- مساحة أكبر للتسميات المترجمة الأطول
+- تسلسل هرمي بصري أنظف
+
+<Callout type="success">
+**أفضل ممارسة**: استخدم تسميات محاذاة للأعلى لجميع النماذج متعددة اللغات. إنها تعمل عالميًا وتلغي الحاجة إلى تخطيطات خاصة بالاتجاه.
+</Callout>
+
+### التنفيذ
+
+```css
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-block-end: 1.5rem;
+}
+
+.form-label {
+  margin-block-end: 0.5rem;
+  font-weight: 500;
+  text-align: start; /* يحاذي لليمين في RTL، لليسار في LTR */
+}
+
+.form-input {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+}
+```
+
+## محاذاة النص داخل المدخلات
+
+يجب أن تحاذي حقول الإدخال النص إلى **بداية** اتجاه القراءة:
+
+```css
+/* صحيح: خاصية منطقية */
+.form-input {
+  text-align: start;
+}
+
+/* خطأ: اتجاه ثابت */
+.form-input {
+  text-align: right; /* هذا ينكسر في LTR! */
+}
+```
+
+## اتجاه نص العنصر النائب
+
+يجب أن يتطابق نص العنصر النائب مع لغة الإدخال المتوقعة:
+
+```html
+<!-- نموذج عربي -->
+<input
+  type="text"
+  placeholder="أدخل البريد الإلكتروني"
+  dir="auto"
+/>
+```
+
+### سمة `dir="auto"`
+
+تكتشف سمة HTML القوية هذه اتجاه أول حرف اتجاهي قوي:
+
+```html
+<!-- إذا كتب المستخدم بالعربية، يصبح الحقل RTL -->
+<!-- إذا كتب المستخدم بالإنجليزية، يصبح الحقل LTR -->
+<input type="text" dir="auto" />
+```
+
+<Callout type="info">
+**كيف يعمل**: يفحص المتصفح الحرف الأول بالاتجاه القوي (حرف عربي = RTL، حرف لاتيني = LTR) ويضبط اتجاه الحقل وفقًا لذلك. الأرقام وعلامات الترقيم محايدة ولا تؤثر على الاتجاه.
+</Callout>
+
+## تحدي الإدخال متعدد اللغات
+
+غالبًا ما تحتاج النماذج في العالم الحقيقي إلى قبول إدخال متعدد اللغات:
+
+<WideBox>
+
+| نوع الحقل | الاتجاه | السبب |
+|------------|-----------|--------|
+| الاسم | `dir="auto"` | يمكن أن يكون عربيًا أو لاتينيًا |
+| البريد الإلكتروني | `dir="ltr"` | عناوين البريد الإلكتروني دائمًا LTR |
+| كلمة المرور | `dir="ltr"` | عادة ما تستخدم أحرفًا لاتينية |
+| الهاتف | `dir="ltr"` | التعرف على التنسيق الدولي |
+| العنوان | `dir="auto"` | يمكن أن يكون لغة مختلطة |
+| البحث | `dir="auto"` | قد يبحث المستخدم بأي لغة |
+| الرسالة/التعليق | `dir="auto"` | لغة المستخدم الطبيعية |
+| URL | `dir="ltr"` | URLs دائمًا LTR |
+| بطاقة الائتمان | `dir="ltr"` | أرقام وأحرف لاتينية |
+
+</WideBox>
+
+### الاستراتيجية: تعيين الاتجاه الصريح
+
+عيّن الاتجاه صراحةً بناءً على نوع الإدخال:
+
+```html
+<!-- الاسم: السماح بالكشف التلقائي -->
+<input
+  type="text"
+  name="fullName"
+  placeholder="الاسم الكامل"
+  dir="auto"
+/>
+
+<!-- البريد الإلكتروني: فرض LTR -->
+<input
+  type="email"
+  name="email"
+  placeholder="example@domain.com"
+  dir="ltr"
+/>
+
+<!-- كلمة المرور: فرض LTR -->
+<input
+  type="password"
+  name="password"
+  dir="ltr"
+/>
+
+<!-- الهاتف: فرض LTR مع التنسيق الصحيح -->
+<input
+  type="tel"
+  name="phone"
+  placeholder="+966 50 123 4567"
+  dir="ltr"
+  inputmode="tel"
+/>
+```
+
+## رسائل التحقق
+
+تحتاج رسائل التحقق إلى وضع دقيق ورسائل واضحة بالعربية.
+
+### الوضع
+
+ضع رسائل التحقق **أسفل** حقل الإدخال:
+
+```html
+<div class="form-group">
+  <label for="email" class="form-label">البريد الإلكتروني</label>
+  <input
+    type="email"
+    id="email"
+    class="form-input"
+    aria-invalid="true"
+    aria-describedby="email-error"
+  />
+  <span id="email-error" class="form-error" role="alert">
+    يرجى إدخال عنوان بريد إلكتروني صالح
+  </span>
+</div>
+```
+
+```css
+.form-error {
+  display: block;
+  margin-block-start: 0.5rem;
+  padding-inline-start: 0.75rem;
+  color: #dc2626;
+  font-size: 0.875rem;
+  border-inline-start: 3px solid #dc2626;
+}
+```
+
+### لغة رسالة الخطأ
+
+اعرض دائمًا رسائل الخطأ بلغة المستخدم:
+
+<Callout type="warning">
+**لا تفعل**: إظهار رسائل خطأ إنجليزية في واجهة عربية. هذا يكسر تجربة المستخدم ويمكن أن يربك المستخدمين الذين لا يفهمون الإنجليزية.
+</Callout>
+
+```javascript
+// جيد: رسائل التحقق المحلية
+const validationMessages = {
+  ar: {
+    required: 'هذا الحقل مطلوب',
+    email: 'يرجى إدخال عنوان بريد إلكتروني صالح',
+    minLength: (min) => `يجب أن يحتوي على ${min} أحرف على الأقل`,
+    pattern: 'التنسيق غير صحيح',
+  },
+  en: {
+    required: 'This field is required',
+    email: 'Please enter a valid email address',
+    minLength: (min) => `Must be at least ${min} characters`,
+    pattern: 'Invalid format',
+  }
+};
+```
+
+## مؤشرات الحقول المطلوبة
+
+النجمة (*) مفهومة عالميًا ولكنها تحتاج إلى وضع صحيح:
+
+```html
+<!-- ضع النجمة بعد نص التسمية بالعربية -->
+<label for="name" class="form-label">
+  الاسم الكامل
+  <span class="required" aria-label="مطلوب">*</span>
+</label>
+```
+
+```css
+.required {
+  color: #dc2626;
+  margin-inline-start: 0.25rem;
+}
+```
+
+## مربعات الاختيار وأزرار الراديو
+
+تتطلب محاذاة مربع الاختيار وزر الراديو اهتمامًا خاصًا في RTL:
+
+```css
+.form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-block-end: 1rem;
+}
+
+.form-check-input {
+  order: -1; /* يضع مربع الاختيار قبل التسمية في ترتيب القراءة */
+  margin-block-start: 0.25rem;
+  flex-shrink: 0;
+}
+```
+
+<ImageGrid columns={2}>
+  <Figure
+    src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/forms/checkbox-ltr.svg"
+    alt="مربع اختيار في تخطيط LTR"
+    caption="LTR: مربع الاختيار على اليسار، التسمية على اليمين"
+  />
+  <Figure
+    src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/forms/checkbox-rtl.svg"
+    alt="مربع اختيار في تخطيط RTL"
+    caption="RTL: مربع الاختيار على اليمين، التسمية على اليسار"
+  />
+</ImageGrid>
+
+## اعتبارات إمكانية الوصول
+
+### دعم قارئ الشاشة
+
+تحتاج قارئات الشاشة العربية إلى ترميز صحيح:
+
+```html
+<form aria-label="نموذج التسجيل">
+  <div class="form-group">
+    <label for="username" id="username-label">
+      اسم المستخدم
+      <span class="required" aria-label="مطلوب">*</span>
+    </label>
+    <input
+      type="text"
+      id="username"
+      aria-labelledby="username-label"
+      aria-required="true"
+      aria-invalid="false"
+      aria-describedby="username-hint"
+    />
+    <span id="username-hint" class="form-hint">
+      يجب أن يحتوي على 3-20 حرفًا
+    </span>
+  </div>
+</form>
+```
+
+### تسميات ARIA بالعربية
+
+قدم دائمًا تسميات ARIA بلغة المستخدم:
+
+```html
+<!-- جيد: تسميات ARIA العربية -->
+<button aria-label="إرسال النموذج">إرسال</button>
+
+<!-- سيئ: تسميات ARIA الإنجليزية في واجهة عربية -->
+<button aria-label="Submit form">إرسال</button>
+```
+
+## مثال كامل: نموذج تسجيل
+
+إليك نموذج تسجيل عربي يسهل الوصول إليه بالكامل:
+
+```html
+<form class="form" aria-label="نموذج التسجيل" dir="rtl">
+  <!-- حقل الاسم -->
+  <div class="form-group">
+    <label for="fullName" class="form-label">
+      الاسم الكامل
+      <span class="required" aria-label="مطلوب">*</span>
+    </label>
+    <input
+      type="text"
+      id="fullName"
+      class="form-input"
+      dir="auto"
+      placeholder="أدخل اسمك الكامل"
+      required
+      aria-required="true"
+    />
+  </div>
+
+  <!-- حقل البريد الإلكتروني -->
+  <div class="form-group">
+    <label for="email" class="form-label">
+      البريد الإلكتروني
+      <span class="required" aria-label="مطلوب">*</span>
+    </label>
+    <input
+      type="email"
+      id="email"
+      class="form-input"
+      dir="ltr"
+      placeholder="example@domain.com"
+      required
+      aria-required="true"
+    />
+  </div>
+
+  <!-- زر الإرسال -->
+  <button type="submit" class="btn btn-primary">
+    إنشاء حساب
+  </button>
+</form>
+```
+
+<Figure
+  src="https://jifbljttgucqvencyqhh.supabase.co/storage/v1/object/public/images/posts/forms/complete-form-example.jpg"
+  alt="مثال على نموذج تسجيل عربي كامل"
+  caption="نموذج تسجيل يسهل الوصول إليه بالكامل مع تخطيط RTL صحيح والتحقق وميزات إمكانية الوصول"
+/>
+
+## قائمة اختبار
+
+قبل إطلاق النماذج للمستخدمين العرب:
+
+**اختبار بصري:**
+- [ ] تم وضع التسميات فوق المدخلات
+- [ ] تم محاذاة النص للبداية في جميع المدخلات
+- [ ] تظهر رسائل التحقق أسفل المدخلات
+- [ ] تم وضع مؤشرات الحقول المطلوبة بشكل صحيح
+- [ ] تمت محاذاة مربعات الاختيار/الراديو بشكل صحيح
+
+**اختبار وظيفي:**
+- [ ] يتبع ترتيب التبويب الترتيب المرئي (من اليمين إلى اليسار)
+- [ ] تبقى حقول البريد الإلكتروني/كلمة المرور LTR
+- [ ] رسائل التحقق بالعربية
+- [ ] رسائل الخطأ واضحة ومفيدة
+
+**اختبار إمكانية الوصول:**
+- [ ] يعلن قارئ الشاشة عن التسميات بالعربية
+- [ ] تسميات ARIA باللغة الصحيحة
+- [ ] تم الإعلان عن الحقول المطلوبة بشكل صحيح
+- [ ] تم توصيل حالات الخطأ بوضوح
+
+## النقاط الرئيسية
+
+1. **التسميات المحاذاة للأعلى تعمل بشكل أفضل**: إنها عالمية ومتجاوبة وتلغي المشاكل الخاصة بـ RTL.
+
+2. **استخدم `dir="auto"` للمدخلات المرنة**: دع المتصفح يكتشف اتجاه النص للاسم والعنوان وحقول البحث.
+
+3. **فرض LTR للمدخلات التقنية**: يجب أن يكون البريد الإلكتروني وكلمة المرور والهاتف و URLs دائمًا LTR.
+
+4. **التحقق بالعربية**: يجب أن تكون رسائل الخطأ بلغة المستخدم من أجل الوضوح.
+
+5. **خصائص CSS المنطقية**: استخدم `inline-start`، `inline-end`، `text-align: start` للحصول على دعم الاتجاه التلقائي.
+
+6. **إمكانية الوصول غير قابلة للتفاوض**: تسميات ARIA الصحيحة والتنقل بلوحة المفاتيح ودعم قارئ الشاشة ضرورية.
+
+## قراءات إضافية
+
+- [خصائص CSS المنطقية لدعم RTL/LTR](/ar/blog/css-logical-properties)
+- [فهم اتجاه النص RTL](/ar/blog/understanding-rtl)
+- [أخطاء RTL الشائعة وكيفية إصلاحها](/ar/blog/common-rtl-bugs)
+- [اتجاه الأيقونات: ما ينقلب وما لا ينقلب](/ar/blog/icon-direction-flip-guide)

@@ -209,7 +209,7 @@ function formatPrice(price, locale) {
 
 ## مزید پڑھیں
 
-- [RTL متن کی سمت کو سمجھنا](/blog/understanding-rtl)
-- [دو طرفہ متن اور یونیکوڈ BiDi الگورتھم](/blog/bidirectional-text-bidi)
-- [عام RTL مسائل اور ان کا حل](/blog/common-rtl-bugs)
-- [RTL/LTR سپورٹ کے لیے CSS منطقی خصوصیات](/blog/css-logical-properties)
+- [RTL متن کی سمت کو سمجھنا](/ur/blog/understanding-rtl)
+- [دو طرفہ متن اور یونیکوڈ BiDi الگورتھم](/ur/blog/bidirectional-text-bidi)
+- [عام RTL مسائل اور ان کا حل](/ur/blog/common-rtl-bugs)
+- [RTL/LTR سپورٹ کے لیے CSS منطقی خصوصیات](/ur/blog/css-logical-properties)

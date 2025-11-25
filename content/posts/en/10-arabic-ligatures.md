@@ -361,7 +361,7 @@ pyftsubset font.ttf --text="your arabic text here" --output-file=subset.woff2
 
 ## Further Reading
 
-- [The History of Arabic Script](/blog/history-of-arabic-script)
-- [Nastaliq vs Naskh: Comparing Two Major Script Styles](/blog/nastaliq-vs-naskh)
-- [Understanding RTL Text Direction](/blog/understanding-rtl)
-- [Islamic Calligraphy: Sacred Art and Its Modern Legacy](/blog/islamic-calligraphy)
+- [The History of Arabic Script](/en/blog/history-of-arabic-script)
+- [Nastaliq vs Naskh: Comparing Two Major Script Styles](/en/blog/nastaliq-vs-naskh)
+- [Understanding RTL Text Direction](/en/blog/understanding-rtl)
+- [Islamic Calligraphy: Sacred Art and Its Modern Legacy](/en/blog/islamic-calligraphy)
