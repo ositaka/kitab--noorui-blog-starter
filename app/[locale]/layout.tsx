@@ -21,6 +21,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
   const titles: Record<string, string> = {
     en: 'Kitab - RTL/LTR Blog',
@@ -29,10 +30,27 @@ export async function generateMetadata({
     ur: 'کتاب - RTL/LTR بلاگ',
   }
 
+  const rssTitle: Record<string, string> = {
+    en: 'RSS Feed',
+    fr: 'Flux RSS',
+    ar: 'تغذية RSS',
+    ur: 'RSS فیڈ',
+  }
+
   return {
     title: {
       default: titles[locale] || titles.en,
       template: `%s | ${titles[locale] || titles.en}`,
+    },
+    alternates: {
+      types: {
+        'application/rss+xml': [
+          {
+            url: `${siteUrl}/${locale}/rss.xml`,
+            title: `${titles[locale]} - ${rssTitle[locale]}`,
+          },
+        ],
+      },
     },
   }
 }

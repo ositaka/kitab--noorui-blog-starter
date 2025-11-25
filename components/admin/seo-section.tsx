@@ -19,12 +19,14 @@ import {
 import { Search, Globe, Twitter, Image as ImageIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
+export type TwitterCardType = 'summary' | 'summary_large_image' | 'app' | 'player'
+
 export interface SEOData {
   meta_title?: string
   meta_description?: string
   og_image?: string
   focus_keyword?: string
-  twitter_card?: 'summary' | 'summary_large_image' | 'app' | 'player'
+  twitter_card?: TwitterCardType
 }
 
 interface SEOSectionProps {

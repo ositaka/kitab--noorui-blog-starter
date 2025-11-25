@@ -4,6 +4,7 @@ import * as React from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import { PostEditor, type PostEditorData } from '@/components/admin/post-editor'
+import type { TwitterCardType } from '@/components/admin/seo-section'
 import type { Locale, Post, AuthorLocalized, CategoryLocalized } from '@/lib/supabase/types'
 import { updatePostAction, upsertTranslationAction, uploadImageAction } from '../actions'
 
@@ -192,32 +193,32 @@ export function EditPostContent({
     },
     seoData: {
       en: {
-        meta_title: isEmpty(existingTranslations.en?.meta_title) ? existingTranslations.en?.title : existingTranslations.en?.meta_title,
-        meta_description: isEmpty(existingTranslations.en?.meta_description) ? existingTranslations.en?.excerpt : existingTranslations.en?.meta_description,
+        meta_title: (isEmpty(existingTranslations.en?.meta_title) ? existingTranslations.en?.title : existingTranslations.en?.meta_title) || undefined,
+        meta_description: (isEmpty(existingTranslations.en?.meta_description) ? existingTranslations.en?.excerpt : existingTranslations.en?.meta_description) || undefined,
         og_image: existingTranslations.en?.og_image || undefined,
         focus_keyword: existingTranslations.en?.focus_keyword || undefined,
-        twitter_card: existingTranslations.en?.twitter_card || undefined,
+        twitter_card: (existingTranslations.en?.twitter_card as TwitterCardType) || undefined,
       },
       fr: {
-        meta_title: isEmpty(existingTranslations.fr?.meta_title) ? existingTranslations.fr?.title : existingTranslations.fr?.meta_title,
-        meta_description: isEmpty(existingTranslations.fr?.meta_description) ? existingTranslations.fr?.excerpt : existingTranslations.fr?.meta_description,
+        meta_title: (isEmpty(existingTranslations.fr?.meta_title) ? existingTranslations.fr?.title : existingTranslations.fr?.meta_title) || undefined,
+        meta_description: (isEmpty(existingTranslations.fr?.meta_description) ? existingTranslations.fr?.excerpt : existingTranslations.fr?.meta_description) || undefined,
         og_image: existingTranslations.fr?.og_image || undefined,
         focus_keyword: existingTranslations.fr?.focus_keyword || undefined,
-        twitter_card: existingTranslations.fr?.twitter_card || undefined,
+        twitter_card: (existingTranslations.fr?.twitter_card as TwitterCardType) || undefined,
       },
       ar: {
-        meta_title: isEmpty(existingTranslations.ar?.meta_title) ? existingTranslations.ar?.title : existingTranslations.ar?.meta_title,
-        meta_description: isEmpty(existingTranslations.ar?.meta_description) ? existingTranslations.ar?.excerpt : existingTranslations.ar?.meta_description,
+        meta_title: (isEmpty(existingTranslations.ar?.meta_title) ? existingTranslations.ar?.title : existingTranslations.ar?.meta_title) || undefined,
+        meta_description: (isEmpty(existingTranslations.ar?.meta_description) ? existingTranslations.ar?.excerpt : existingTranslations.ar?.meta_description) || undefined,
         og_image: existingTranslations.ar?.og_image || undefined,
         focus_keyword: existingTranslations.ar?.focus_keyword || undefined,
-        twitter_card: existingTranslations.ar?.twitter_card || undefined,
+        twitter_card: (existingTranslations.ar?.twitter_card as TwitterCardType) || undefined,
       },
       ur: {
-        meta_title: isEmpty(existingTranslations.ur?.meta_title) ? existingTranslations.ur?.title : existingTranslations.ur?.meta_title,
-        meta_description: isEmpty(existingTranslations.ur?.meta_description) ? existingTranslations.ur?.excerpt : existingTranslations.ur?.meta_description,
+        meta_title: (isEmpty(existingTranslations.ur?.meta_title) ? existingTranslations.ur?.title : existingTranslations.ur?.meta_title) || undefined,
+        meta_description: (isEmpty(existingTranslations.ur?.meta_description) ? existingTranslations.ur?.excerpt : existingTranslations.ur?.meta_description) || undefined,
         og_image: existingTranslations.ur?.og_image || undefined,
         focus_keyword: existingTranslations.ur?.focus_keyword || undefined,
-        twitter_card: existingTranslations.ur?.twitter_card || undefined,
+        twitter_card: (existingTranslations.ur?.twitter_card as TwitterCardType) || undefined,
       },
     },
   }))

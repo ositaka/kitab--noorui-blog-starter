@@ -18,6 +18,7 @@ import type { Locale, PostWithRelations, AuthorLocalized, CategoryLocalized } fr
 import type { AdminStats } from '@/lib/supabase/admin-api'
 import { adminTranslations } from '@/lib/i18n/admin'
 import { StatsCard, PostsTable, PostFilters, PostEditor, type PostEditorData } from '@/components/admin'
+import type { TwitterCardType } from '@/components/admin/seo-section'
 import { uploadImageAction } from './posts/actions'
 
 interface AdminClientProps {
@@ -38,6 +39,12 @@ const emptyEditorData: PostEditorData = {
   titles: { en: '', fr: '', ar: '', ur: '' },
   excerpts: { en: '', fr: '', ar: '', ur: '' },
   contents: { en: '', fr: '', ar: '', ur: '' },
+  seoData: {
+    en: {},
+    fr: {},
+    ar: {},
+    ur: {},
+  },
 }
 
 export function AdminClient({
@@ -100,6 +107,18 @@ export function AdminClient({
       titles: { en: post.title, fr: '', ar: '', ur: '' },
       excerpts: { en: post.excerpt || '', fr: '', ar: '', ur: '' },
       contents: { en: post.content || '', fr: '', ar: '', ur: '' },
+      seoData: {
+        en: {
+          meta_title: post.meta_title || undefined,
+          meta_description: post.meta_description || undefined,
+          og_image: post.og_image || undefined,
+          focus_keyword: post.focus_keyword || undefined,
+          twitter_card: (post.twitter_card as TwitterCardType) || undefined,
+        },
+        fr: {},
+        ar: {},
+        ur: {},
+      },
     })
     window.location.hash = '#create'
   }

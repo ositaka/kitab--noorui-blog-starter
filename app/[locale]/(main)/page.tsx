@@ -1,5 +1,5 @@
 import { getPosts, getCategories } from '@/lib/supabase/api'
-import type { Locale } from '@/lib/supabase/types'
+import type { Locale, PostWithRelations } from '@/lib/supabase/types'
 import { HomePageClient } from './home-client'
 
 interface Props {

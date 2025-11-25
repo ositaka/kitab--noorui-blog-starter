@@ -369,7 +369,7 @@ Guest Mode:                    Admin Mode:
 - [x] Live search preview in admin
 - [x] Full RTL support in SEO interface using `dir` attribute
 - [x] Content-based direction (RTL for Arabic/Urdu, LTR for English/French)
-- [ ] RSS feed (future)
+- [x] RSS feed generation (all 4 locales)
 
 **SEO Features Implemented:**
 - ✅ Per-locale SEO customization (meta title, description, OG image, focus keyword)
@@ -389,6 +389,45 @@ Guest Mode:                    Admin Mode:
 - Admin UI: `SEOSection` component with accordion, character counting, preview
 - Frontend: `generateMetadata()` function in post pages with comprehensive fallback logic
 - RTL: Uses `dir` attribute on containers for automatic CSS mirroring
+
+### 6.4 RSS Feed ✅ COMPLETED
+- [x] RSS 2.0 XML generation for all 4 locales
+- [x] RSS discovery links in HTML head
+- [x] Locale-specific feeds (/en/rss.xml, /ar/rss.xml, /fr/rss.xml, /ur/rss.xml)
+- [x] Proper XML escaping for multilingual content
+- [x] Include post metadata (author, category, tags, images)
+- [x] CDATA sections for full content
+- [x] Atom self-link and Dublin Core creator tags
+- [x] Cache headers for performance (1 hour cache, 2 hour stale-while-revalidate)
+
+**RSS Feed Features Implemented:**
+- ✅ Per-locale RSS feeds at `/{locale}/rss.xml`
+- ✅ RSS 2.0 specification compliant
+- ✅ Multilingual titles and descriptions
+- ✅ Proper XML character escaping (handles Arabic, Urdu, special chars)
+- ✅ Full post content in CDATA sections
+- ✅ Author attribution with dc:creator
+- ✅ Category and tag support
+- ✅ Featured image enclosures
+- ✅ Proper pub dates in RFC 822 format
+- ✅ RSS auto-discovery links in HTML <head>
+- ✅ Cache-Control headers for CDN optimization
+
+**Technical Implementation:**
+- Route Handler: `app/[locale]/rss.xml/route.ts`
+  - Dynamic RSS generation per locale
+  - Fetches latest 50 posts from Supabase
+  - XML escaping function for security
+  - Proper Content-Type and Cache-Control headers
+- Layout: `app/[locale]/layout.tsx`
+  - Added RSS auto-discovery in generateMetadata()
+  - Alternate link with type `application/rss+xml`
+  - Multilingual feed titles
+- RSS Structure:
+  - Channel: Site info, language, lastBuildDate
+  - Items: Title, link, guid, description, content, pubDate, author, categories
+  - Namespaces: Atom, Content, Dublin Core
+  - Features: Enclosures for images, multiple categories per item
 
 ### 6.2 Performance
 - [x] Image optimization (next/image with Supabase CDN)

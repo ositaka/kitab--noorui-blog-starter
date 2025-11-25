@@ -164,6 +164,9 @@ export interface Database {
           content: string | null
           meta_title: string | null
           meta_description: string | null
+          og_image: string | null
+          focus_keyword: string | null
+          twitter_card: string | null
         }
         Insert: {
           id?: string
@@ -174,6 +177,9 @@ export interface Database {
           content?: string | null
           meta_title?: string | null
           meta_description?: string | null
+          og_image?: string | null
+          focus_keyword?: string | null
+          twitter_card?: string | null
         }
         Update: {
           id?: string
@@ -184,6 +190,9 @@ export interface Database {
           content?: string | null
           meta_title?: string | null
           meta_description?: string | null
+          og_image?: string | null
+          focus_keyword?: string | null
+          twitter_card?: string | null
         }
       }
     }
@@ -210,6 +219,9 @@ export interface Database {
           content: string | null
           meta_title: string | null
           meta_description: string | null
+          og_image: string | null
+          twitter_card: string | null
+          focus_keyword: string | null
         }
       }
       authors_localized: {

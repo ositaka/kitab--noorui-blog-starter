@@ -11,14 +11,29 @@ import type {
 // POSTS
 // ============================================
 
-export async function getPosts(options?: {
+type GetPostsOptions = {
   locale?: Locale
   limit?: number
   offset?: number
   featured?: boolean
   categoryId?: string
   withCount?: boolean
-}): Promise<PostWithRelations[] | { posts: PostWithRelations[]; total: number }> {
+}
+
+// Overload: when withCount is true, return object with posts and total
+export async function getPosts(
+  options: GetPostsOptions & { withCount: true }
+): Promise<{ posts: PostWithRelations[]; total: number }>
+
+// Overload: when withCount is false or undefined, return array
+export async function getPosts(
+  options?: GetPostsOptions & { withCount?: false }
+): Promise<PostWithRelations[]>
+
+// Implementation
+export async function getPosts(
+  options?: GetPostsOptions
+): Promise<PostWithRelations[] | { posts: PostWithRelations[]; total: number }> {
   const supabase = await createClient()
   const { locale = 'en', limit = 10, offset = 0, featured, categoryId, withCount = false } = options || {}
 
@@ -356,9 +371,8 @@ export async function getPostsByAuthor(
   locale: Locale = 'en',
   limit = 10
 ): Promise<PostWithRelations[]> {
-  return getPosts({ locale, limit, categoryId: undefined }).then((posts) =>
-    posts.filter((p) => p.author_id === authorId).slice(0, limit)
-  )
+  const posts = await getPosts({ locale, limit, categoryId: undefined })
+  return posts.filter((p) => p.author_id === authorId).slice(0, limit)
 }
 
 // ============================================

@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
-import { getAllPosts } from '@/lib/supabase/api'
-import type { Locale } from '@/lib/supabase/types'
+import { getPosts } from '@/lib/supabase/api'
+import type { Locale, PostWithRelations } from '@/lib/supabase/types'
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 const locales: Locale[] = ['en', 'ar', 'fr', 'ur']
@@ -65,7 +65,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Add all blog posts for each locale
   for (const locale of locales) {
     try {
-      const posts = await getAllPosts(locale)
+      const posts = await getPosts({ locale, limit: 1000 }) as PostWithRelations[]
 
       for (const post of posts) {
         const lastMod = post.updated_at || post.published_at || post.created_at || new Date().toISOString()

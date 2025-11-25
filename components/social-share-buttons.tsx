@@ -140,7 +140,7 @@ export function ShareButtons({ url, title, description, locale, className }: Sha
       <TooltipProvider>
         <div className="flex items-center gap-2 flex-wrap">
           {/* Native Share (mobile only) */}
-          {typeof navigator !== 'undefined' && navigator.share && (
+          {typeof navigator !== 'undefined' && typeof navigator.share === 'function' && (
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
