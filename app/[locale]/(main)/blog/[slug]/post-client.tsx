@@ -24,9 +24,10 @@ import {
   Button,
   ButtonArrow,
 } from 'noorui-rtl'
-import { Clock, Eye, Share2 } from 'lucide-react'
+import { Clock, Eye } from 'lucide-react'
 import type { Locale, PostWithRelations } from '@/lib/supabase/types'
 import { TableOfContents } from '@/components/blog/table-of-contents'
+import { ShareButtons } from '@/components/social-share-buttons'
 
 interface PostPageClientProps {
   locale: Locale
@@ -58,16 +59,6 @@ export function PostPageClient({ locale, post, relatedPosts, mdxContent }: PostP
   useEffect(() => {
     setMounted(true)
   }, [])
-
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: post.title,
-        text: post.excerpt || '',
-        url: window.location.href,
-      })
-    }
-  }
 
   return (
     <div className="container mx-auto max-w-6xl py-8 px-4">
@@ -176,18 +167,23 @@ export function PostPageClient({ locale, post, relatedPosts, mdxContent }: PostP
             </div>
           )}
 
-          {/* Share & Back */}
-          <div className="flex items-center justify-between">
+          {/* Share Buttons */}
+          <div className="mb-8">
+            <ShareButtons
+              url={typeof window !== 'undefined' ? window.location.href : ''}
+              title={post.title}
+              description={post.excerpt || post.title}
+              locale={locale}
+            />
+          </div>
+
+          {/* Back Button */}
+          <div className="flex items-center">
             <ButtonArrow variant="outline" direction="back" icon="arrow" asChild>
               <Link href={'/' + locale + '/blog'}>
                 {text.back}
               </Link>
             </ButtonArrow>
-
-            <Button variant="ghost" onClick={handleShare}>
-              <Share2 className="me-2 h-4 w-4" />
-              {text.share}
-            </Button>
           </div>
         </article>
 
