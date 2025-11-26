@@ -21,6 +21,15 @@ A production-ready multilingual blog starter showcasing RTL support and Arabic t
 - **Reading Progress**: Visual indicator of scroll progress
 - **Related Posts**: Automatically shows related content by category/tags
 
+### 💬 Comment System
+- **Threaded Discussions**: Nested replies up to 3 levels deep
+- **LinkedIn-Style Reactions**: Compact emoji reactions (👍❤️💡 20)
+- **Rich Features**: Edit, delete, pin comments, mark as answer
+- **RTL/LTR Support**: Bidirectional text with `dir="auto"`
+- **Keyboard Shortcuts**: Platform-aware shortcuts (⌘↵ on Mac, Ctrl↵ on Windows)
+- **Optimistic Updates**: Instant UI feedback for all interactions
+- **Moderation**: Pin/unpin, edit indicators, soft delete
+
 ### 🎨 Design
 - **Dark Mode**: Complete dark theme with smooth transitions
 - **Responsive**: Mobile-first design that works on all devices

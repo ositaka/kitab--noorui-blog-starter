@@ -856,3 +856,211 @@ When noorui-rtl is updated:
 4. **Clean up**
    - [ ] Remove sonner dependency if no longer needed
    - [ ] Update providers.tsx to use noorui-rtl Toaster if applicable
+
+---
+
+## Phase 9: Comment System
+
+### Overview
+Build a comprehensive, RTL-first comment system with threaded discussions, reactions, and moderation tools. Design follows LinkedIn-style (compact) reactions to minimize visual noise while maximizing engagement.
+
+**Full spec:** See `/docs/comment-system.md`
+
+### 9.1 Database & API (Day 1) - 4-5 hours
+- [ ] Create `comments` table with schema
+- [ ] Create `comment_reactions` table
+- [ ] Set up RLS policies
+- [ ] Add depth-check trigger (max 3 levels)
+- [ ] Create Server Actions for CRUD
+- [ ] Test with Supabase client
+
+### 9.2 Generic Components (Day 2) - 5-6 hours
+
+These are **reusable across the platform** and will be migrated to noorui-rtl:
+
+#### ReactionPicker
+- [ ] LinkedIn-style merged display `[👍❤️💡 20]`
+- [ ] Discord-style expanded option `[👍 12] [❤️ 5]`
+- [ ] Popover with all 6 reactions (👍 ❤️ 💡 🚀 🎉 👀)
+- [ ] Tooltip showing breakdown on hover
+- [ ] Active state for user's reactions
+- [ ] RTL/LTR support
+- **Location:** `components/ui/reaction-picker.tsx`
+
+#### UserBadge
+- [ ] Variants: author, moderator, verified, admin, custom
+- [ ] Optional icon support
+- [ ] Proper styling with noorui badge patterns
+- [ ] RTL/LTR support
+- **Location:** `components/ui/user-badge.tsx`
+
+#### ContentRenderer
+- [ ] Markdown rendering with syntax highlighting
+- [ ] `dir="auto"` for mixed RTL/LTR content
+- [ ] Code blocks always LTR
+- [ ] XSS protection (sanitization)
+- [ ] Prose styling
+- **Location:** `components/ui/content-renderer.tsx`
+
+#### useRelativeTime (Hook)
+- [ ] Format dates as "2 hours ago", "3 days ago"
+- [ ] Auto-update based on interval (default: 1 min)
+- [ ] Localized strings for all 4 locales
+- [ ] Cleanup on unmount
+- **Location:** `hooks/use-relative-time.ts`
+
+#### Kbd (Keyboard Shortcut)
+- [ ] Platform-aware display (⌘ on Mac, Ctrl on Windows/Linux)
+- [ ] Key combination support (`mod`, `enter`, `esc`, etc.)
+- [ ] Multiple variants (default, outline, ghost)
+- [ ] Multiple sizes (sm, md, lg)
+- [ ] Symbol mapping (↵ for Enter, ⌘ for Cmd, etc.)
+- [ ] Monospace font for consistency
+- [ ] Subtle styling matching noorui.com search component
+- [ ] Can be embedded inside buttons or standalone
+- [ ] RTL/LTR support
+- **Location:** `components/ui/kbd.tsx`
+- **Example:** `<Button>Submit <Kbd keys={['mod', 'enter']} /></Button>`
+
+### 9.3 Comment Components (Day 3) - 5-6 hours
+
+#### CommentSection (Container)
+- [ ] Fetches comments from Supabase
+- [ ] Sort options (newest, oldest, most reactions)
+- [ ] Pagination (load more)
+- [ ] Empty state
+- [ ] Loading state (skeleton)
+- **Location:** `components/comments/comment-section.tsx`
+
+#### Comment (Display)
+- [ ] Avatar + user info + badges
+- [ ] ContentRenderer for comment text
+- [ ] ReactionPicker integration
+- [ ] Reply/Edit/Delete buttons
+- [ ] Relative timestamp with useRelativeTime
+- [ ] DropdownMenu for actions
+- [ ] RTL/LTR layout
+- **Location:** `components/comments/comment.tsx`
+
+#### CommentForm (Editor)
+- [ ] RichTextEditor for markdown input
+- [ ] Character counter (max 5000)
+- [ ] Submit/Cancel buttons
+- [ ] Optimistic updates
+- [ ] Error handling
+- [ ] RTL/LTR support
+- **Location:** `components/comments/comment-form.tsx`
+
+#### CommentThread (Threading)
+- [ ] Recursive rendering up to maxDepth (3)
+- [ ] Indentation with logical CSS properties
+- [ ] Reply form state management
+- [ ] RTL-aware nesting
+- **Location:** `components/comments/comment-thread.tsx`
+
+### 9.4 Features & Polish (Day 4) - 4-5 hours
+
+**Moderation:**
+- [ ] Pin comment (author/moderator)
+- [ ] Mark as answer (author)
+- [ ] Edit indicator ("edited X ago")
+- [ ] Soft delete with "[deleted]" placeholder
+- [ ] Report/flag system
+
+**UX Polish:**
+- [ ] Optimistic updates (instant feedback)
+- [ ] Loading states (Skeleton)
+- [ ] Error boundaries
+- [ ] Empty states
+- [ ] Smooth animations
+- [ ] Permalink support (`#comment-123`)
+- [ ] Keyboard shortcuts (R, E, Cmd+Enter)
+
+**Testing:**
+- [ ] Full integration test
+- [ ] All 4 locales (en, ar, fr, ur)
+- [ ] Mixed RTL/LTR content
+- [ ] Threading depth limits
+- [ ] Cross-browser testing
+- [ ] Mobile responsive
+- [ ] Accessibility audit
+- [ ] Performance check
+
+### 9.5 Components for Migration to noorui-rtl
+
+After successful implementation in Kitab, these components will be extracted to noorui-rtl v0.4.0:
+
+**Generic Components (New):**
+1. ✅ **ReactionPicker** - `components/ui/reaction-picker.tsx`
+   - Reusable for posts, messages, reviews, etc.
+   - LinkedIn (compact) + Discord (expanded) modes
+
+2. ✅ **UserBadge** - `components/ui/user-badge.tsx`
+   - Role/status badges (author, moderator, verified, admin)
+   - Custom variant support
+
+3. ✅ **ContentRenderer** - `components/ui/content-renderer.tsx`
+   - Markdown renderer with RTL/LTR auto-detection
+   - XSS protection, code highlighting
+
+4. ✅ **useRelativeTime** - `hooks/use-relative-time.ts`
+   - Relative timestamp hook with auto-updates
+   - Localized for all 4 locales
+
+5. ✅ **Kbd** - `components/ui/kbd.tsx`
+   - Keyboard shortcut display with platform detection
+   - Supports key combinations (⌘↵, Ctrl+Enter, etc.)
+   - Multiple variants and sizes
+
+**Comment System Components (New):**
+6. ✅ **CommentSection** - `components/comments/comment-section.tsx`
+7. ✅ **Comment** - `components/comments/comment.tsx`
+8. ✅ **CommentForm** - `components/comments/comment-form.tsx`
+9. ✅ **CommentThread** - `components/comments/comment-thread.tsx`
+
+### 9.6 Documentation
+
+**Guides (noorui.com):**
+- `/docs/guides/comment-system` - Full design spec, philosophy, RTL considerations
+
+**Component Docs (noorui.com):**
+- `/components/reaction-picker` - API reference
+- `/components/user-badge` - API reference
+- `/components/content-renderer` - API reference
+- `/components/kbd` - API reference
+- `/components/comment-section` - API reference
+- `/components/comment` - API reference
+- `/components/comment-form` - API reference
+
+**Examples (noorui.com):**
+- `/examples/comment-system` - Live interactive demo
+
+### 9.7 Future Enhancements
+
+**v1.1 - Real-time:**
+- [ ] Supabase Realtime integration
+- [ ] Live comment updates
+- [ ] "New comments" notification banner
+- [ ] Typing indicators
+
+**v1.2 - Advanced:**
+- [ ] @mention notifications
+- [ ] Email notifications (SendGrid)
+- [ ] Spam detection (Akismet)
+- [ ] Comment search
+- [ ] Export thread as PDF
+
+**v1.3 - Gamification:**
+- [ ] User reputation points
+- [ ] Achievement badges
+- [ ] Leaderboard
+- [ ] "Helpful" marking by author
+
+---
+
+## Notes
+
+- Comment system emphasizes **reusability** - generic components (ReactionPicker, UserBadge, ContentRenderer) are useful across the entire platform
+- Design prioritizes **content over noise** - LinkedIn-style reactions keep focus on writing
+- All components built **RTL-first** with logical CSS properties
+- Follows noorui design language - Card-based, proper spacing, subtle borders

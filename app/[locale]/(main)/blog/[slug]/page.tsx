@@ -14,6 +14,7 @@ import { Figure, ImageGrid } from '@/components/mdx/figure'
 import { MediaEmbed, YouTube, Vimeo, UrlEmbed } from '@/components/mdx/media-embed'
 import { CodeBlock } from '@/components/mdx/code-block'
 import { WideBox } from '@/components/mdx/wide-box'
+import { getUser } from '@/lib/supabase/auth'
 
 // Shiki syntax highlighting options
 const prettyCodeOptions: PrettyCodeOptions = {
@@ -174,6 +175,15 @@ export default async function PostPage({ params }: Props) {
 
   const relatedPosts = await getRelatedPosts(slug, post.category_id || '', locale, 3, post.tags || [])
 
+  // Get current user for comments (only real authenticated users, not guests)
+  const authUser = await getUser()
+  const currentUser = authUser && authUser.role !== 'guest' ? {
+    id: authUser.id,
+    name: authUser.name,
+    email: authUser.email,
+    avatar: authUser.avatar,
+  } : undefined
+
   // JSON-LD structured data for SEO
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
   const authorName = post.author?.name || 'Kitab'
@@ -238,6 +248,7 @@ export default async function PostPage({ params }: Props) {
         post={post}
         relatedPosts={relatedPosts}
         mdxContent={mdxContent}
+        currentUser={currentUser}
       />
     </>
   )

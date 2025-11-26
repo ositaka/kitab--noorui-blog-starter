@@ -28,12 +28,19 @@ import { Clock, Eye } from 'lucide-react'
 import type { Locale, PostWithRelations } from '@/lib/supabase/types'
 import { TableOfContents } from '@/components/blog/table-of-contents'
 import { ShareButtons } from '@/components/social-share-buttons'
+import { CommentSection } from '@/components/comments'
 
 interface PostPageClientProps {
   locale: Locale
   post: PostWithRelations
   relatedPosts: PostWithRelations[]
   mdxContent: ReactNode | null
+  currentUser?: {
+    id: string
+    name: string
+    email: string
+    avatar?: string
+  }
 }
 
 const pageText: Record<Locale, { home: string; blog: string; related: string; back: string; min: string; share: string }> = {
@@ -43,7 +50,7 @@ const pageText: Record<Locale, { home: string; blog: string; related: string; ba
   ur: { home: 'ہوم', blog: 'بلاگ', related: 'متعلقہ مضامین', back: 'بلاگ پر واپس', min: 'منٹ پڑھنے کا وقت', share: 'شیئر کریں' },
 }
 
-export function PostPageClient({ locale, post, relatedPosts, mdxContent }: PostPageClientProps) {
+export function PostPageClient({ locale, post, relatedPosts, mdxContent, currentUser }: PostPageClientProps) {
   const text = pageText[locale]
   const isRTL = locale === 'ar' || locale === 'ur'
   const [mounted, setMounted] = useState(false)
@@ -184,6 +191,19 @@ export function PostPageClient({ locale, post, relatedPosts, mdxContent }: PostP
                 {text.back}
               </Link>
             </ButtonArrow>
+          </div>
+
+          {/* Comment Section */}
+          <div className="mt-12">
+            <CommentSection
+              postId={post.id}
+              postAuthorId={post.author_id || undefined}
+              locale={locale}
+              currentUser={currentUser}
+              sortBy="newest"
+              maxDepth={3}
+              enableReactions={true}
+            />
           </div>
         </article>
 
