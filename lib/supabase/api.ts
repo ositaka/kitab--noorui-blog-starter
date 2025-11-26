@@ -1,4 +1,5 @@
-import { createClient } from './server'
+import { cache } from 'react'
+import { createClient, createBuildClient } from './server'
 import type {
   Locale,
   PostLocalized,
@@ -102,10 +103,11 @@ export async function getPosts(
   return withCount ? { posts: enrichedPosts, total: count || 0 } : enrichedPosts
 }
 
-export async function getPostBySlug(
+// Wrap with cache() to deduplicate calls across generateMetadata and page component
+export const getPostBySlug = cache(async (
   slug: string,
   locale: Locale = 'en'
-): Promise<PostWithRelations | null> {
+): Promise<PostWithRelations | null> => {
   const supabase = await createClient()
 
   const { data, error } = await supabase
@@ -151,7 +153,7 @@ export async function getPostBySlug(
     author: authorData,
     category: categoryData,
   } as PostWithRelations
-}
+})
 
 export async function getFeaturedPosts(
   locale: Locale = 'en',
@@ -160,13 +162,31 @@ export async function getFeaturedPosts(
   return getPosts({ locale, limit, featured: true })
 }
 
-export async function getRelatedPosts(
+// Get all post slugs for static generation (all locales)
+// Uses build-time client (no cookies) - safe for generateStaticParams
+export async function getAllPostSlugs(): Promise<Array<{ locale: Locale; slug: string }>> {
+  const supabase = createBuildClient()
+
+  const { data, error } = await supabase
+    .from('posts_localized')
+    .select('locale, slug')
+    .eq('is_published', true)
+
+  if (error || !data) {
+    console.error('Error fetching all post slugs:', error)
+    return []
+  }
+
+  return data as Array<{ locale: Locale; slug: string }>
+}
+
+export const getRelatedPosts = cache(async (
   currentSlug: string,
   categoryId: string,
   locale: Locale = 'en',
   limit = 3,
   currentTags?: string[]
-): Promise<PostWithRelations[]> {
+): Promise<PostWithRelations[]> => {
   const supabase = await createClient()
 
   // Fetch more posts than needed for scoring
@@ -255,7 +275,7 @@ export async function getRelatedPosts(
     author: post.author_id ? authorsMap.get(post.author_id) || null : null,
     category: post.category_id ? categoriesMap.get(post.category_id) || null : null,
   })) as PostWithRelations[]
-}
+})
 
 export async function getPostsByTag(
   tag: string,
@@ -379,7 +399,7 @@ export async function getPostsByAuthor(
 // CATEGORIES
 // ============================================
 
-export async function getCategories(locale: Locale = 'en'): Promise<CategoryLocalized[]> {
+export const getCategories = cache(async (locale: Locale = 'en'): Promise<CategoryLocalized[]> => {
   const supabase = await createClient()
 
   const { data, error } = await supabase
@@ -394,7 +414,7 @@ export async function getCategories(locale: Locale = 'en'): Promise<CategoryLoca
   }
 
   return (data || []) as CategoryLocalized[]
-}
+})
 
 export async function getCategoryBySlug(
   slug: string,

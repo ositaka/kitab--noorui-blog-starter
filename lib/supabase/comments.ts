@@ -454,3 +454,85 @@ export async function toggleReaction(
     return { success: false, error: 'Failed to toggle reaction' }
   }
 }
+
+// ============================================
+// ADMIN FUNCTIONS
+// ============================================
+
+export interface RecentComment {
+  id: string
+  content: string
+  created_at: string
+  user_name: string
+  user_avatar: string | null
+  post_slug: string
+  post_title: string
+}
+
+/**
+ * Get recent comments for admin dashboard
+ * Fetches the most recent comments across all posts with post and user info
+ */
+export async function getRecentComments(limit = 10): Promise<RecentComment[]> {
+  const supabase = await createClient()
+
+  try {
+    // Fetch recent comments with user info
+    const { data: comments, error } = await supabase
+      .from('comments')
+      .select(`
+        id,
+        content,
+        created_at,
+        post_id,
+        user_id
+      `)
+      .eq('is_deleted', false)
+      .order('created_at', { ascending: false })
+      .limit(limit)
+
+    if (error) throw error
+    if (!comments || comments.length === 0) return []
+
+    // Get unique post IDs and user IDs
+    const postIds = [...new Set(comments.map(c => c.post_id))]
+    const userIds = [...new Set(comments.map(c => c.user_id).filter(Boolean))]
+
+    // Fetch post info (from posts_localized for titles)
+    const { data: posts } = await supabase
+      .from('posts_localized')
+      .select('id, slug, title, locale')
+      .in('id', postIds)
+      .eq('locale', 'en') // Use English titles for admin dashboard
+
+    // Fetch user info from auth.users
+    const { data: users } = await supabase.auth.admin.listUsers()
+
+    // Create maps for quick lookup
+    const postsMap = new Map(posts?.map(p => [p.id, p]) || [])
+    const usersMap = new Map(
+      users.users
+        ?.filter(u => userIds.includes(u.id))
+        .map(u => [u.id, u]) || []
+    )
+
+    // Enrich comments with post and user info
+    return comments.map(comment => {
+      const post = postsMap.get(comment.post_id)
+      const user = comment.user_id ? usersMap.get(comment.user_id) : null
+
+      return {
+        id: comment.id,
+        content: comment.content,
+        created_at: comment.created_at,
+        user_name: user?.user_metadata?.name || user?.user_metadata?.full_name || user?.email || 'Anonymous',
+        user_avatar: user?.user_metadata?.avatar_url || null,
+        post_slug: post?.slug || '',
+        post_title: post?.title || 'Unknown Post',
+      }
+    })
+  } catch (error) {
+    console.error('Error fetching recent comments:', error)
+    return []
+  }
+}

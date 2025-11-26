@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { getPostBySlug, getRelatedPosts, incrementPostViews } from '@/lib/supabase/api'
+import { getPostBySlug, getRelatedPosts, incrementPostViews, getAllPostSlugs } from '@/lib/supabase/api'
 import type { Locale } from '@/lib/supabase/types'
 import { PostPageClient } from './post-client'
 import type { Metadata } from 'next'
@@ -71,6 +71,19 @@ const mdxComponents = {
 
 interface Props {
   params: Promise<{ locale: string; slug: string }>
+}
+
+// Enable ISR (Incremental Static Regeneration) - revalidate every hour
+export const revalidate = 3600 // 1 hour in seconds
+
+// Generate static params for all blog posts at build time (SSG)
+export async function generateStaticParams() {
+  const posts = await getAllPostSlugs()
+
+  return posts.map((post) => ({
+    locale: post.locale,
+    slug: post.slug,
+  }))
 }
 
 // Generate metadata for SEO and Open Graph
@@ -173,10 +186,13 @@ export default async function PostPage({ params }: Props) {
     // Silently ignore errors - view tracking is not critical
   })
 
-  const relatedPosts = await getRelatedPosts(slug, post.category_id || '', locale, 3, post.tags || [])
+  // Parallelize fetching related posts and user
+  const [relatedPosts, authUser] = await Promise.all([
+    getRelatedPosts(slug, post.category_id || '', locale, 3, post.tags || []),
+    getUser(),
+  ])
 
   // Get current user for comments (only real authenticated users, not guests)
-  const authUser = await getUser()
   const currentUser = authUser && authUser.role !== 'guest' ? {
     id: authUser.id,
     name: authUser.name,
