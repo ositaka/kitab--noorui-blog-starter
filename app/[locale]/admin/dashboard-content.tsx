@@ -50,6 +50,7 @@ const translations: Record<Locale, {
   published: string
   draft: string
   viewAll: string
+  viewAllComments: string
   createNew: string
   noPosts: string
   noComments: string
@@ -72,6 +73,7 @@ const translations: Record<Locale, {
     published: 'Published',
     draft: 'Draft',
     viewAll: 'View All Posts',
+    viewAllComments: 'View All Comments',
     createNew: 'Create New Post',
     noPosts: 'No posts yet. Create your first post to get started.',
     noComments: 'No comments yet.',
@@ -94,6 +96,7 @@ const translations: Record<Locale, {
     published: 'Publié',
     draft: 'Brouillon',
     viewAll: 'Voir tous les articles',
+    viewAllComments: 'Voir tous les commentaires',
     createNew: 'Créer un nouvel article',
     noPosts: 'Aucun article. Créez votre premier article pour commencer.',
     noComments: 'Aucun commentaire encore.',
@@ -116,6 +119,7 @@ const translations: Record<Locale, {
     published: 'منشور',
     draft: 'مسودة',
     viewAll: 'عرض جميع المنشورات',
+    viewAllComments: 'عرض جميع التعليقات',
     createNew: 'إنشاء منشور جديد',
     noPosts: 'لا توجد منشورات بعد. أنشئ منشورك الأول للبدء.',
     noComments: 'لا توجد تعليقات بعد.',
@@ -138,6 +142,7 @@ const translations: Record<Locale, {
     published: 'شائع',
     draft: 'مسودہ',
     viewAll: 'تمام پوسٹس دیکھیں',
+    viewAllComments: 'تمام تبصرے دیکھیں',
     createNew: 'نئی پوسٹ بنائیں',
     noPosts: 'ابھی کوئی پوسٹس نہیں۔ شروع کرنے کے لیے اپنی پہلی پوسٹ بنائیں۔',
     noComments: 'ابھی کوئی تبصرے نہیں۔',
@@ -284,14 +289,16 @@ export function DashboardContent({
 
       {/* Recent Comments */}
       <Card>
-        <CardHeader>
-          <div className="flex items-center gap-2">
-            <MessageSquare className="h-5 w-5" />
-            <div>
-              <CardTitle>{t.recentComments}</CardTitle>
-              <CardDescription>{t.recentCommentsDescription}</CardDescription>
-            </div>
+        <CardHeader className="flex flex-row items-center justify-between">
+          <div>
+            <CardTitle>{t.recentComments}</CardTitle>
+            <CardDescription>{t.recentCommentsDescription}</CardDescription>
           </div>
+          <ButtonArrow variant="outline" size="sm" direction="forward" icon="arrow" asChild>
+            <Link href={`/${locale}/admin/comments`}>
+              {t.viewAllComments}
+            </Link>
+          </ButtonArrow>
         </CardHeader>
         <CardContent>
           {recentComments.length === 0 ? (

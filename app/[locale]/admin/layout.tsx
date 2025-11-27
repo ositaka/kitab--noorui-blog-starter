@@ -3,7 +3,7 @@
 import * as React from 'react'
 import { useParams, usePathname } from 'next/navigation'
 import { DashboardShell, DirectionProvider, Badge } from 'noorui-rtl'
-import { FileText, Plus, LayoutDashboard, Settings, Eye } from 'lucide-react'
+import { FileText, Plus, LayoutDashboard, Settings, Eye, MessageSquare } from 'lucide-react'
 import { LanguageSwitcher } from '@/components/blog/language-switcher'
 import { ThemeSwitcher } from '@/components/blog/theme-switcher'
 import type { Locale } from '@/lib/supabase/types'
@@ -20,6 +20,7 @@ const localeConfig: Record<Locale, { dir: 'ltr' | 'rtl' }> = {
 const navTranslations: Record<Locale, {
   dashboard: string
   posts: string
+  comments: string
   createNew: string
   settings: string
   guestMode: string
@@ -27,6 +28,7 @@ const navTranslations: Record<Locale, {
   en: {
     dashboard: 'Dashboard',
     posts: 'Posts',
+    comments: 'Comments',
     createNew: 'Create New',
     settings: 'Settings',
     guestMode: 'View Only',
@@ -34,6 +36,7 @@ const navTranslations: Record<Locale, {
   fr: {
     dashboard: 'Tableau de bord',
     posts: 'Articles',
+    comments: 'Commentaires',
     createNew: 'Créer',
     settings: 'Paramètres',
     guestMode: 'Lecture seule',
@@ -41,6 +44,7 @@ const navTranslations: Record<Locale, {
   ar: {
     dashboard: 'لوحة التحكم',
     posts: 'المنشورات',
+    comments: 'التعليقات',
     createNew: 'إنشاء جديد',
     settings: 'الإعدادات',
     guestMode: 'للعرض فقط',
@@ -48,6 +52,7 @@ const navTranslations: Record<Locale, {
   ur: {
     dashboard: 'ڈیش بورڈ',
     posts: 'پوسٹس',
+    comments: 'تبصرے',
     createNew: 'نئی بنائیں',
     settings: 'ترتیبات',
     guestMode: 'صرف دیکھیں',
@@ -71,6 +76,12 @@ const getNavItems = (locale: Locale) => {
       titleAr: arT.posts,
       href: `/${locale}/admin/posts`,
       icon: <FileText className="h-5 w-5" />,
+    },
+    {
+      title: t.comments,
+      titleAr: arT.comments,
+      href: `/${locale}/admin/comments`,
+      icon: <MessageSquare className="h-5 w-5" />,
     },
     {
       title: t.createNew,
