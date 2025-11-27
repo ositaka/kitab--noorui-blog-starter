@@ -77,9 +77,9 @@ BEGIN
   WHILE current_parent IS NOT NULL LOOP
     depth := depth + 1;
 
-    -- Max depth is 3 levels
-    IF depth >= 3 THEN
-      RAISE EXCEPTION 'Maximum comment depth (3 levels) exceeded';
+    -- Max depth is 1 level (LinkedIn-style: only one level of replies)
+    IF depth >= 2 THEN
+      RAISE EXCEPTION 'Maximum comment depth (1 level) exceeded - replies to replies are not allowed';
     END IF;
 
     -- Get next parent

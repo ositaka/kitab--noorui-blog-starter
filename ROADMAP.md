@@ -859,57 +859,62 @@ When noorui-rtl is updated:
 
 ---
 
-## Phase 9: Comment System
+## Phase 9: Comment System ⚠️ IMPLEMENTED (Needs Polish)
 
 ### Overview
 Build a comprehensive, RTL-first comment system with threaded discussions, reactions, and moderation tools. Design follows LinkedIn-style (compact) reactions to minimize visual noise while maximizing engagement.
 
 **Full spec:** See `/docs/comment-system.md`
 
-### 9.1 Database & API (Day 1) - 4-5 hours
-- [ ] Create `comments` table with schema
-- [ ] Create `comment_reactions` table
-- [ ] Set up RLS policies
-- [ ] Add depth-check trigger (max 3 levels)
-- [ ] Create Server Actions for CRUD
-- [ ] Test with Supabase client
+**Status:** Core features implemented and functional. Build errors fixed. Some polish items remaining (see Known Issues below).
 
-### 9.2 Generic Components (Day 2) - 5-6 hours
+### 9.1 Database & API ✅ COMPLETED
+- [x] Create `comments` table with schema
+- [x] Create `comment_reactions` table
+- [x] Set up RLS policies
+- [x] Add depth-check trigger (max 1 level, LinkedIn-style: no replies to replies)
+- [x] Create Server Actions for CRUD (create, update, delete, toggle reactions, toggle pin)
+- [x] Test with Supabase client
+- [x] Add user display info denormalization (user_name, user_avatar)
+- [x] Admin functions (getRecentComments, getAllCommentsAdmin)
 
-These are **reusable across the platform** and will be migrated to noorui-rtl:
+### 9.2 Generic Components ✅ COMPLETED
 
-#### ReactionPicker
-- [ ] LinkedIn-style merged display `[👍❤️💡 20]`
-- [ ] Discord-style expanded option `[👍 12] [❤️ 5]`
-- [ ] Popover with all 6 reactions (👍 ❤️ 💡 🚀 🎉 👀)
-- [ ] Tooltip showing breakdown on hover
-- [ ] Active state for user's reactions
-- [ ] RTL/LTR support
+These are **reusable across the platform** and ready for migration to noorui-rtl:
+
+#### ReactionPicker ✅
+- [x] LinkedIn-style merged display `[👍❤️💡 20]`
+- [x] Discord-style expanded option `[👍 12] [❤️ 5]`
+- [x] Popover with all 6 reactions (👍 ❤️ 💡 🚀 🎉 👀)
+- [x] Tooltip showing breakdown on hover
+- [x] Active state for user's reactions
+- [x] RTL/LTR support
+- [x] One reaction per user (LinkedIn-style)
 - **Location:** `components/ui/reaction-picker.tsx`
 
-#### UserBadge
-- [ ] Variants: author, moderator, verified, admin, custom
-- [ ] Optional icon support
-- [ ] Proper styling with noorui badge patterns
-- [ ] RTL/LTR support
+#### UserBadge ✅
+- [x] Variants: author, moderator, verified, admin, custom
+- [x] Optional icon support
+- [x] Proper styling with noorui badge patterns
+- [x] RTL/LTR support
 - **Location:** `components/ui/user-badge.tsx`
 
-#### ContentRenderer
-- [ ] Markdown rendering with syntax highlighting
-- [ ] `dir="auto"` for mixed RTL/LTR content
-- [ ] Code blocks always LTR
-- [ ] XSS protection (sanitization)
-- [ ] Prose styling
+#### ContentRenderer ✅
+- [x] Markdown rendering with syntax highlighting
+- [x] `dir="auto"` for mixed RTL/LTR content
+- [x] Code blocks always LTR
+- [x] XSS protection (sanitization)
+- [x] Prose styling
 - **Location:** `components/ui/content-renderer.tsx`
 
-#### useRelativeTime (Hook)
-- [ ] Format dates as "2 hours ago", "3 days ago"
-- [ ] Auto-update based on interval (default: 1 min)
-- [ ] Localized strings for all 4 locales
-- [ ] Cleanup on unmount
-- **Location:** `hooks/use-relative-time.ts`
+#### useRelativeTime (Hook) ✅
+- [x] Format dates as "2 hours ago", "3 days ago"
+- [x] Auto-update based on interval (default: 1 min)
+- [x] Localized strings for all 4 locales
+- [x] Cleanup on unmount
+- **Location:** `lib/hooks/use-relative-time.ts`
 
-#### Kbd (Keyboard Shortcut)
+#### Kbd (Keyboard Shortcut) ⚠️ NOT IMPLEMENTED
 - [ ] Platform-aware display (⌘ on Mac, Ctrl on Windows/Linux)
 - [ ] Key combination support (`mod`, `enter`, `esc`, etc.)
 - [ ] Multiple variants (default, outline, ghost)
@@ -921,70 +926,77 @@ These are **reusable across the platform** and will be migrated to noorui-rtl:
 - [ ] RTL/LTR support
 - **Location:** `components/ui/kbd.tsx`
 - **Example:** `<Button>Submit <Kbd keys={['mod', 'enter']} /></Button>`
+- **Note:** Not critical - can be implemented later
 
-### 9.3 Comment Components (Day 3) - 5-6 hours
+### 9.3 Comment Components ✅ COMPLETED
 
-#### CommentSection (Container)
-- [ ] Fetches comments from Supabase
-- [ ] Sort options (newest, oldest, most reactions)
-- [ ] Pagination (load more)
-- [ ] Empty state
-- [ ] Loading state (skeleton)
+#### CommentSection (Container) ✅
+- [x] Fetches comments from Supabase
+- [x] Sort options (newest, oldest, most reactions)
+- [x] Pagination (load more)
+- [x] Empty state
+- [x] Loading state (skeleton)
+- [x] Multilingual support (en, ar, fr, ur)
 - **Location:** `components/comments/comment-section.tsx`
 
-#### Comment (Display)
-- [ ] Avatar + user info + badges
-- [ ] ContentRenderer for comment text
-- [ ] ReactionPicker integration
-- [ ] Reply/Edit/Delete buttons
-- [ ] Relative timestamp with useRelativeTime
-- [ ] DropdownMenu for actions
-- [ ] RTL/LTR layout
+#### Comment (Display) ✅
+- [x] Avatar + user info + badges
+- [x] ContentRenderer for comment text
+- [x] ReactionPicker integration
+- [x] Reply/Edit/Delete buttons
+- [x] Relative timestamp with useRelativeTime
+- [x] DropdownMenu for actions
+- [x] RTL/LTR layout
+- [x] Pin/Answer badges
+- [x] Edit mode inline
 - **Location:** `components/comments/comment.tsx`
 
-#### CommentForm (Editor)
-- [ ] RichTextEditor for markdown input
-- [ ] Character counter (max 5000)
-- [ ] Submit/Cancel buttons
-- [ ] Optimistic updates
-- [ ] Error handling
-- [ ] RTL/LTR support
+#### CommentForm (Editor) ✅
+- [x] Textarea for text input
+- [x] Character counter (max 5000)
+- [x] Submit/Cancel buttons
+- [x] Optimistic updates
+- [x] Error handling
+- [x] RTL/LTR support
+- [x] Edit and reply modes
 - **Location:** `components/comments/comment-form.tsx`
 
-#### CommentThread (Threading)
-- [ ] Recursive rendering up to maxDepth (3)
-- [ ] Indentation with logical CSS properties
-- [ ] Reply form state management
-- [ ] RTL-aware nesting
+#### CommentThread (Threading) ✅
+- [x] Recursive rendering up to maxDepth (1, LinkedIn-style: no replies to replies)
+- [x] Indentation with logical CSS properties
+- [x] Reply form state management
+- [x] RTL-aware nesting
 - **Location:** `components/comments/comment-thread.tsx`
 
-### 9.4 Features & Polish (Day 4) - 4-5 hours
+### 9.4 Features & Polish ⚠️ PARTIALLY COMPLETED
 
 **Moderation:**
-- [ ] Pin comment (author/moderator)
-- [ ] Mark as answer (author)
-- [ ] Edit indicator ("edited X ago")
-- [ ] Soft delete with "[deleted]" placeholder
-- [ ] Report/flag system
+- [x] Pin comment (author/moderator) - **Works but no auth check**
+- [x] Edit indicator ("edited X ago")
+- [x] Soft delete with "[deleted]" placeholder
+- [ ] Mark as answer (author) - **UI exists but not fully wired**
+- [ ] Report/flag system - **UI exists but not implemented**
 
 **UX Polish:**
-- [ ] Optimistic updates (instant feedback)
-- [ ] Loading states (Skeleton)
-- [ ] Error boundaries
-- [ ] Empty states
-- [ ] Smooth animations
-- [ ] Permalink support (`#comment-123`)
-- [ ] Keyboard shortcuts (R, E, Cmd+Enter)
+- [x] Optimistic updates (reactions)
+- [x] Loading states (Skeleton)
+- [x] Empty states
+- [x] Admin dashboard widget (recent comments)
+- [x] Admin comments management page
+- [ ] Error boundaries - **Not implemented**
+- [ ] Smooth animations - **Minimal**
+- [ ] Permalink support (`#comment-123`) - **Not implemented**
+- [ ] Keyboard shortcuts (R, E, Cmd+Enter) - **Not implemented (needs Kbd component)**
 
 **Testing:**
-- [ ] Full integration test
-- [ ] All 4 locales (en, ar, fr, ur)
-- [ ] Mixed RTL/LTR content
-- [ ] Threading depth limits
-- [ ] Cross-browser testing
-- [ ] Mobile responsive
-- [ ] Accessibility audit
-- [ ] Performance check
+- [x] Basic functionality tested
+- [x] All 4 locales (en, ar, fr, ur)
+- [x] Mixed RTL/LTR content
+- [x] Threading depth limits enforced
+- [ ] Cross-browser testing - **Not done**
+- [x] Mobile responsive
+- [ ] Accessibility audit - **Not done**
+- [ ] Performance check - **Not done**
 
 ### 9.5 Components for Migration to noorui-rtl
 
@@ -1055,6 +1067,62 @@ After successful implementation in Kitab, these components will be extracted to 
 - [ ] Achievement badges
 - [ ] Leaderboard
 - [ ] "Helpful" marking by author
+
+---
+
+## Known Issues & Technical Debt
+
+### Comment System (Phase 9)
+
+**🔴 CRITICAL (Blocking Production):**
+- None - All build errors fixed ✅
+
+**🟡 HIGH PRIORITY (Should Fix Soon):**
+1. **Hard Refresh Pattern** - Reply submission uses `window.location.reload()` instead of proper Next.js revalidation
+   - Location: `components/comments/comment.tsx:199`
+   - Impact: Poor UX, loses scroll position
+   - Fix: Use `router.refresh()` with proper cache revalidation
+
+2. **Admin Permissions Not Checked** - Pin/toggle features allow any authenticated user
+   - Location: `lib/supabase/comments.ts:374` (togglePinComment function)
+   - Impact: Security concern - non-authors can pin comments
+   - Fix: Check if user is post author or moderator before allowing pin
+
+3. **Pending Migrations Not Applied** - Several migration files exist in repo but may not be in Supabase
+   - Files:
+     - `supabase/migrations/20250127_add_user_display_to_comments.sql`
+     - `supabase/migrations/20250127_admin_permissions.sql`
+     - `supabase/migrations/20250127_fix_comment_delete_rls.sql`
+     - `supabase/migrations/20250127_update_comment_depth_linkedin.sql`
+   - Impact: Database may be missing columns or have incorrect RLS policies
+   - Fix: Run migrations or consolidate into single migration file
+
+**🟢 LOW PRIORITY (Nice to Have):**
+1. **Kbd Component Not Implemented** - Keyboard shortcuts display component missing
+   - Impact: No visual keyboard shortcuts in UI
+   - Not critical - can be added later
+
+2. **Mark as Answer Not Wired** - UI exists but functionality not complete
+   - Impact: Feature partially implemented
+   - Can be completed when needed
+
+3. **Report/Flag System Not Implemented** - UI shows option but no backend
+   - Impact: No moderation reporting
+   - Can be added in future moderation phase
+
+### General Technical Debt
+
+**Button Variant Inconsistency:**
+- ✅ **FIXED** - All `variant="default"` changed to `variant="primary"` or `variant="secondary"` to match noorui-rtl Button API
+- Fixed in:
+  - `app/[locale]/admin/comments/comments-content.tsx`
+  - `components/ui/reaction-picker.tsx`
+  - `lib/supabase/comments.ts` (TypeScript type annotations)
+
+**Middleware Deprecation:**
+- Next.js 16 warns: "The 'middleware' file convention is deprecated. Please use 'proxy' instead."
+- Impact: Future compatibility
+- Fix: Migrate to new proxy convention when stable
 
 ---
 

@@ -122,7 +122,7 @@ export function ReactionPicker({
               <TooltipTrigger asChild>
                 <PopoverTrigger asChild>
                   <Button
-                    variant={userReactions.length > 0 ? 'default' : 'ghost'}
+                    variant={userReactions.length > 0 ? 'secondary' : 'ghost'}
                     size="sm"
                     className={cn(
                       'h-8 gap-1.5 px-2',
@@ -162,7 +162,7 @@ export function ReactionPicker({
                 return (
                   <Button
                     key={emoji}
-                    variant={isActive ? 'default' : 'outline'}
+                    variant={isActive ? 'secondary' : 'outline'}
                     size="sm"
                     className="h-10 w-16 gap-1"
                     onClick={() => {
@@ -190,7 +190,7 @@ export function ReactionPicker({
       {reactions.map((reaction) => (
         <Button
           key={reaction.emoji}
-          variant={reaction.hasReacted ? 'default' : 'outline'}
+          variant={reaction.hasReacted ? 'secondary' : 'outline'}
           size="sm"
           className="h-8 gap-1 px-2"
           onClick={() => onReact(reaction.emoji)}
@@ -215,7 +215,7 @@ export function ReactionPicker({
               return (
                 <Button
                   key={emoji}
-                  variant={isActive ? 'default' : 'outline'}
+                  variant={isActive ? 'secondary' : 'outline'}
                   size="sm"
                   className="h-10 w-16"
                   onClick={() => onReact(emoji)}
