@@ -1174,6 +1174,256 @@ After successful implementation in Kitab, these components will be extracted to 
 
 ---
 
+## 🚀 Production Deployment & SEO Strategy
+
+### Deployment Configuration
+
+**Production URL:** `kitab.noorui.com`
+- ✅ Use branded subdomain for better memorability and professionalism
+- ✅ More suitable for marketing than generic "blog-starter" subdomain
+- ✅ Aligns with project name "Kitab" (Arabic for "book")
+
+**Action Items:**
+- [ ] Configure Vercel custom domain: kitab.noorui.com
+- [ ] Update environment variables in Vercel dashboard
+- [ ] Configure Supabase production database
+- [ ] Enable Supabase RLS policies for production
+- [ ] Configure Google OAuth for production domain
+- [ ] Test all 4 locales on production (en, ar, fr, ur)
+
+### SEO Optimization Strategy
+
+#### Meta Tags (Per Locale)
+
+**English (en):**
+```html
+<!-- Primary Meta Tags -->
+<title>Kitab - Multilingual Blog Starter for Next.js | RTL/LTR Support</title>
+<meta name="title" content="Kitab - Multilingual Blog Starter for Next.js | RTL/LTR Support" />
+<meta name="description" content="Production-ready multilingual blog with 4 languages (EN/AR/FR/UR), full RTL support, MDX content, comment system, and admin dashboard. Built with Next.js 16, Supabase, and Noor UI." />
+<meta name="keywords" content="multilingual blog, rtl blog, next.js blog, arabic blog, urdu blog, blog starter, mdx blog, supabase blog, noor ui" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kitab.noorui.com/" />
+<meta property="og:title" content="Kitab - Multilingual Blog Starter | 4 Languages • RTL/LTR" />
+<meta property="og:description" content="Production-ready multilingual blog with English, Arabic, French, and Urdu. Full RTL support, MDX content, and modern admin dashboard." />
+<meta property="og:image" content="https://kitab.noorui.com/og-image-en.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="ar_SA" />
+<meta property="og:locale:alternate" content="fr_FR" />
+<meta property="og:locale:alternate" content="ur_PK" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://kitab.noorui.com/" />
+<meta property="twitter:title" content="Kitab - Multilingual Blog Starter | 4 Languages • RTL/LTR" />
+<meta property="twitter:description" content="Production-ready multilingual blog with English, Arabic, French, and Urdu. Full RTL support." />
+<meta property="twitter:image" content="https://kitab.noorui.com/og-image-en.jpg" />
+
+<!-- Canonical & Hreflang -->
+<link rel="canonical" href="https://kitab.noorui.com/en" />
+<link rel="alternate" hreflang="en" href="https://kitab.noorui.com/en" />
+<link rel="alternate" hreflang="ar" href="https://kitab.noorui.com/ar" />
+<link rel="alternate" hreflang="fr" href="https://kitab.noorui.com/fr" />
+<link rel="alternate" hreflang="ur" href="https://kitab.noorui.com/ur" />
+<link rel="alternate" hreflang="x-default" href="https://kitab.noorui.com/en" />
+```
+
+**Arabic (ar):**
+```html
+<title>كتاب - منصة تدوين متعددة اللغات | دعم كامل للغة العربية</title>
+<meta name="title" content="كتاب - منصة تدوين متعددة اللغات | دعم كامل للغة العربية" />
+<meta name="description" content="منصة تدوين احترافية متعددة اللغات مع دعم كامل للغة العربية، 4 لغات (EN/AR/FR/UR)، محتوى MDX، نظام تعليقات، ولوحة تحكم إدارية. مبنية باستخدام Next.js 16 وSupabase وNoor UI." />
+<meta property="og:title" content="كتاب - منصة تدوين متعددة اللغات | 4 لغات • RTL/LTR" />
+<meta property="og:description" content="منصة تدوين احترافية بالعربية والإنجليزية والفرنسية والأردية. دعم كامل لاتجاه النص من اليمين لليسار." />
+<meta property="og:image" content="https://kitab.noorui.com/og-image-ar.jpg" />
+<link rel="canonical" href="https://kitab.noorui.com/ar" />
+```
+
+**French (fr):**
+```html
+<title>Kitab - Starter de Blog Multilingue | Support RTL/LTR</title>
+<meta name="title" content="Kitab - Starter de Blog Multilingue | Support RTL/LTR" />
+<meta name="description" content="Blog multilingue prêt pour la production avec 4 langues (EN/AR/FR/UR), support RTL complet, contenu MDX, système de commentaires et tableau de bord admin. Construit avec Next.js 16, Supabase et Noor UI." />
+<meta property="og:title" content="Kitab - Starter de Blog Multilingue | 4 Langues • RTL/LTR" />
+<meta property="og:image" content="https://kitab.noorui.com/og-image-fr.jpg" />
+<link rel="canonical" href="https://kitab.noorui.com/fr" />
+```
+
+**Urdu (ur):**
+```html
+<title>کتاب - کثیر لسانی بلاگ سٹارٹر | RTL/LTR سپورٹ</title>
+<meta name="title" content="کتاب - کثیر لسانی بلاگ سٹارٹر | RTL/LTR سپورٹ" />
+<meta name="description" content="4 زبانوں (EN/AR/FR/UR) کے ساتھ پیداوار کے لیے تیار کثیر لسانی بلاگ، مکمل RTL سپورٹ، MDX مواد، تبصرہ نظام، اور ایڈمن ڈیش بورڈ۔ Next.js 16، Supabase، اور Noor UI کے ساتھ بنایا گیا۔" />
+<meta property="og:title" content="کتاب - کثیر لسانی بلاگ سٹارٹر | 4 زبانیں • RTL/LTR" />
+<meta property="og:image" content="https://kitab.noorui.com/og-image-ur.jpg" />
+<link rel="canonical" href="https://kitab.noorui.com/ur" />
+```
+
+#### Structured Data (JSON-LD)
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Kitab",
+  "alternateName": ["كتاب", "کتاب"],
+  "url": "https://kitab.noorui.com",
+  "description": "Production-ready multilingual blog starter with full RTL/LTR support",
+  "inLanguage": ["en", "ar", "fr", "ur"],
+  "author": {
+    "@type": "Person",
+    "name": "Nuno Marques",
+    "url": "https://ositaka.com",
+    "sameAs": [
+      "https://github.com/ositaka",
+      "https://linkedin.com/in/ositaka"
+    ]
+  },
+  "creator": {
+    "@type": "Organization",
+    "name": "Noor UI",
+    "url": "https://noorui.com"
+  }
+}
+```
+
+#### Open Graph Images (1200×630px)
+
+**Design Recommendations:**
+
+**English OG Image (`og-image-en.jpg`):**
+- Headline: "Kitab"
+- Subheading: "Multilingual Blog Starter"
+- Features: "4 Languages • RTL/LTR • Next.js 16"
+- Visual: Show EN/AR text side-by-side demonstrating RTL
+- Footer: "kitab.noorui.com"
+
+**Arabic OG Image (`og-image-ar.jpg`):**
+- Right-to-left layout
+- Headline: "كتاب"
+- Subheading: "منصة تدوين متعددة اللغات"
+- Features: "4 لغات • RTL/LTR • Next.js 16"
+- Arabic typography prominent
+- Footer: "kitab.noorui.com"
+
+**French & Urdu OG Images:** Similar pattern localized
+
+#### Sitemap Configuration
+
+**Already Implemented:** ✅
+- Dynamic sitemap.xml generation
+- All 4 locales included
+- Blog posts with lastmod dates
+- Proper hreflang alternates
+- Priority and changefreq configured
+
+#### Robots.txt
+
+```txt
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://kitab.noorui.com/sitemap.xml
+
+# Disallow admin pages
+Disallow: /*/admin/
+Disallow: /api/
+
+# Allow all locales
+Allow: /en/
+Allow: /ar/
+Allow: /fr/
+Allow: /ur/
+```
+
+### Performance Optimization
+
+**Lighthouse Target Scores:**
+- ✅ Performance: 95+
+- ✅ Accessibility: 100
+- ✅ Best Practices: 100
+- ✅ SEO: 100
+
+**Optimizations:**
+- [ ] Enable Vercel Edge Functions for faster routing
+- [ ] Configure image optimization (Supabase CDN + Next/Image)
+- [ ] Enable compression (gzip/brotli)
+- [ ] Add service worker for offline support
+- [ ] Implement incremental static regeneration (ISR)
+- [ ] Add prefetching for critical routes
+
+### Analytics & Monitoring
+
+**Recommended Tools:**
+- [ ] Vercel Analytics (built-in)
+- [ ] Google Analytics 4 (multilingual tracking)
+- [ ] Plausible Analytics (privacy-focused alternative)
+- [ ] Vercel Speed Insights
+- [ ] Sentry (error tracking)
+
+**Custom Events to Track:**
+- Language switching (locale changes)
+- Comment submissions
+- Reaction clicks
+- Admin dashboard usage
+- Search queries
+- Blog post views by locale
+
+### Social Media Strategy
+
+**Twitter/X Announcement:**
+```
+🚀 Introducing Kitab - A production-ready multilingual blog starter
+
+✨ 4 languages (EN/AR/FR/UR)
+🌍 Full RTL/LTR support
+📝 MDX content with rich components
+💬 Comment system with reactions
+⚡ Built with Next.js 16 + Supabase
+
+Built with @NoorUI - the RTL-first React design system
+
+Live demo: kitab.noorui.com
+GitHub: [link]
+
+#NextJS #RTL #Multilingual #OpenSource
+```
+
+**LinkedIn Post:**
+```
+I'm excited to share Kitab - a multilingual blog starter I built to showcase Noor UI's RTL-first capabilities.
+
+🌐 Key Features:
+• 4 languages with seamless switching (English, Arabic, French, Urdu)
+• Production-ready admin dashboard
+• Modern comment system with emoji reactions
+• Full SEO optimization with per-locale meta tags
+• Built with Next.js 16, Supabase, and Noor UI
+
+This project solves a real problem: most blog starters ignore RTL languages or treat them as an afterthought. Kitab puts Arabic and Urdu on equal footing with LTR languages.
+
+Perfect for developers building multilingual content platforms, especially for MENA and South Asian markets.
+
+Try it live: kitab.noorui.com
+Source code: [GitHub link]
+
+#WebDevelopment #RTL #NextJS #OpenSource #Multilingual
+```
+
+### GitHub Repository Tags
+
+**Topics to Add:**
+```
+blog, starter-template, nextjs, react, typescript, supabase, mdx,
+multilingual, rtl, ltr, arabic, urdu, french, i18n, cms,
+noor-ui, tailwindcss, admin-dashboard, comment-system
+```
+
+---
+
 ## Notes
 
 - Comment system emphasizes **reusability** - generic components (ReactionPicker, UserBadge, ContentRenderer) are useful across the entire platform
