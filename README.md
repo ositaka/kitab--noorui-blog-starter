@@ -2,7 +2,7 @@
 
 A production-ready multilingual blog starter showcasing RTL support and Arabic typography, built with [Noor UI](https://noorui.com), Next.js 16, and Supabase.
 
-**Live Demo**: [kitab.noorui.com](https://kitab.noorui.com) *(coming soon)*
+**Live Demo**: [blog-starter.noorui.com](https://blog-starter.noorui.com)
 
 ## ✨ Features
 
@@ -85,7 +85,7 @@ A production-ready multilingual blog starter showcasing RTL support and Arabic t
 ### 1. Clone and Install
 
 ```bash
-git clone https://github.com/yourusername/kitab.git
+git clone https://github.com/ositaka/noorui-blog-starter.git kitab
 cd kitab
 npm install
 ```
@@ -297,9 +297,20 @@ Kitab supports two modes:
 - Includes author, publisher, dates
 - Validates with Google Rich Results Test
 
-## License
+## 👨‍💻 Author
 
-MIT
+**Nuno Marques** ([@ositaka](https://github.com/ositaka))
+- Website: [ositaka.com](https://ositaka.com)
+- Email: info@ositaka.com
+- GitHub: [@ositaka](https://github.com/ositaka)
+
+Built as a demonstration of [Noor UI](https://noorui.com) - the RTL-first React design system.
+
+## 📄 License
+
+MIT License - see the [LICENSE](LICENSE) file for details.
+
+Copyright (c) 2024-2025 Nuno Marques
 
 ## Learn More
 

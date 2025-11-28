@@ -5,7 +5,7 @@
   "homepage": "https://blog-starter.noorui.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ositaka/noor-ui"
+    "url": "https://github.com/ositaka/noorui-blog-starter"
   },
   "private": true,
   "scripts": {
