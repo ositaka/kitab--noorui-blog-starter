@@ -765,6 +765,12 @@ Description of each variant with visual examples.
 #### Added in noorui-rtl v0.3.14
 - [x] **ButtonArrow component** - New button variant with semantic direction support (`forward`/`back`). Arrows automatically flip in RTL mode using `rtl:rotate-180`. Replaces the need for manual arrow icon handling with direction-aware buttons.
 
+#### Updated to noorui-rtl v0.4.4 (2025-12-06) ✅
+- [x] **Upgraded from v0.3.14 to v0.4.4** - Latest stable release with performance improvements and bug fixes
+- [x] **Custom ChatGPT Images** - Replaced stock Unsplash photos with custom AI-generated images for all 12 main blog posts
+- [x] **Supabase Storage Migration** - All featured images now served from Supabase CDN with proper cache invalidation
+- [x] **Image Upload Scripts** - Created utilities for uploading local images to Supabase Storage with force-replace functionality
+
 #### Migrated to noorui-rtl v0.4.0 (2025-11-28) ✅
 - [x] **ReactionPicker** - LinkedIn/Discord-style emoji reaction picker. Migrated from Kitab to noorui-rtl. Now available as `import { ReactionPicker } from 'noorui-rtl'`.
 - [x] **UserBadge** - Role/status badge component with 5 variants. Migrated from Kitab to noorui-rtl. Now available as `import { UserBadge } from 'noorui-rtl'`.

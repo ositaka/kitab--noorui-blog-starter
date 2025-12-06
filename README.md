@@ -65,7 +65,7 @@ A production-ready multilingual blog starter showcasing RTL support and Arabic t
 ## 🏗️ Tech Stack
 
 - **Framework**: Next.js 16 (App Router with Turbopack)
-- **UI Library**: Noor UI v0.3.14 (noorui-rtl)
+- **UI Library**: Noor UI v0.4.4 (noorui-rtl)
 - **Database**: Supabase (PostgreSQL)
 - **Storage**: Supabase Storage
 - **Authentication**: Supabase Auth

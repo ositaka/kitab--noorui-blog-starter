@@ -71,7 +71,7 @@
 - ✅ **UPDATED:** Repository URL to match dedicated blog-starter repo
 
 ### 2. Dependencies
-- ✅ **Noor UI:** v0.3.14 (noorui-rtl)
+- ✅ **Noor UI:** v0.4.4 (noorui-rtl) - Latest version!
 - ✅ **Next.js:** 16.0.3
 - ✅ **React:** 19.2.0
 - ✅ **Supabase:** Latest versions (@supabase/ssr, @supabase/supabase-js)
